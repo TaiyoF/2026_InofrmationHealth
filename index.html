@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Connect — 今日のチェック</title>
+  <title>Connect — 今日のメディアチャレンジ</title>
   <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     :root {
@@ -1908,6 +1908,132 @@
     body[data-theme="playful"] .points-area{fill:rgba(91,146,245,.10)}
     body[data-theme="playful"] .points-grid{stroke:#dfe8f4}
 
+    /* Theme skins share the same layout but use different visual languages. */
+    .theme-mascot{display:none;width:124px;height:124px;object-fit:cover;border-radius:32px;flex:0 0 auto}
+    .theme-mascot-wrap{display:none;align-items:center;justify-content:center;margin:-4px 0 12px}
+    .theme-preview-scene{height:76px;border-radius:14px;display:grid;grid-template-columns:54px 1fr;gap:10px;align-items:center;padding:9px 11px;overflow:hidden;position:relative}
+    .theme-preview-emblem{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:17px}
+    .theme-preview-lines{display:grid;gap:6px}
+    .theme-preview-lines span{display:block;height:7px;border-radius:999px}
+    .theme-preview-lines span:last-child{width:68%}
+    .preview-default{background:#eef7f3;border:1px solid #dce6e1}
+    .preview-default .theme-preview-emblem{background:#fff;color:#2f8b70;border:1px solid #dce6e1}
+    .preview-default .theme-preview-lines span{background:#bdd9cf}
+    .preview-game{background:radial-gradient(circle at 80% 10%,rgba(255,205,100,.18),transparent 34%),linear-gradient(145deg,#132238,#080f1b);border:1px solid #97712a;box-shadow:inset 0 0 0 2px #263b59}
+    .preview-game .theme-preview-emblem{background:linear-gradient(145deg,#f7d67a,#8e5d12);color:#101827;border:3px double #ffe39b;clip-path:polygon(50% 0,91% 20%,100% 65%,72% 100%,28% 100%,0 65%,9% 20%)}
+    .preview-game .theme-preview-lines span{background:linear-gradient(90deg,#f0be55,#8d651e)}
+    .preview-dog{background:#eaf6ff;border:2px solid #a9cef0}
+    .preview-dog img{width:58px;height:58px;border-radius:18px;object-fit:cover}
+    .preview-dog .theme-preview-lines span{background:#86bff2}
+    .preview-dog .theme-preview-lines span:last-child{background:#75bd78}
+
+    .badge-medal{position:relative;isolation:isolate;overflow:visible;background:linear-gradient(145deg,#fff,#e7ecef);box-shadow:inset 0 0 0 2px rgba(255,255,255,.72),0 4px 10px rgba(25,35,38,.16)}
+    .badge-medal::before{content:"★";position:absolute;inset:4px;display:grid;place-items:center;border:1px solid currentColor;border-radius:50%;font-size:12px;line-height:1;opacity:.9}
+    .badge-medal::after{content:"";position:absolute;z-index:-1;left:18%;right:18%;bottom:-9px;height:14px;background:currentColor;clip-path:polygon(0 0,45% 0,50% 100%,55% 0,100% 0,82% 100%,50% 70%,18% 100%);opacity:.72}
+    .season-badge-current .badge-medal{width:54px;height:54px;font-size:0;border-width:4px}
+    .season-badge-current .badge-medal::before{font-size:22px}
+    .badge-step .badge-medal{font-size:0}
+    .badge-step:not(.earned) .badge-medal{filter:grayscale(1);opacity:.42}
+    .badge-frame-visible{box-shadow:0 0 0 2px var(--surface),0 0 0 5px var(--badge-frame-color),0 0 18px color-mix(in srgb,var(--badge-frame-color) 48%,transparent)}
+
+    body[data-theme="midnight"]{background:
+      radial-gradient(circle at 20% 0%,rgba(209,151,52,.13),transparent 30%),
+      repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 1px,transparent 1px 9px),#060d17;
+      font-family:"Segoe UI","Noto Sans JP",sans-serif}
+    body[data-theme="midnight"] .desktop-frame,
+    body[data-theme="midnight"] .phone{border:2px solid #8d6824;box-shadow:0 28px 90px rgba(0,0,0,.56),inset 0 0 0 2px #1e344d}
+    body[data-theme="midnight"] .desktop-brand,
+    body[data-theme="midnight"] .panel-title h1,
+    body[data-theme="midnight"] .work-topbar b{font-family:Georgia,"Noto Serif JP",serif;letter-spacing:.035em;color:#ffe39a}
+    body[data-theme="midnight"] .desktop-nav,
+    body[data-theme="midnight"] .desktop-right,
+    body[data-theme="midnight"] .desktop-topbar,
+    body[data-theme="midnight"] .desktop-main,
+    body[data-theme="midnight"] .topbar,
+    body[data-theme="midnight"] .work-screen{background:linear-gradient(180deg,#0c1828,#08111d)}
+    body[data-theme="midnight"] .check-module,
+    body[data-theme="midnight"] .history-card,
+    body[data-theme="midnight"] .desktop-profile-card,
+    body[data-theme="midnight"] .check-card,
+    body[data-theme="midnight"] .utility-card,
+    body[data-theme="midnight"] .quiz-card,
+    body[data-theme="midnight"] .answer-card,
+    body[data-theme="midnight"] .feedback-hero,
+    body[data-theme="midnight"] .reward-box,
+    body[data-theme="midnight"] .season-card,
+    body[data-theme="midnight"] .mode-choice-card{border:1px solid #755823;background:linear-gradient(155deg,#13243a,#0b1625);box-shadow:inset 0 0 0 1px #2b4260,0 8px 22px rgba(0,0,0,.28);border-radius:8px}
+    body[data-theme="midnight"] .check-module::before,
+    body[data-theme="midnight"] .quiz-card::before{content:"";position:absolute;inset:5px;pointer-events:none;border:1px solid rgba(237,190,89,.18);clip-path:polygon(0 0,24px 0,24px 1px,1px 1px,1px 24px,0 24px,0 0,100% 0,100% 24px,99% 24px,99% 1px,calc(100% - 24px) 1px,calc(100% - 24px) 0,100% 0,100% 100%,calc(100% - 24px) 100%,calc(100% - 24px) 99%,99% 99%,99% calc(100% - 24px),100% calc(100% - 24px),100% 100%,0 100%,0 calc(100% - 24px),1px calc(100% - 24px),1px 99%,24px 99%,24px 100%,0 100%)}
+    body[data-theme="midnight"] .quiz-card,
+    body[data-theme="midnight"] .check-module{position:relative}
+    body[data-theme="midnight"] .button{border-radius:5px;text-transform:none;letter-spacing:.04em;font-weight:800}
+    body[data-theme="midnight"] .button.primary{background:linear-gradient(180deg,#f5ce70,#b47a20);border-color:#ffe39a;color:#111a26;box-shadow:inset 0 1px 0 #fff2be,0 5px 14px rgba(212,151,45,.25)}
+    body[data-theme="midnight"] .button.primary:hover{background:linear-gradient(180deg,#ffe39a,#c98d2f)}
+    body[data-theme="midnight"] .mode-choice-icon,
+    body[data-theme="midnight"] .answer-mark{background:radial-gradient(circle,#203b5b,#0b1625);border:2px solid #d7a640;color:#ffe39a;box-shadow:0 0 18px rgba(215,166,64,.18)}
+    body[data-theme="midnight"] .season-progress{height:14px;border:1px solid #4c6682;background:#060c14;box-shadow:inset 0 2px 5px #000}
+    body[data-theme="midnight"] .season-progress-fill{background:linear-gradient(90deg,#8e5d12,#ffd970,#fff0aa);box-shadow:0 0 16px #d9a13c}
+    body[data-theme="midnight"] .badge-medal{clip-path:polygon(50% 0,91% 20%,100% 65%,72% 100%,28% 100%,0 65%,9% 20%);background:linear-gradient(145deg,#f8e29a,#8e5d12);border-color:#ffe39a;box-shadow:inset 0 0 0 3px #263b59,0 0 20px rgba(232,179,70,.28)}
+    body[data-theme="midnight"] .badge-medal::before{border-radius:0;border-color:#1b2b41;color:#17243a}
+    body[data-theme="midnight"] .badge-medal.badge-bronze{background:linear-gradient(145deg,#e7a664,#75411c);border-color:#f2c189}
+    body[data-theme="midnight"] .badge-medal.badge-silver{background:linear-gradient(145deg,#f4f7fb,#657789);border-color:#dce7ef}
+    body[data-theme="midnight"] .badge-medal.badge-gold{background:linear-gradient(145deg,#fff0a8,#a76510);border-color:#ffe39a}
+    body[data-theme="midnight"] .badge-medal.badge-platinum{background:linear-gradient(145deg,#d9fbff,#64839b);border-color:#b8eef4}
+    body[data-theme="midnight"] .badge-medal.badge-black{background:linear-gradient(145deg,#5d6572,#080a0e);border-color:#aeb5bf}
+
+    body[data-theme="playful"]{background:
+      radial-gradient(circle at 18px 18px,rgba(83,155,220,.10) 0 4px,transparent 5px),
+      radial-gradient(circle at 31px 27px,rgba(83,155,220,.08) 0 3px,transparent 4px),#f4fbff;background-size:56px 56px;
+      font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI","Noto Sans JP",sans-serif}
+    body[data-theme="playful"] .desktop-frame,
+    body[data-theme="playful"] .phone{border:3px solid #79aee0;box-shadow:0 24px 64px rgba(67,121,166,.22)}
+    body[data-theme="playful"] .desktop-nav,
+    body[data-theme="playful"] .desktop-right,
+    body[data-theme="playful"] .desktop-topbar,
+    body[data-theme="playful"] .desktop-main,
+    body[data-theme="playful"] .topbar,
+    body[data-theme="playful"] .work-screen{background:linear-gradient(180deg,#fafdff,#f4f9ff)}
+    body[data-theme="playful"] .check-module,
+    body[data-theme="playful"] .history-card,
+    body[data-theme="playful"] .desktop-profile-card,
+    body[data-theme="playful"] .check-card,
+    body[data-theme="playful"] .utility-card,
+    body[data-theme="playful"] .quiz-card,
+    body[data-theme="playful"] .answer-card,
+    body[data-theme="playful"] .feedback-hero,
+    body[data-theme="playful"] .reward-box,
+    body[data-theme="playful"] .season-card,
+    body[data-theme="playful"] .mode-choice-card{border:2px solid #c6ddf0;background:#fffdf8;border-radius:22px;box-shadow:0 7px 0 #dceaf5,0 12px 24px rgba(63,113,156,.10)}
+    body[data-theme="playful"] .panel-title h1,
+    body[data-theme="playful"] .work-topbar b{color:#357bb8;font-weight:900;letter-spacing:.02em}
+    body[data-theme="playful"] .button{border-radius:999px;font-weight:900;border-width:2px}
+    body[data-theme="playful"] .button.primary{background:linear-gradient(180deg,#65a9f5,#4388de);border-color:#397dcf;box-shadow:0 5px 0 #2f70bc;color:white}
+    body[data-theme="playful"] .button.primary:active{transform:translateY(3px);box-shadow:0 2px 0 #2f70bc}
+    body[data-theme="playful"] .theme-mascot,
+    body[data-theme="playful"] .theme-mascot-wrap{display:flex}
+    body[data-theme="playful"] .theme-mascot-wrap .theme-mascot{display:block;width:150px;height:150px}
+    body[data-theme="playful"] .feedback-hero{position:relative;padding-right:138px;min-height:134px;background:linear-gradient(145deg,#fff9e7,#eff9ff)}
+    body[data-theme="playful"] .feedback-hero::after{content:"";position:absolute;right:10px;bottom:0;width:120px;height:120px;background:url("assets/mascot-shiba.png") center/cover;border-radius:28px}
+    body[data-theme="playful"] .mode-choice-icon,
+    body[data-theme="playful"] .answer-mark{background:#e9f6ff;color:#367fc0;border:3px solid #91c7ef;box-shadow:0 4px 0 #c4e0f4}
+    body[data-theme="playful"] .answer-card[data-answer="false"] .answer-mark{background:#fff0ef;color:#df6860;border-color:#f3aaa5;box-shadow:0 4px 0 #f7d1ce}
+    body[data-theme="playful"] .reaction-option{border:2px solid #c6ddf0;border-radius:18px;background:#fff}
+    body[data-theme="playful"] .reaction-option.selected{border-color:#71bd77;background:#effbef;box-shadow:0 4px 0 #cce7ce}
+    body[data-theme="playful"] .badge-medal{background:linear-gradient(145deg,#fff7bd,#ffc640);border:3px solid #e8a91f;box-shadow:inset 0 0 0 2px #fff7cf,0 5px 0 #d79a1b,0 8px 16px rgba(218,158,31,.2)}
+    body[data-theme="playful"] .badge-medal::before{border-color:#fff;color:#fff;text-shadow:0 2px 0 rgba(184,119,0,.25)}
+    body[data-theme="playful"] .badge-medal.badge-bronze{background:linear-gradient(145deg,#ffd0a0,#c87d3d);border-color:#a85f27}
+    body[data-theme="playful"] .badge-medal.badge-silver{background:linear-gradient(145deg,#fff,#aab9c7);border-color:#7f93a4}
+    body[data-theme="playful"] .badge-medal.badge-gold{background:linear-gradient(145deg,#fff7bd,#ffc640);border-color:#e8a91f}
+    body[data-theme="playful"] .badge-medal.badge-platinum{background:linear-gradient(145deg,#eaffff,#71b8ca);border-color:#4e98ad}
+    body[data-theme="playful"] .badge-medal.badge-black{background:linear-gradient(145deg,#66707c,#171b21);border-color:#11151a}
+    body[data-theme="playful"] .season-progress{height:14px;border:2px solid #9dcde8;background:#eaf6ff}
+    body[data-theme="playful"] .season-progress-fill{background:linear-gradient(90deg,#70bd76,#a8dc77)}
+    body[data-theme="playful"] .streak-icon{background:#fff0cf;color:#ef9c24;border:2px solid #ffd17c}
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+
     @media(max-width:820px){
       .phone{background:var(--phone);border:0}
       .topbar{height:56px;background:rgba(255,255,255,.96)}
@@ -1949,7 +2075,7 @@
                 <span class="module-status" id="desktop-module-status">2日継続</span>
               </div>
               <div class="check-module-meta">
-                <div class="meta-box"><b>今日のテーマ</b><span data-today-category>健康</span></div>
+                <div class="meta-box"><b>今日のテーマ</b><span data-today-category>本の日</span></div>
                 <div class="meta-box"><b>獲得ポイント</b><span>正解 +3 pt／不正解 +1 pt</span></div>
               </div>
               <div class="button-row">
@@ -2028,7 +2154,7 @@
             <div class="sub">チェック記録</div>
             <div class="summary-list compact" style="margin-top:10px">
               <div class="summary-row"><span>現在の連続日数</span><strong id="desktop-streak-text">2日継続</strong></div>
-              <div class="summary-row"><span>最近のテーマ</span><strong id="desktop-theme-text">健康、災害、科学</strong></div>
+              <div class="summary-row"><span>最近のテーマ</span><strong id="desktop-theme-text">本の日、宇宙の日、水の日</strong></div>
             </div>
             <div class="point-balance"><span>累計ポイント</span><strong id="desktop-total-points">38 pt</strong></div>
             <div class="today-status"><i data-lucide="circle-dashed"></i>今日のチェックはまだです</div>
@@ -2061,7 +2187,7 @@
               </div>
             </div>
             <div class="sheet-facts">
-              <div class="fact"><b>今日のテーマ</b><span data-today-category>健康</span></div>
+              <div class="fact"><b>今日のテーマ</b><span data-today-category>本の日</span></div>
               <div class="fact"><b>公開される情報</b><span>現在の連続日数と最近のテーマ</span></div>
             </div>
             <div class="button-row">
@@ -2094,7 +2220,7 @@
               <span class="module-status" id="mobile-module-status">2日継続</span>
             </div>
             <div class="check-module-meta">
-              <div class="meta-box"><b>今日のテーマ</b><span data-today-category>健康</span></div>
+              <div class="meta-box"><b>今日のテーマ</b><span data-today-category>本の日</span></div>
               <div class="meta-box"><b>獲得ポイント</b><span>正解 +3 pt／不正解 +1 pt</span></div>
             </div>
             <div class="button-row">
@@ -2196,7 +2322,7 @@
               </div>
             </div>
             <div class="sheet-facts">
-              <div class="fact"><b>今日のテーマ</b><span data-today-category>健康</span></div>
+              <div class="fact"><b>今日のテーマ</b><span data-today-category>本の日</span></div>
               <div class="fact"><b>公開される情報</b><span>現在の連続日数と最近のテーマ</span></div>
             </div>
             <div class="button-row">
@@ -2330,6 +2456,7 @@
         </header>
         <div class="work-screen">
           <section class="quiz-card">
+            <div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/mascot-shiba.png" alt="星のメダルを持つ犬のマスコット"></div>
             <span class="tag">1日1回</span>
             <h2>今日はどちらに回答しますか？</h2>
             <p>スキップした場合，ポイントは増えません。</p>
@@ -2411,33 +2538,29 @@
 
           <article class="quiz-card">
             <div class="tag-row">
-              <span class="tag" id="quiz-category">健康</span>
+              <span class="tag" id="quiz-category">本の日</span>
               <span class="time">今日の1件</span>
             </div>
             <div class="post-head">
-              <div class="mini-avatar" id="quiz-avatar-mark" data-badge-tone="gold">H</div>
+              <div class="mini-avatar" id="quiz-avatar-mark" data-badge-tone="gold">本</div>
               <div class="account">
-                <strong id="quiz-account-name">からだのメモ</strong>
-                <span id="quiz-account-handle">@karada_memo</span>
+                <strong id="quiz-account-name">今日は何の日</strong>
+                <span id="quiz-account-handle">@today_note</span>
               </div>
             </div>
-            <p id="quiz-post-text">毎朝レモン水を飲むだけで、血糖値の上昇を防げることが確認されています。</p>
+            <p id="quiz-post-text">4月23日は「世界本の日」です。読書や出版，著作権について考える日として知られています。</p>
           </article>
 
-          <div class="question">この投稿の内容は、今の情報だけで信じてよさそうですか？</div>
+          <div class="question">この「今日は○○の日」情報は正しい？</div>
 
           <div class="answer-list">
             <button class="answer-card" data-answer="true">
               <span class="answer-mark">○</span>
-              <span class="card-copy"><b>信じてよさそう</b><span>根拠や出典が確認できる</span></span>
+              <span class="card-copy"><b>正しい</b><span>投稿の内容は合っている</span></span>
             </button>
             <button class="answer-card" data-answer="false">
               <span class="answer-mark">×</span>
-              <span class="card-copy"><b>まだ信じない</b><span>根拠や出典が確認できない</span></span>
-            </button>
-            <button class="answer-card" data-answer="hold">
-              <span class="answer-mark">?</span>
-              <span class="card-copy"><b>判断を保留する</b><span>確認できるまで決めない</span></span>
+              <span class="card-copy"><b>間違っている</b><span>投稿の内容は合っていない</span></span>
             </button>
           </div>
         </main>
@@ -2458,13 +2581,13 @@
 
           <div class="completion-streak"><span class="streak-icon"><i data-lucide="flame"></i></span><div><strong id="completion-streak-label">3日継続になりました</strong><span>現在の連続日数がプロフィールに反映されました</span></div></div>
           <div class="feedback-hero">
-            <h2 id="feedback-head">今回は，まだ信用しない方がよい内容です</h2>
-            <p id="feedback-copy">出典が見えない断定は、すぐに広げず、出典や日付を見てから判断します。</p>
+            <h2 id="feedback-head">正解です！</h2>
+            <p id="feedback-copy">4月23日は「世界本の日」です。</p>
           </div>
 
           <div class="reward-box">
-            <div class="reward-line"><span>選んだ答え</span><b id="selected-answer-label">まだ信用しない</b></div>
-            <div class="reward-line"><span>テーマ</span><b id="category-points">健康</b></div>
+            <div class="reward-line"><span>選んだ答え</span><b id="selected-answer-label">正しい</b></div>
+            <div class="reward-line"><span>テーマ</span><b id="category-points">本の日</b></div>
             <div class="reward-line"><span>今回のポイント</span><b id="earned-points">＋0 pt</b></div>
             <div class="reward-line"><span>累計ポイント</span><b id="total-points">15 pt</b></div>
             
@@ -2480,7 +2603,7 @@
             </div>
             <article class="quiz-card" id="checked-source-card">
               <div class="checked-source-inner">
-                <div class="checked-source-top"><span class="tag" id="checked-source-category">健康</span><span class="checked-source-meta">チェックに使った投稿</span></div>
+                <div class="checked-source-top"><span class="tag" id="checked-source-category">本の日</span><span class="checked-source-meta">チェックに使った投稿</span></div>
                 <div class="post-head">
                   <div class="mini-avatar" id="checked-source-mark" data-badge-tone="gold">H</div>
                   <div class="account"><strong id="checked-source-name">からだのメモ</strong><span id="checked-source-handle">@karada_memo</span></div>
@@ -2567,7 +2690,7 @@
 
   <script>
     const state = {
-      category: "健康",
+      category: "本の日",
       answer: "",
       total: 38,
       seasonQuizPoints: 24,
@@ -2617,42 +2740,52 @@
       { title: "今日のチェック", text: "1日1回、表示された投稿を1件だけチェックします。" }
     ];
     const categoryMeta = [
-      { name: "健康", mark: "健", copy: "健康・医療" },
-      { name: "災害", mark: "災", copy: "防災・避難" },
-      { name: "科学", mark: "科", copy: "話題のニュース" },
-      { name: "生活", mark: "生", copy: "暮らし" },
-      { name: "政治・社会", mark: "社", copy: "社会の話題" }
+      { name: "本の日", mark: "本", copy: "読書・文化" },
+      { name: "宇宙の日", mark: "宇", copy: "宇宙・科学" },
+      { name: "水の日", mark: "水", copy: "環境・くらし" },
+      { name: "地球の日", mark: "地", copy: "環境・自然" },
+      { name: "海の日", mark: "海", copy: "祝日・文化" }
     ];
     const quizContent = {
-      "健康": {
-        mark: "H",
-        name: "からだのメモ",
-        handle: "@karada_memo",
-        text: "毎朝レモン水を飲むだけで、血糖値の上昇を防げることが確認されています。"
+      "本の日": {
+        mark: "本",
+        name: "今日は何の日",
+        handle: "@today_note",
+        text: "4月23日は「世界本の日」です。読書や出版，著作権について考える日として知られています。",
+        correctAnswer: "true",
+        explanation: "4月23日はユネスコが定める「世界本・著作権デー」です。"
       },
-      "災害": {
-        mark: "D",
-        name: "防災ノート",
-        handle: "@bousai_note",
-        text: "地震のあと、指定避難所はすべて同じ時間に開設されます。"
+      "宇宙の日": {
+        mark: "宇",
+        name: "今日は何の日",
+        handle: "@today_note",
+        text: "9月12日は「宇宙の日」です。",
+        correctAnswer: "true",
+        explanation: "9月12日は，宇宙や地球環境について考える「宇宙の日」です。"
       },
-      "科学": {
-        mark: "S",
-        name: "話題ウォッチ",
-        handle: "@wadai_watch",
-        text: "ある話題で紹介された方法は，誰にでも同じように効果があると確認されています。"
+      "水の日": {
+        mark: "水",
+        name: "今日は何の日",
+        handle: "@today_note",
+        text: "3月21日は，国連が定めた「世界水の日」です。",
+        correctAnswer: "false",
+        explanation: "「世界水の日」は3月22日です。1日違いなので要注意です。"
       },
-      "生活": {
-        mark: "L",
-        name: "暮らしのヒント",
-        handle: "@kurashi_hint",
-        text: "冷蔵保存すれば、賞味期限を過ぎた食品も必ず安全に食べられます。"
+      "地球の日": {
+        mark: "地",
+        name: "今日は何の日",
+        handle: "@today_note",
+        text: "4月22日は「アースデイ（地球の日）」です。",
+        correctAnswer: "true",
+        explanation: "4月22日は，環境について考える「アースデイ」として広く知られています。"
       },
-      "政治・社会": {
-        mark: "P",
-        name: "ニュースの要点",
-        handle: "@news_point",
-        text: "新しい制度は、来月から全国で必ず開始されます。"
+      "海の日": {
+        mark: "海",
+        name: "今日は何の日",
+        handle: "@today_note",
+        text: "日本の「海の日」は，毎年7月の第2月曜日です。",
+        correctAnswer: "false",
+        explanation: "「海の日」は原則として7月の第3月曜日です。"
       }
     };
 
@@ -2689,24 +2822,24 @@
           name: "ベーシック",
           note: "今の落ち着いた配色です。",
           badge: theme === "default" ? "現在" : "",
-          swatches: ["default-1", "default-2", "default-3", "default-4"]
+          preview: `<div class="theme-preview-scene preview-default"><span class="theme-preview-emblem">S</span><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         },
         {
           key: "midnight",
-          name: "ナイトゴールド",
-          note: "濃紺とゴールドを基調にした，重厚なデザインです。",
+          name: "メディアクエスト",
+          note: "ランクや経験値を集める，ゲーム風のデザインです。",
           badge: theme === "midnight" ? "現在" : "",
-          swatches: ["midnight-1", "midnight-2", "midnight-3", "midnight-4"]
+          preview: `<div class="theme-preview-scene preview-game"><span class="theme-preview-emblem">★</span><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         },
         {
           key: "playful",
-          name: "ポップラーニング",
-          note: "やわらかい色合いで，親しみやすいデザインです。",
+          name: "わんこチャレンジ",
+          note: "犬のマスコットと一緒に進める，親しみやすいデザインです。",
           badge: theme === "playful" ? "現在" : "",
-          swatches: ["playful-1", "playful-2", "playful-3", "playful-4"]
+          preview: `<div class="theme-preview-scene preview-dog"><img src="assets/mascot-shiba.png" alt=""><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         }
       ];
-      return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div><div class="theme-preview">${item.swatches.map((swatch) => `<span class="theme-swatch ${swatch}"></span>`).join("")}</div></button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
+      return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div>${item.preview}</button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
     }
 
     function bindThemeSettings(root = document) {
@@ -2887,7 +3020,7 @@
       showDesktopContent(
         "今日のチャレンジ",
         "回答方法を選んでください",
-        `<section class="quiz-card"><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
+        `<section class="quiz-card"><div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/mascot-shiba.png" alt="星のメダルを持つ犬のマスコット"></div><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
       );
       document.querySelectorAll("[data-desktop-mode]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -2946,10 +3079,10 @@
 
     function renderDesktopQuiz() {
       state.challengeMode = "quiz";
-      const content = quizContent[state.category] || quizContent["健康"];
+      const content = quizContent[state.category] || quizContent["本の日"];
       showDesktopContent(
-        "今日の投稿",
-        "投稿に書かれている情報を見て判断してください",
+        "今日の○×クイズ",
+        "投稿の内容が正しいか，○か×で答えてください",
         `<article class="quiz-card">
           <div class="tag-row"><span class="tag">${state.category}</span><span class="time">今日の1件</span></div>
           <div class="post-head">
@@ -2958,11 +3091,10 @@
           </div>
           <p>${content.text}</p>
         </article>
-        <div class="question">この投稿の内容は、今の情報だけで信じてよさそうですか？</div>
+        <div class="question">この「今日は○○の日」情報は正しい？</div>
         <div class="answer-list">
-          <button class="answer-card desktop-answer-card" data-answer="true"><span class="answer-mark">○</span><span class="card-copy"><b>信じてよさそう</b><span>根拠や出典が確認できる</span></span></button>
-          <button class="answer-card desktop-answer-card" data-answer="false"><span class="answer-mark">×</span><span class="card-copy"><b>まだ信じない</b><span>根拠や出典が確認できない</span></span></button>
-          <button class="answer-card desktop-answer-card" data-answer="hold"><span class="answer-mark">?</span><span class="card-copy"><b>判断を保留する</b><span>確認できるまで決めない</span></span></button>
+          <button class="answer-card desktop-answer-card" data-answer="true"><span class="answer-mark">○</span><span class="card-copy"><b>正しい</b><span>投稿の内容は合っている</span></span></button>
+          <button class="answer-card desktop-answer-card" data-answer="false"><span class="answer-mark">×</span><span class="card-copy"><b>間違っている</b><span>投稿の内容は合っていない</span></span></button>
         </div>`
       );
       document.querySelectorAll(".desktop-answer-card").forEach((card) => {
@@ -2975,9 +3107,8 @@
 
     function answerLabel(answer) {
       return {
-        true: "信じてよさそう",
-        false: "まだ信じない",
-        hold: "判断を保留する"
+        true: "正しい",
+        false: "間違っている"
       }[answer] || "";
     }
 
@@ -2989,7 +3120,7 @@
         { day: "月", points: 0, status: "skip" },
         { day: "火", points: 1, status: "incorrect" },
         { day: "水", points: 3, status: "correct" },
-        { day: "今日", points: state.completed ? state.lastPoints : 0, status: state.completed ? (state.answer === "false" ? "correct" : state.answer === "hold" ? "hold" : "incorrect") : "pending" }
+        { day: "今日", points: state.completed ? state.lastPoints : 0, status: state.completed ? (state.challengeMode === "reaction" ? "reaction" : isCorrectAnswer(state.answer) ? "correct" : "incorrect") : "pending" }
       ];
       return history;
     }
@@ -3108,7 +3239,7 @@
     }
 
     function recentThemeText() {
-      const defaults = ["健康", "災害", "科学"];
+      const defaults = ["本の日", "宇宙の日", "水の日"];
       const list = [state.category, ...defaults].filter(Boolean).filter((item, idx, arr) => arr.indexOf(item) === idx).slice(0, 3);
       return list.join("、");
     }
@@ -3167,8 +3298,13 @@
       return `<div class="bonus-metrics"><div class="bonus-metric"><b>${state.streak}日</b><span>現在の連続日数</span></div><div class="bonus-metric"><b>${Math.round((state.correctCount / state.totalChecks) * 100)}%</b><span>通算正答率</span></div><div class="bonus-metric"><b>${state.quizCorrectStreak}問</b><span>○×クイズ連続正解</span></div></div>`;
     }
 
+    function isCorrectAnswer(answer) {
+      const content = quizContent[state.category] || quizContent["本の日"];
+      return answer === content.correctAnswer;
+    }
+
     function pointsForAnswer(answer) {
-      return answer === "false" ? 3 : 1;
+      return isCorrectAnswer(answer) ? 3 : 1;
     }
 
     function awardPoints(answer) {
@@ -3195,11 +3331,9 @@
     }
 
     function renderDesktopFeedback(answer) {
-      const copy = {
-        true: "根拠や出典が示されていないため、信じる前に元の情報を確認する必要があります。",
-        false: "根拠や出典が確認できない投稿は、いったん立ち止まって確かめるのが安心です。",
-        hold: "情報が足りないときは、結論を急がず、元の情報を確認してから判断しましょう。"
-      }[answer];
+      const content = quizContent[state.category] || quizContent["本の日"];
+      const correct = isCorrectAnswer(answer);
+      const copy = content.explanation;
       const earned = awardPoints(answer);
       setCompletedHome("今日のチェック完了");
       showDesktopContent(
@@ -3207,7 +3341,7 @@
         `今日のチェックが完了しました（＋${earned} pt）`,
         `<div class="completion-streak"><span class="streak-icon"><i data-lucide="flame"></i></span><div><strong>${state.streak}日継続になりました</strong><span>現在の連続日数がプロフィールに反映されました</span></div></div>
         <div class="feedback-hero">
-          <h2>${({true:"この投稿だけでは、まだ判断できません",false:"そのまま信じない判断で正解です",hold:"判断を保留するのも適切です"})[answer]}</h2>
+          <h2>${correct ? "正解です！" : `おしい！正解は「${answerLabel(content.correctAnswer)}」です`}</h2>
           <p>${copy}</p>
         </div>
         <div class="reward-box">
@@ -3227,8 +3361,8 @@
           <article class="quiz-card" id="desktop-checked-source-card">
             <div class="checked-source-inner">
               <div class="checked-source-top"><span class="tag">${state.category}</span><span class="checked-source-meta">チェックに使った投稿</span></div>
-              <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["健康"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["健康"]).name}</strong><span>${(quizContent[state.category] || quizContent["健康"]).handle}</span></div></div>
-              <p>${(quizContent[state.category] || quizContent["健康"]).text}</p>
+              <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["本の日"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["本の日"]).name}</strong><span>${(quizContent[state.category] || quizContent["本の日"]).handle}</span></div></div>
+              <p>${(quizContent[state.category] || quizContent["本の日"]).text}</p>
               <div class="checked-source-note">気になったときは、いいね・保存・共有などのリアクションもできます。</div>
             </div>
             <div class="post-actions"><span>いいね 24</span><span>コメント 6</span><span>リポスト 2</span><span>保存 8</span><span>共有 1</span></div>
@@ -3452,7 +3586,7 @@
     }
 
     function updateQuizContent(category) {
-      const content = quizContent[category] || quizContent["健康"];
+      const content = quizContent[category] || quizContent["本の日"];
       document.querySelector("#quiz-category").textContent = category;
       document.querySelector("#quiz-avatar-mark").textContent = content.mark;
       document.querySelector("#quiz-account-name").textContent = content.name;
@@ -3473,9 +3607,9 @@
       setActiveNav("check");
       setActiveDesktopNav("check");
       if (target === "desktop") {
-        renderDesktopQuiz();
+        renderDesktopModeChoice();
       } else {
-        showScreen("screen-quiz");
+        showScreen("screen-mode-choice");
       }
     }
 
@@ -3483,10 +3617,10 @@
       if (!state.completed) {
         state.streak += 1;
         state.totalChecks += 1;
-        if (state.answer === "false") {
+        if (state.challengeMode === "quiz" && isCorrectAnswer(state.answer)) {
           state.correctCount += 1;
           state.quizCorrectStreak += 1;
-        } else if (state.answer !== "reaction") {
+        } else if (state.challengeMode === "quiz") {
           state.quizCorrectStreak = 0;
         }
         if (state.streak > state.bestStreak) state.bestStreak = state.streak;
@@ -3745,31 +3879,22 @@
 
     function setFeedback(answer) {
       const earned = awardPoints(answer);
+      const content = quizContent[state.category] || quizContent["本の日"];
+      const correct = isCorrectAnswer(answer);
       const result = {
-        true: {
-          head: "その場で信用してよい根拠が十分かを考えられました",
-          copy: "信用するときも，発信元や日付が確かかを確認する習慣が大切です。"
-        },
-        false: {
-          head: "すぐに広げない判断ができました",
-          copy: "根拠が十分でない投稿を，その場で拡散しない選択ができています。"
-        },
-        hold: {
-          head: "判断を保留する選択ができました",
-          copy: "情報が足りないときは，結論を急がず，判断を保留するのが適切です。"
-        }
-      }[answer];
+        head: correct ? "正解です！" : `おしい！正解は「${answerLabel(content.correctAnswer)}」です`,
+        copy: content.explanation
+      };
 
       document.querySelector("#feedback-total").textContent = `＋${earned} pt`;
       document.querySelector("#feedback-head").textContent = result.head;
       document.querySelector("#feedback-copy").textContent = result.copy;
       document.querySelector("#feedback-sub").textContent = "今日のチェックが記録されました";
       document.querySelector("#selected-answer-label").textContent = answerLabel(answer);
-      document.querySelector("#category-points").textContent = state.category || "健康";
+      document.querySelector("#category-points").textContent = state.category || "本の日";
       document.querySelector("#earned-points").textContent = `＋${earned} pt`;
       document.querySelector("#total-points").textContent = `${state.total} pt`;
 
-      const content = quizContent[state.category] || quizContent["健康"];
       document.querySelector("#checked-source-category").textContent = state.category;
       document.querySelector("#checked-source-mark").textContent = content.mark;
       document.querySelector("#checked-source-name").textContent = content.name;
