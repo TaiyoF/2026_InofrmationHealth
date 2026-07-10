@@ -97,6 +97,32 @@
       font-weight: 900;
       font-size: 18px;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .desktop-nav-toggle {
+      display: none;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .desktop-nav-toggle svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .desktop-nav-scrim {
+      display: none;
     }
 
     .desktop-nav-item {
@@ -1453,7 +1479,7 @@
     .desktop-bonus-overlay { backdrop-filter: blur(8px); background:rgba(236,243,239,.88); }
     .bottom-sheet { backdrop-filter:blur(10px); background:rgba(236,243,239,.94); }
 
-    @media (max-width: 820px) {
+    @media (max-width: 680px) {
       body {
         display: block;
       }
@@ -1522,7 +1548,7 @@
       --green:#2f6f66; --green-dark:#285f57; --shadow:none;
     }
     body{background:#eef2f0}
-    .desktop-frame{border-radius:12px;grid-template-columns:224px minmax(0,640px) 280px;background:var(--surface);box-shadow:none;border:1px solid var(--line)}
+    .desktop-frame{border-radius:12px;grid-template-columns:224px minmax(0,1fr) 280px;background:var(--surface);box-shadow:none;border:1px solid var(--line)}
     .phone{box-shadow:none;border:1px solid var(--line);background:var(--phone)}
     .desktop-nav,.desktop-right,.desktop-topbar,.desktop-main{background:var(--surface)}
     .desktop-brand{font-size:18px;letter-spacing:0;padding:6px 10px 18px;font-weight:700;color:var(--ink)}
@@ -2130,11 +2156,35 @@
     body[data-theme="midnight"] .badge-medal.badge-black{background-image:url("assets/quest-badge-black.png")}
     body[data-theme="playful"] .badge-medal::after{display:none}
 
+    /* Keep the main feed dominant as space becomes limited. */
+    @media (max-width:1100px) and (min-width:681px){
+      .desktop-frame{grid-template-columns:224px minmax(0,1fr)}
+      .desktop-right{display:none}
+      .desktop-main{border-right:0}
+    }
+
+    @media (max-width:900px) and (min-width:681px){
+      .desktop-frame{grid-template-columns:72px minmax(0,1fr)}
+      .desktop-nav{width:72px;padding:16px 10px;position:relative;z-index:4;overflow:hidden;transition:width .2s ease,box-shadow .2s ease}
+      .desktop-frame.nav-expanded .desktop-nav{width:224px;box-shadow:16px 0 36px rgba(23,33,36,.18)}
+      .desktop-brand{min-height:40px;margin:0 0 10px;padding:0;justify-content:center}
+      .desktop-brand-label{display:none}
+      .desktop-nav-toggle{display:grid}
+      .desktop-frame.nav-expanded .desktop-brand{justify-content:space-between;padding:0 2px 0 10px}
+      .desktop-frame.nav-expanded .desktop-brand-label{display:inline}
+      .desktop-nav-item{width:100%;justify-content:center;padding-inline:0}
+      .desktop-nav-item > span:not(.nav-badge){display:none}
+      .desktop-frame.nav-expanded .desktop-nav-item{justify-content:flex-start;padding-inline:10px}
+      .desktop-frame.nav-expanded .desktop-nav-item > span:not(.nav-badge){display:inline}
+      .desktop-frame:not(.nav-expanded) .desktop-nav-item.pending .nav-badge{position:absolute;top:4px;right:4px;width:8px;min-width:8px;height:8px;border-radius:50%;font-size:0}
+      .desktop-frame.nav-expanded .desktop-nav-scrim{display:block;position:absolute;inset:0;z-index:3;border:0;background:rgba(23,33,36,.18);cursor:pointer}
+    }
+
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
     }
 
-    @media(max-width:820px){
+    @media(max-width:680px){
       .phone{background:var(--phone);border:0}
       .topbar{height:56px;background:rgba(255,255,255,.96)}
       .feed{padding-bottom:82px}
@@ -2148,8 +2198,8 @@
     <section class="device-panel desktop-panel" aria-label="PC画面">
       <div class="device-label">PC</div>
       <div class="desktop-frame">
-        <nav class="desktop-nav" aria-label="PCナビゲーション">
-          <div class="desktop-brand"><span class="brand-mark">S</span><span>Connect</span></div>
+        <nav class="desktop-nav" id="desktop-primary-nav" aria-label="PCナビゲーション">
+          <div class="desktop-brand"><span class="brand-mark">S</span><span class="desktop-brand-label">Connect</span><button class="desktop-nav-toggle" id="desktop-nav-toggle" type="button" aria-controls="desktop-primary-nav" aria-expanded="false" aria-label="ナビゲーションを開く"><i data-lucide="panel-left"></i></button></div>
           <button class="desktop-nav-item active" data-desktop-nav="home"><i data-lucide="home"></i><span>ホーム</span></button>
           <button class="desktop-nav-item" data-desktop-nav="check"><i data-lucide="shield-check"></i><span>チェック</span><span class="nav-badge">未</span></button>
           <button class="desktop-nav-item" data-desktop-nav="search"><i data-lucide="search"></i><span>検索</span></button>
@@ -2159,6 +2209,7 @@
           <div class="desktop-nav-spacer"></div>
           <button class="desktop-nav-item settings-trigger" data-desktop-nav="settings"><i data-lucide="settings-2"></i><span>設定</span></button>
         </nav>
+        <button class="desktop-nav-scrim" id="desktop-nav-scrim" type="button" aria-label="ナビゲーションを閉じる"></button>
 
         <main class="desktop-main">
           <header class="desktop-topbar">
@@ -2832,6 +2883,9 @@
     const answerCards = [...document.querySelectorAll(".answer-card")];
     const navItems = [...document.querySelectorAll(".nav-item[data-nav]")];
     const desktopNavItems = [...document.querySelectorAll(".desktop-nav-item[data-desktop-nav]")];
+    const desktopFrameEl = document.querySelector(".desktop-frame");
+    const desktopNavToggle = document.querySelector("#desktop-nav-toggle");
+    const desktopNavScrim = document.querySelector("#desktop-nav-scrim");
     const bodyEl = document.body;
     const themeStorageKey = "connect_theme_design";
     const mobileFeed = document.querySelector("#screen-home .feed");
@@ -2909,6 +2963,17 @@
 
     function setActiveDesktopNav(key) {
       desktopNavItems.forEach((item) => item.classList.toggle("active", item.dataset.desktopNav === key));
+    }
+
+    function canCollapseDesktopNav() {
+      return window.matchMedia("(max-width: 900px) and (min-width: 681px)").matches;
+    }
+
+    function setDesktopNavExpanded(expanded) {
+      const nextExpanded = Boolean(expanded && canCollapseDesktopNav());
+      desktopFrameEl.classList.toggle("nav-expanded", nextExpanded);
+      desktopNavToggle.setAttribute("aria-expanded", String(nextExpanded));
+      desktopNavToggle.setAttribute("aria-label", nextExpanded ? "ナビゲーションを閉じる" : "ナビゲーションを開く");
     }
 
     function currentTheme() {
@@ -3961,7 +4026,26 @@
     });
 
     desktopNavItems.forEach((item) => {
-      item.addEventListener("click", () => showDesktopPanel(item.dataset.desktopNav));
+      const itemLabel = item.querySelector("span:not(.nav-badge)")?.textContent?.trim();
+      if (itemLabel) item.setAttribute("aria-label", itemLabel);
+      item.addEventListener("click", () => {
+        showDesktopPanel(item.dataset.desktopNav);
+        setDesktopNavExpanded(false);
+      });
+    });
+
+    desktopNavToggle.addEventListener("click", () => {
+      setDesktopNavExpanded(desktopNavToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    desktopNavScrim.addEventListener("click", () => setDesktopNavExpanded(false));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setDesktopNavExpanded(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (!canCollapseDesktopNav()) setDesktopNavExpanded(false);
     });
 
     document.querySelector("#search-input").addEventListener("input", (event) => {
