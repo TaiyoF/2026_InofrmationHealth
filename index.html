@@ -2943,6 +2943,16 @@
       } catch (error) {}
     }
 
+    function restoreTheme() {
+      try {
+        applyTheme(window.localStorage.getItem(themeStorageKey) || "default");
+      } catch (error) {
+        applyTheme("default");
+      }
+    }
+
+    restoreTheme();
+
     function themeSettingsPanelBody() {
       const theme = currentTheme();
       const items = [
