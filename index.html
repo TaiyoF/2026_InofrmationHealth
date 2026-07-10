@@ -1936,7 +1936,7 @@
     .preview-default .theme-preview-lines span{background:#bdd9cf}
     .preview-game{background:radial-gradient(circle at 80% 10%,rgba(255,205,100,.18),transparent 34%),linear-gradient(145deg,#132238,#080f1b);border:1px solid #97712a;box-shadow:inset 0 0 0 2px #263b59}
     .preview-game .theme-preview-emblem{position:relative;isolation:isolate;background:#183049;color:#fff1c7;border:1px solid #36506a;clip-path:none}
-    .preview-game .theme-preview-emblem::before{content:"";position:absolute;inset:-15px;z-index:-1;background:url("assets/quest-badge-frame.png") center/100% 100% no-repeat;filter:sepia(1) saturate(5.4) hue-rotate(353deg) brightness(.98) contrast(1.08);pointer-events:none}
+    .preview-game .theme-preview-emblem::before{content:"";position:absolute;inset:-10px;z-index:-1;background:url("assets/quest-badge-frame.png") center/100% 100% no-repeat;filter:sepia(1) saturate(5.4) hue-rotate(353deg) brightness(.98) contrast(1.08);pointer-events:none}
     .preview-game .theme-preview-lines span{background:linear-gradient(90deg,#f0be55,#8d651e)}
     .preview-dog{background:#eaf6ff;border:2px solid #a9cef0}
     .preview-dog img{width:58px;height:58px;border-radius:18px;object-fit:cover}
@@ -2036,8 +2036,8 @@
     body[data-theme="playful"] .answer-card[data-answer="false"] .answer-mark{background:#fff0ef;color:#df6860;border-color:#f3aaa5;box-shadow:0 4px 0 #f7d1ce}
     body[data-theme="playful"] .reaction-option{border:2px solid #c6ddf0;border-radius:18px;background:#fff}
     body[data-theme="playful"] .reaction-option.selected{border-color:#71bd77;background:#effbef;box-shadow:0 4px 0 #cce7ce}
-    body[data-theme="playful"] .badge-medal{background:var(--playful-badge-background);border:3px solid var(--playful-badge-border);box-shadow:inset 0 0 0 2px var(--playful-badge-highlight),0 5px 0 var(--playful-badge-depth),0 8px 16px var(--playful-badge-shadow);border-radius:50%}
-    body[data-theme="playful"] .badge-medal::before{border-color:#fff;color:#fff;text-shadow:0 2px 0 rgba(184,119,0,.25)}
+    body[data-theme="playful"] .badge-medal{z-index:0;background:transparent;border:0;box-shadow:none;border-radius:50%}
+    body[data-theme="playful"] .badge-medal::before{inset:0;z-index:2;box-sizing:border-box;border:3px solid var(--playful-badge-border);background:var(--playful-badge-background);box-shadow:inset 0 0 0 2px var(--playful-badge-highlight),0 5px 0 var(--playful-badge-depth),0 8px 16px var(--playful-badge-shadow);color:#fff;text-shadow:0 2px 0 rgba(184,119,0,.25);opacity:1}
     body[data-theme="playful"] .badge-medal.badge-bronze,
     body[data-theme="playful"] .badge-frame-bronze{--playful-badge-background:linear-gradient(145deg,#ffd0a0,#c87d3d);--playful-badge-border:#a85f27;--playful-badge-highlight:#ffe5c4;--playful-badge-depth:#8a481f;--playful-badge-shadow:rgba(168,95,39,.22)}
     body[data-theme="playful"] .badge-medal.badge-silver,
@@ -2048,7 +2048,7 @@
     body[data-theme="playful"] .badge-frame-platinum{--playful-badge-background:linear-gradient(145deg,#eaffff,#71b8ca);--playful-badge-border:#4e98ad;--playful-badge-highlight:#efffff;--playful-badge-depth:#347b8f;--playful-badge-shadow:rgba(52,123,143,.22)}
     body[data-theme="playful"] .badge-medal.badge-black,
     body[data-theme="playful"] .badge-frame-black{--playful-badge-background:linear-gradient(145deg,#66707c,#171b21);--playful-badge-border:#11151a;--playful-badge-highlight:#8a949f;--playful-badge-depth:#05070a;--playful-badge-shadow:rgba(5,7,10,.28)}
-    body[data-theme="playful"] .badge-medal::after{display:block;left:15%;right:15%;bottom:-10px;height:16px;background:var(--playful-badge-border);box-shadow:0 4px 0 var(--playful-badge-depth);clip-path:polygon(0 0,43% 0,50% 100%,57% 0,100% 0,84% 100%,50% 70%,16% 100%);opacity:1}
+    body[data-theme="playful"] .badge-medal::after{display:block;z-index:1;left:15%;right:15%;top:66%;bottom:auto;height:50%;background:var(--playful-badge-border);box-shadow:0 4px 0 var(--playful-badge-depth);clip-path:polygon(0 0,43% 0,50% 100%,57% 0,100% 0,84% 100%,50% 70%,16% 100%);opacity:1}
     body[data-theme="playful"] .badge-step .badge-medal{margin-bottom:11px}
     body[data-theme="playful"] .badge-frame-visible{overflow:visible;isolation:isolate;border:1px solid #d7e6f4;border-radius:50%;background:#eef5ff;color:#4a7bd5;box-shadow:none;text-shadow:none}
     body[data-theme="playful"] .badge-frame-visible::before{content:"";position:absolute;inset:-6px;z-index:-1;border:3px solid var(--playful-badge-border);border-radius:50%;background:var(--playful-badge-background);box-shadow:inset 0 0 0 2px var(--playful-badge-highlight),0 5px 0 var(--playful-badge-depth),0 8px 16px var(--playful-badge-shadow);pointer-events:none}
@@ -2110,7 +2110,7 @@
     body[data-theme="midnight"] .badge-frame-visible::before{content:"";position:absolute;inset:-6px;border-radius:50%;z-index:-1;background-position:center;background-repeat:no-repeat;pointer-events:none}
     body:not([data-theme]) .badge-frame-visible::before,
     body[data-theme="default"] .badge-frame-visible::before{inset:-8px;background-image:var(--default-badge-image);background-size:contain}
-    body[data-theme="midnight"] .badge-frame-visible::before{inset:-15px;background-image:url("assets/quest-badge-frame.png");background-size:100% 100%;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52))}
+    body[data-theme="midnight"] .badge-frame-visible::before{inset:-10px;background-image:url("assets/quest-badge-frame.png");background-size:100% 100%;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52))}
     body:not([data-theme]) .badge-frame-visible > *,
     body[data-theme="default"] .badge-frame-visible > *,
     body[data-theme="midnight"] .badge-frame-visible > *{position:relative;z-index:1}
