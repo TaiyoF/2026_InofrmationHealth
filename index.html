@@ -1538,8 +1538,7 @@
     .chip-action{border-color:#cfe0da;color:var(--green-dark);background:#fff}
     .search{background:#f2f5f4;color:var(--muted);border:1px solid var(--line)}
     .icon-button{background:#fff;border-color:var(--line);color:var(--ink)}
-    .bottom-nav{height:64px;grid-template-columns:repeat(5,1fr);background:rgba(255,255,255,.98)}
-    .bottom-nav [data-nav="compose"]{display:none}
+    .bottom-nav{height:64px;grid-template-columns:repeat(6,1fr);background:rgba(255,255,255,.98)}
     .nav-item{font-size:9px;color:var(--muted)}
     .nav-item.active{color:var(--ink)}
     .desktop-bonus-overlay,.bottom-sheet{background:rgba(243,247,245,.9);backdrop-filter:none;padding:16px;align-items:flex-start;justify-content:flex-start}
@@ -2386,7 +2385,7 @@
           <button class="nav-item active" data-nav="home"><i data-lucide="home"></i><span>ホーム</span></button>
           <button class="nav-item" data-nav="check"><i data-lucide="shield-check"></i><span>チェック</span></button>
           <button class="nav-item" data-nav="search"><i data-lucide="compass"></i><span>検索</span></button>
-          <button class="nav-item" data-nav="compose"><i data-lucide="plus-square"></i><span>投稿</span></button>
+          <button class="nav-item" data-nav="settings"><i data-lucide="palette"></i><span>テーマ</span></button>
           <button class="nav-item" data-nav="notifications"><i data-lucide="bell"></i><span>通知</span></button>
           <button class="nav-item" id="profile-nav" data-nav="profile"><i data-lucide="user-round"></i><span>プロフィール</span></button>
         </nav>
@@ -2715,7 +2714,7 @@
               <div class="sub">これまでのチェック記録</div>
             </div>
             <div class="panel-title-actions">
-              <button class="icon-button" id="mobile-settings-open" aria-label="設定を開く"><i data-lucide="settings-2"></i></button>
+              <button class="button" id="mobile-settings-open" aria-label="テーマ設定を開く"><i data-lucide="palette"></i><span>テーマ</span></button>
               <button class="icon-button" data-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
             </div>
           </div>
@@ -2780,8 +2779,8 @@
         <main class="work-screen">
           <div class="panel-title">
             <div>
-              <h1>設定</h1>
-              <div class="sub">テーマデザイン</div>
+              <h1>テーマ設定</h1>
+              <div class="sub">見た目を選ぶ</div>
             </div>
             <button class="icon-button" id="mobile-settings-close" aria-label="プロフィールへ戻る"><i data-lucide="x"></i></button>
           </div>
@@ -3949,7 +3948,7 @@
         if (nav === "home") showMobileScreen("screen-home", "home");
         if (nav === "check") showMobileScreen("screen-check", "check");
         if (nav === "search") showMobileScreen("screen-search", "search");
-        if (nav === "compose") showMobileScreen("screen-compose", "compose");
+        if (nav === "settings") showMobileScreen("screen-settings", "settings");
         if (nav === "notifications") showMobileScreen("screen-notifications", "notifications");
         if (nav === "profile") showMobileScreen("screen-profile", "profile");
       });
