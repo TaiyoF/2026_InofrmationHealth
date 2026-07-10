@@ -2087,8 +2087,8 @@
     body[data-theme="default"] .badge-frame-visible,
     body[data-theme="midnight"] .badge-frame-visible{overflow:visible;isolation:isolate;border:0;box-shadow:none;background-position:center;background-repeat:no-repeat;color:var(--badge-icon-color);font-weight:900;text-shadow:0 1px 2px rgba(255,255,255,.38)}
     body:not([data-theme]) .badge-frame-visible,
-    body[data-theme="default"] .badge-frame-visible{background-image:var(--default-badge-image);background-size:cover}
-    body[data-theme="midnight"] .badge-frame-visible{background-image:var(--quest-badge-image);background-size:145%;color:#fff1c7;text-shadow:0 1px 3px rgba(0,0,0,.9);filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+    body[data-theme="default"] .badge-frame-visible{background-image:var(--default-badge-image);background-size:contain;filter:none}
+    body[data-theme="midnight"] .badge-frame-visible{background-image:var(--quest-badge-image);background-size:145% 145%;border-radius:50%;clip-path:none;color:#fff1c7;text-shadow:0 1px 3px rgba(0,0,0,.9);filter:none}
     body:not([data-theme]) .badge-frame-visible::before,
     body[data-theme="default"] .badge-frame-visible::before,
     body[data-theme="midnight"] .badge-frame-visible::before{content:"";position:absolute;inset:26%;border-radius:50%;z-index:0;pointer-events:none}
