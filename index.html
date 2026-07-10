@@ -1732,6 +1732,7 @@
     .point-rule b { color:var(--ink); }
     .desktop-nav-spacer{flex:1 1 auto}
     .desktop-nav-item.settings-trigger{margin-top:auto}
+    .panel-title-actions{display:flex;align-items:center;gap:8px}
     .settings-panel{display:grid;gap:16px}
     .settings-copy{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
     .theme-options{display:grid;gap:12px}
@@ -1750,6 +1751,19 @@
     .theme-swatch.playful-1{background:#fff8ea}.theme-swatch.playful-2{background:#f3f8ff}.theme-swatch.playful-3{background:#6ea5ff}.theme-swatch.playful-4{background:#8dd07d}
     .theme-note{font-size:12px;color:var(--muted)}
 
+    /* The theme picker is a neutral comparison surface and never inherits a skin. */
+    .settings-panel{
+      --surface:#fff;--surface-soft:#eef7f3;--ink:#172124;--muted:#607077;
+      --line:#dce6e1;--green:#2f8b70;--green-dark:#216751;
+      color:#172124;color-scheme:light;
+    }
+    .settings-panel .theme-option{background:#fff;border-color:#dce6e1;color:#172124}
+    .settings-panel .theme-option:hover{border-color:#2f8b70;background:#fbfdfc}
+    .settings-panel .theme-option.is-selected{border-color:#2f8b70;background:#f4f9f7;box-shadow:0 0 0 1px rgba(47,139,112,.12)}
+    .settings-panel .theme-option-head strong{color:#172124}
+    .settings-panel .theme-option-head span,.settings-panel .settings-copy,.settings-panel .theme-note{color:#607077}
+    .settings-panel .theme-badge{background:#eaf3ef;color:#216751}
+
     .mode-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
     .mode-choice-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px;text-align:left;cursor:pointer;display:grid;gap:10px}
     .mode-choice-card:hover{border-color:var(--green);background:var(--surface-soft)}
@@ -1761,7 +1775,8 @@
     .reaction-options{display:grid;gap:10px;margin:16px 0}
     .reaction-option{min-height:50px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 14px;display:flex;align-items:center;gap:11px;cursor:pointer;text-align:left;color:var(--ink);font-weight:700}
     .reaction-option:hover,.reaction-option.selected{border-color:var(--green);background:var(--surface-soft)}
-    .reaction-option .reaction-emoji{font-size:20px}
+    .reaction-option .reaction-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--surface-soft);color:var(--green-dark);flex:0 0 34px}
+    .reaction-option .reaction-icon svg{width:19px;height:19px;stroke-width:2.2}
     .reaction-option .reaction-check{margin-left:auto;color:var(--green-dark);opacity:0}
     .reaction-option.selected .reaction-check{opacity:1}
 
@@ -1810,7 +1825,7 @@
     body[data-theme="midnight"] .phone{border-color:#243b53}
     body[data-theme="midnight"]{
       --bg:#08121c; --phone:#0a1420; --surface:#0d1826; --surface-soft:#132438;
-      --ink:#f2e2b8; --muted:#b9c2cd; --line:#274057;
+      --ink:#f7f0df; --muted:#c6d0da; --line:#36506a;
       --green:#d9a13c; --green-dark:#f3c86e;
     }
     body[data-theme="midnight"] .desktop-nav, body[data-theme="midnight"] .desktop-right, body[data-theme="midnight"] .desktop-topbar, body[data-theme="midnight"] .desktop-main{background:var(--surface)}
@@ -1850,6 +1865,32 @@
     body[data-theme="midnight"] .post-actions button:hover,
     body[data-theme="midnight"] .post-actions button.active{background:rgba(217,161,60,.14);color:#ffd991}
     body[data-theme="midnight"] .bottom-nav{background:rgba(10,20,32,.98)}
+    body[data-theme="midnight"] .desktop-utility-panel{background:#08111d}
+    body[data-theme="midnight"] .desktop-utility-panel .panel-title .sub,
+    body[data-theme="midnight"] .check-status p,
+    body[data-theme="midnight"] .check-card p{color:#c6d0da}
+    body[data-theme="midnight"] .check-status h2,
+    body[data-theme="midnight"] .check-card h2{color:#fff1c7}
+    body[data-theme="midnight"] .checked-source-note,
+    body[data-theme="midnight"] .checked-source .post-actions{background:#101f31;color:#c6d0da;border-color:#36506a}
+    body[data-theme="midnight"] .reaction-result-track{background:#22364b}
+
+    body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"],
+    body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"],
+    body[data-theme="midnight"] #screen-settings,
+    body[data-theme="midnight"] #screen-settings .work-screen,
+    body[data-theme="playful"] #screen-settings,
+    body[data-theme="playful"] #screen-settings .work-screen{background:#f8faf9;color:#172124}
+    body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"] .panel-title h1,
+    body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"] .panel-title h1,
+    body[data-theme="midnight"] #screen-settings .panel-title h1,
+    body[data-theme="playful"] #screen-settings .panel-title h1{color:#172124;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;letter-spacing:0}
+    body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"] .panel-title .sub,
+    body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"] .panel-title .sub,
+    body[data-theme="midnight"] #screen-settings .panel-title .sub,
+    body[data-theme="playful"] #screen-settings .panel-title .sub{color:#607077}
+    body[data-theme="midnight"] #screen-settings .icon-button,
+    body[data-theme="playful"] #screen-settings .icon-button{background:#fff;border-color:#dce6e1;color:#172124}
 
     body[data-theme="playful"]{background:#f7f4eb}
     body[data-theme="playful"]{
@@ -2030,6 +2071,56 @@
     body[data-theme="playful"] .season-progress-fill{background:linear-gradient(90deg,#70bd76,#a8dc77)}
     body[data-theme="playful"] .streak-icon{background:#fff0cf;color:#ef9c24;border:2px solid #ffd17c}
 
+    /* User-provided rank artwork belongs to the Basic theme only. */
+    body:not([data-theme]) .badge-medal,
+    body[data-theme="default"] .badge-medal{clip-path:none;border:0;background:transparent center/contain no-repeat;box-shadow:none;border-radius:50%}
+    body:not([data-theme]) .badge-medal::before,
+    body:not([data-theme]) .badge-medal::after,
+    body[data-theme="default"] .badge-medal::before,
+    body[data-theme="default"] .badge-medal::after{display:none}
+    body:not([data-theme]) .badge-medal.badge-bronze,
+    body[data-theme="default"] .badge-medal.badge-bronze{background-image:url("assets/badge-bronze.png")}
+    body:not([data-theme]) .badge-medal.badge-silver,
+    body[data-theme="default"] .badge-medal.badge-silver{background-image:url("assets/badge-silver.png")}
+    body:not([data-theme]) .badge-medal.badge-gold,
+    body[data-theme="default"] .badge-medal.badge-gold{background-image:url("assets/badge-gold.png")}
+    body:not([data-theme]) .badge-medal.badge-platinum,
+    body[data-theme="default"] .badge-medal.badge-platinum{background-image:url("assets/badge-platinum.png")}
+    body:not([data-theme]) .badge-medal.badge-black,
+    body[data-theme="default"] .badge-medal.badge-black{background-image:url("assets/badge-black.png")}
+
+    .badge-frame-bronze{--default-badge-image:url("assets/badge-bronze.png");--quest-badge-image:url("assets/quest-badge-bronze.png")}
+    .badge-frame-silver{--default-badge-image:url("assets/badge-silver.png");--quest-badge-image:url("assets/quest-badge-silver.png")}
+    .badge-frame-gold{--default-badge-image:url("assets/badge-gold.png");--quest-badge-image:url("assets/quest-badge-gold.png")}
+    .badge-frame-platinum{--default-badge-image:url("assets/badge-platinum.png");--quest-badge-image:url("assets/quest-badge-platinum.png")}
+    .badge-frame-black{--default-badge-image:url("assets/badge-black.png");--quest-badge-image:url("assets/quest-badge-black.png")}
+    .badge-frame-bronze{--badge-icon-color:#321b0b}
+    .badge-frame-silver{--badge-icon-color:#24313d}
+    .badge-frame-gold{--badge-icon-color:#3a2800}
+    .badge-frame-platinum{--badge-icon-color:#23384a}
+    .badge-frame-black{--badge-icon-color:#f5f7fa}
+    body:not([data-theme]) .badge-frame-visible,
+    body[data-theme="default"] .badge-frame-visible,
+    body[data-theme="midnight"] .badge-frame-visible{overflow:visible;isolation:isolate;border:0;box-shadow:none;background-position:center;background-repeat:no-repeat;color:var(--badge-icon-color);font-weight:900;text-shadow:0 1px 2px rgba(255,255,255,.38)}
+    body:not([data-theme]) .badge-frame-visible,
+    body[data-theme="default"] .badge-frame-visible{background-image:var(--default-badge-image);background-size:cover}
+    body[data-theme="midnight"] .badge-frame-visible{background-image:var(--quest-badge-image);background-size:145%;text-shadow:0 1px 3px rgba(0,0,0,.85);filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+    body:not([data-theme]) .badge-frame-visible::after,
+    body[data-theme="default"] .badge-frame-visible::after,
+    body[data-theme="midnight"] .badge-frame-visible::after{display:none}
+    body:not([data-theme]) .badge-frame-visible > .avatar-icon,
+    body[data-theme="default"] .badge-frame-visible > .avatar-icon,
+    body[data-theme="midnight"] .badge-frame-visible > .avatar-icon{background:transparent;color:inherit}
+
+    body[data-theme="midnight"] .badge-medal{clip-path:none;border:0;background:transparent center/145% no-repeat;box-shadow:none;border-radius:50%}
+    body[data-theme="midnight"] .badge-medal::before,
+    body[data-theme="midnight"] .badge-medal::after{display:none}
+    body[data-theme="midnight"] .badge-medal.badge-bronze{background-image:url("assets/quest-badge-bronze.png")}
+    body[data-theme="midnight"] .badge-medal.badge-silver{background-image:url("assets/quest-badge-silver.png")}
+    body[data-theme="midnight"] .badge-medal.badge-gold{background-image:url("assets/quest-badge-gold.png")}
+    body[data-theme="midnight"] .badge-medal.badge-platinum{background-image:url("assets/quest-badge-platinum.png")}
+    body[data-theme="midnight"] .badge-medal.badge-black{background-image:url("assets/quest-badge-black.png")}
+
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
     }
@@ -2096,7 +2187,7 @@
               </div>
               <span class="post-topic">暮らし</span>
               <p>新しい冷凍保存の方法を試してみた。便利そうだけど、保存できる期間は食材ごとに違うみたい。</p>
-              <div class="post-link"><div class="link-thumb">🥕</div><div class="link-copy"><small>kurashi.example.jp</small><b>食材別・冷凍保存の基本</b><span>下ごしらえと保存期間の目安</span></div></div>
+              <div class="post-link"><div class="link-thumb"><i data-lucide="carrot" aria-hidden="true"></i></div><div class="link-copy"><small>kurashi.example.jp</small><b>食材別・冷凍保存の基本</b><span>下ごしらえと保存期間の目安</span></div></div>
               <div class="post-actions"><span>いいね 84</span><span>コメント 12</span><span>リポスト 7</span><span>保存 39</span><span>共有 5</span></div>
             </article>
 
@@ -2117,7 +2208,7 @@
               </div>
               <span class="post-topic">交通</span>
               <p>中央線は一部区間で遅れが出ています。利用する人は、出発前に最新の運行情報を確認してください。</p>
-              <div class="post-link"><div class="link-thumb">🚃</div><div class="link-copy"><small>traffic.example.jp</small><b>現在の運行情報</b><span>最終更新 17:42</span></div></div>
+              <div class="post-link"><div class="link-thumb"><i data-lucide="train-front" aria-hidden="true"></i></div><div class="link-copy"><small>traffic.example.jp</small><b>現在の運行情報</b><span>最終更新 17:42</span></div></div>
               <div class="post-actions"><span>いいね 126</span><span>コメント 18</span><span>リポスト 92</span><span>保存 44</span><span>共有 38</span></div>
             </article>
 
@@ -2241,7 +2332,7 @@
               </div>
               <span class="post-topic">暮らし</span>
               <p>新しい冷凍保存の方法を試してみた。便利そうだけど、保存できる期間は食材ごとに違うみたい。</p>
-              <div class="post-link"><div class="link-thumb">🥕</div><div class="link-copy"><small>kurashi.example.jp</small><b>食材別・冷凍保存の基本</b><span>下ごしらえと保存期間の目安</span></div></div>
+              <div class="post-link"><div class="link-thumb"><i data-lucide="carrot" aria-hidden="true"></i></div><div class="link-copy"><small>kurashi.example.jp</small><b>食材別・冷凍保存の基本</b><span>下ごしらえと保存期間の目安</span></div></div>
               <div class="post-actions"><span>いいね 84</span><span>コメント 12</span><span>リポスト 7</span><span>保存 39</span><span>共有 5</span></div>
           </article>
 
@@ -2262,7 +2353,7 @@
               </div>
               <span class="post-topic">交通</span>
               <p>中央線は一部区間で遅れが出ています。利用する人は、出発前に最新の運行情報を確認してください。</p>
-              <div class="post-link"><div class="link-thumb">🚃</div><div class="link-copy"><small>traffic.example.jp</small><b>現在の運行情報</b><span>最終更新 17:42</span></div></div>
+              <div class="post-link"><div class="link-thumb"><i data-lucide="train-front" aria-hidden="true"></i></div><div class="link-copy"><small>traffic.example.jp</small><b>現在の運行情報</b><span>最終更新 17:42</span></div></div>
               <div class="post-actions"><span>いいね 126</span><span>コメント 18</span><span>リポスト 92</span><span>保存 44</span><span>共有 38</span></div>
           </article>
 
@@ -2491,11 +2582,11 @@
             <p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p>
           </article>
           <div class="reaction-options" id="reaction-options">
-            <button class="reaction-option" data-reaction="おもしろい！"><span class="reaction-emoji">😊</span><span>おもしろい！</span><i class="reaction-check" data-lucide="check"></i></button>
-            <button class="reaction-option" data-reaction="ふむふむ"><span class="reaction-emoji">🤔</span><span>ふむふむ</span><i class="reaction-check" data-lucide="check"></i></button>
-            <button class="reaction-option" data-reaction="ほんとかなあ？"><span class="reaction-emoji">🔎</span><span>ほんとかなあ？</span><i class="reaction-check" data-lucide="check"></i></button>
-            <button class="reaction-option" data-reaction="拡散しないと！"><span class="reaction-emoji">📣</span><span>拡散しないと！</span><i class="reaction-check" data-lucide="check"></i></button>
-            <button class="reaction-option" data-reaction="興味ない"><span class="reaction-emoji">😶</span><span>興味ない</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="おもしろい！"><span class="reaction-icon"><i data-lucide="sparkles" aria-hidden="true"></i></span><span>おもしろい！</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="ふむふむ"><span class="reaction-icon"><i data-lucide="brain" aria-hidden="true"></i></span><span>ふむふむ</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="ほんとかなあ？"><span class="reaction-icon"><i data-lucide="search" aria-hidden="true"></i></span><span>ほんとかなあ？</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="拡散しないと！"><span class="reaction-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span><span>拡散しないと！</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="興味ない"><span class="reaction-icon"><i data-lucide="circle-minus" aria-hidden="true"></i></span><span>興味ない</span><i class="reaction-check" data-lucide="check"></i></button>
           </div>
           <button class="button primary" id="submit-reaction" disabled>回答する（+2 pt）</button>
         </div>
@@ -2626,7 +2717,10 @@
               <h1>プロフィール</h1>
               <div class="sub">これまでのチェック記録</div>
             </div>
-            <button class="icon-button" data-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
+            <div class="panel-title-actions">
+              <button class="icon-button" id="mobile-settings-open" aria-label="設定を開く"><i data-lucide="settings-2"></i></button>
+              <button class="icon-button" data-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
+            </div>
           </div>
           <div class="progress" aria-hidden="true">
             <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
@@ -2682,6 +2776,19 @@
           <div class="button-row">
             <button class="button primary" data-home><i data-lucide="home"></i>ホームへ戻る</button>
           </div>
+        </main>
+      </section>
+
+      <section class="screen" id="screen-settings" aria-label="設定">
+        <main class="work-screen">
+          <div class="panel-title">
+            <div>
+              <h1>設定</h1>
+              <div class="sub">テーマデザイン</div>
+            </div>
+            <button class="icon-button" id="mobile-settings-close" aria-label="プロフィールへ戻る"><i data-lucide="x"></i></button>
+          </div>
+          <div id="mobile-theme-settings"></div>
         </main>
       </section>
     </div>
@@ -2842,11 +2949,19 @@
       return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div>${item.preview}</button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
     }
 
-    function bindThemeSettings(root = document) {
+    function renderMobileThemeSettings() {
+      const root = document.querySelector("#mobile-theme-settings");
+      if (!root) return;
+      root.innerHTML = themeSettingsPanelBody();
+      bindThemeSettings(root, "mobile");
+    }
+
+    function bindThemeSettings(root = document, surface = "desktop") {
       root.querySelectorAll("[data-theme-choice]").forEach((button) => {
         button.addEventListener("click", () => {
           applyTheme(button.dataset.themeChoice);
-          showDesktopPanel("settings");
+          if (surface === "mobile") renderMobileThemeSettings();
+          else showDesktopPanel("settings");
           showToast("テーマデザインを変更しました");
         });
       });
@@ -2861,6 +2976,7 @@
         if (season) season.innerHTML = badgeSeasonMarkup();
         if (bonus) bonus.innerHTML = bonusMetricsMarkup();
       }
+      if (id === "screen-settings") renderMobileThemeSettings();
       showScreen(id);
       refreshBadgeFrames(document.querySelector(`#${id}`) || document);
       setActiveNav(navKey);
@@ -2885,6 +3001,7 @@
 
     function refreshBadgeFrames(root = document) {
       root.querySelectorAll("[data-badge-owner='self']").forEach((element) => {
+        if (element.parentElement?.closest("[data-badge-owner='self']")) return;
         setAvatarFrame(element, currentBadgeTone(), state.badgePublic);
       });
       root.querySelectorAll("[data-badge-tone]").forEach((element) => {
@@ -3040,7 +3157,7 @@
       showDesktopContent(
         "感想を選ぶ",
         "複数選択できます",
-        `<article class="quiz-card"><span class="tag">今日は何の日</span><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-emoji">${["😊","🤔","🔎","📣","😶"][i]}</span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
+        `<article class="quiz-card"><span class="tag">今日は何の日</span><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
       );
       const submit = document.querySelector("#desktop-submit-reaction");
       document.querySelectorAll("[data-desktop-reaction]").forEach((button) => {
@@ -3552,6 +3669,7 @@
         }
       }[key];
 
+      desktopUtilityPanel.dataset.panel = key;
       desktopUtilityPanel.innerHTML = `<div class="panel-title"><div><h1>${panel.title}</h1><div class="sub">${panel.sub}</div></div></div>${panel.body}`;
       if (key === "search") {
         const desktopSearchInput = document.querySelector("#desktop-search-input");
@@ -3919,6 +4037,14 @@
 
     document.querySelector("#profile-nav").addEventListener("click", () => {
       showScreen("screen-profile");
+    });
+
+    document.querySelector("#mobile-settings-open").addEventListener("click", () => {
+      showMobileScreen("screen-settings", "profile");
+    });
+
+    document.querySelector("#mobile-settings-close").addEventListener("click", () => {
+      showMobileScreen("screen-profile", "profile");
     });
 
     document.querySelectorAll("[data-home]").forEach((button) => {
