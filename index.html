@@ -556,6 +556,17 @@
       flex: 0 0 auto;
     }
 
+    .post-actions .action-glyph {
+      width: 17px;
+      height: 17px;
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 17px;
+      font-size: 15px;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+    }
+
     .post-actions button {
       color: var(--muted);
     }
@@ -1631,14 +1642,25 @@
     .points-chart{position:relative;margin-top:2px;padding:8px 0 0}
     .points-chart svg{display:block;width:100%;height:auto;overflow:visible}
     .points-grid{stroke:#e5ece8;stroke-width:1}
-    .points-line{fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .points-line{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .points-streak-line{fill:none;stroke:#1f5a52;stroke-width:0;stroke-linecap:round;stroke-linejoin:round}
     .points-area{fill:rgba(47,111,102,.08)}
-    .points-dot{fill:#fff;stroke:var(--green);stroke-width:2.5}
+    .points-dot{fill:#fff;stroke:var(--green);stroke-width:2}
     .points-dot.today{fill:var(--green)}
+    .points-dot.pending{fill:#fff;stroke:#8aa49e;stroke-width:1.8;stroke-dasharray:2 2}
+    .points-dot.streak{fill:#fff;stroke:var(--green);stroke-width:2}
+    .points-chart{position:relative}
+    .points-tooltip{position:absolute;left:0;top:0;transform:translate(-50%,-110%);padding:8px 10px;border-radius:10px;background:rgba(24,32,39,.92);color:#fff;font-size:12px;line-height:1.45;pointer-events:none;opacity:0;transition:opacity .15s ease;white-space:nowrap;z-index:2;box-shadow:0 8px 18px rgba(0,0,0,.12)}
+    .points-tooltip.visible{opacity:1}
+    .points-tooltip strong{display:block;font-size:12px}
     .points-axis-labels{display:grid;grid-template-columns:repeat(7,1fr);margin-top:5px;color:var(--muted);font-size:10px;text-align:center}
+    .points-axis-labels span.streak{color:var(--ink);font-weight:700}
+    .points-axis-labels span.pending{color:#8aa49e}
     .points-chart-summary{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
     .points-chart-summary strong{font-size:26px;line-height:1;color:var(--ink)}
     .points-chart-summary span{font-size:12px;color:var(--muted)}
+    .streak-caption{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;padding:10px 12px;border-radius:10px;background:#f6faf8;color:var(--muted);font-size:12px}
+    .streak-caption strong{color:var(--ink);font-size:13px}
     .points-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}
     .points-legend span{display:inline-flex;align-items:center;gap:5px}
     .points-legend i{width:7px;height:7px;border-radius:50%;background:var(--green)}
@@ -1708,6 +1730,183 @@
       font-size:12px;
     }
     .point-rule b { color:var(--ink); }
+    .desktop-nav-spacer{flex:1 1 auto}
+    .desktop-nav-item.settings-trigger{margin-top:auto}
+    .settings-panel{display:grid;gap:16px}
+    .settings-copy{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+    .theme-options{display:grid;gap:12px}
+    .theme-option{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:14px;display:grid;gap:12px;cursor:pointer;text-align:left;transition:border-color .2s ease, transform .2s ease, background .2s ease}
+    .theme-option:hover{border-color:var(--green);transform:translateY(-1px)}
+    .theme-option.is-selected{border-color:var(--green);background:color-mix(in srgb, var(--surface) 86%, var(--surface-soft) 14%)}
+    .theme-option-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .theme-option-head strong{display:block;font-size:15px;color:var(--ink)}
+    .theme-option-head span{display:block;margin-top:4px;font-size:12px;line-height:1.5;color:var(--muted)}
+    .theme-badge{display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border-radius:999px;background:#eef4f1;color:var(--green-dark);font-size:11px;font-weight:700;white-space:nowrap}
+    .theme-preview{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .theme-swatch{height:48px;border-radius:12px;border:1px solid var(--line);position:relative;overflow:hidden}
+    .theme-swatch::after{content:"";position:absolute;left:10px;right:10px;bottom:10px;height:8px;border-radius:999px;background:rgba(255,255,255,.7)}
+    .theme-swatch.default-1{background:#f4f7f6}.theme-swatch.default-2{background:#ffffff}.theme-swatch.default-3{background:#2f6f66}.theme-swatch.default-4{background:#eaf3ef}
+    .theme-swatch.midnight-1{background:#081521}.theme-swatch.midnight-2{background:#102238}.theme-swatch.midnight-3{background:#e0a947}.theme-swatch.midnight-4{background:#18304c}
+    .theme-swatch.playful-1{background:#fff8ea}.theme-swatch.playful-2{background:#f3f8ff}.theme-swatch.playful-3{background:#6ea5ff}.theme-swatch.playful-4{background:#8dd07d}
+    .theme-note{font-size:12px;color:var(--muted)}
+
+    .mode-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+    .mode-choice-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px;text-align:left;cursor:pointer;display:grid;gap:10px}
+    .mode-choice-card:hover{border-color:var(--green);background:var(--surface-soft)}
+    .mode-choice-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--surface-soft);color:var(--green-dark);font-weight:900;font-size:18px}
+    .mode-choice-card b{font-size:16px;color:var(--ink)}
+    .mode-choice-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+    .mode-choice-points{font-size:12px;font-weight:800;color:var(--green-dark)}
+
+    .reaction-options{display:grid;gap:10px;margin:16px 0}
+    .reaction-option{min-height:50px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 14px;display:flex;align-items:center;gap:11px;cursor:pointer;text-align:left;color:var(--ink);font-weight:700}
+    .reaction-option:hover,.reaction-option.selected{border-color:var(--green);background:var(--surface-soft)}
+    .reaction-option .reaction-emoji{font-size:20px}
+    .reaction-option .reaction-check{margin-left:auto;color:var(--green-dark);opacity:0}
+    .reaction-option.selected .reaction-check{opacity:1}
+
+    .reaction-results{display:grid;gap:10px;margin-top:16px}
+    .reaction-result-row{display:grid;grid-template-columns:110px 1fr 42px;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
+    .reaction-result-track{height:10px;border-radius:999px;background:var(--surface-soft);overflow:hidden}
+    .reaction-result-fill{height:100%;border-radius:999px;background:var(--green)}
+    .reaction-result-row strong{color:var(--ink);text-align:right}
+
+    .season-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:15px;margin-bottom:14px}
+    .season-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+    .season-card-head h3{margin:0 0 4px;font-size:15px}
+    .season-card-head p{margin:0;color:var(--muted);font-size:12px}
+    .season-badge-current{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800}
+    .badge-medal{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:3px solid currentColor;background:var(--surface);font-size:11px}
+    .badge-bronze{color:#a96f3d}.badge-silver{color:#8d99a5}.badge-gold{color:#c69224}.badge-platinum{color:#728ca0}.badge-black{color:#222}
+    .season-progress{height:10px;border-radius:999px;background:var(--surface-soft);overflow:hidden}
+    .season-progress-fill{height:100%;border-radius:999px;background:var(--green)}
+    .badge-track{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+    .badge-step{text-align:center;color:var(--muted);font-size:10px}
+    .badge-step .badge-medal{margin:0 auto 5px;width:28px;height:28px;border-width:2px}
+    .badge-step.earned{color:var(--ink);font-weight:700}
+    .previous-season{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}
+    .previous-season strong{color:var(--ink)}
+
+    .bonus-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+    .bonus-metric{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px}
+    .bonus-metric b{display:block;font-size:18px;color:var(--ink)}
+    .bonus-metric span{display:block;margin-top:4px;font-size:11px;color:var(--muted);line-height:1.4}
+    .privacy-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-soft);font-size:12px}
+    .privacy-toggle button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 10px;cursor:pointer;color:var(--ink);font-weight:700}
+    .badge-frame-visible{position:relative;box-shadow:0 0 0 2px var(--surface),0 0 0 5px var(--badge-frame-color)}
+    .badge-frame-bronze{--badge-frame-color:#b77943}
+    .badge-frame-silver{--badge-frame-color:#98a3af}
+    .badge-frame-gold{--badge-frame-color:#d2a231}
+    .badge-frame-platinum{--badge-frame-color:#7f98ad}
+    .badge-frame-black{--badge-frame-color:#30343a}
+    .utility-person{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+    .utility-person .mini-avatar{width:40px;height:40px;font-size:16px}
+    .utility-body h2{margin:0 0 4px}
+    .utility-body .subline{display:block;margin-bottom:6px;color:var(--muted);font-size:12px}
+
+
+    body[data-theme="midnight"]{background:#08121c}
+    body[data-theme="midnight"] .desktop-frame,
+    body[data-theme="midnight"] .phone{border-color:#243b53}
+    body[data-theme="midnight"]{
+      --bg:#08121c; --phone:#0a1420; --surface:#0d1826; --surface-soft:#132438;
+      --ink:#f2e2b8; --muted:#b9c2cd; --line:#274057;
+      --green:#d9a13c; --green-dark:#f3c86e;
+    }
+    body[data-theme="midnight"] .desktop-nav, body[data-theme="midnight"] .desktop-right, body[data-theme="midnight"] .desktop-topbar, body[data-theme="midnight"] .desktop-main{background:var(--surface)}
+    body[data-theme="midnight"] .desktop-nav-item.active,
+    body[data-theme="midnight"] .nav-item.active{background:rgba(217,161,60,.14);color:var(--ink)}
+    body[data-theme="midnight"] .search,
+    body[data-theme="midnight"] .icon-button,
+    body[data-theme="midnight"] .bonus-feed-chip,
+    body[data-theme="midnight"] .check-module,
+    body[data-theme="midnight"] .history-card,
+    body[data-theme="midnight"] .desktop-profile-card,
+    body[data-theme="midnight"] .check-card,
+    body[data-theme="midnight"] .utility-card,
+    body[data-theme="midnight"] .stat,
+    body[data-theme="midnight"] .summary-list,
+    body[data-theme="midnight"] .point-balance,
+    body[data-theme="midnight"] .streak-caption,
+    body[data-theme="midnight"] .check-module-meta .meta-box,
+    body[data-theme="midnight"] .post,
+    body[data-theme="midnight"] .quiz-card,
+    body[data-theme="midnight"] .answer-card,
+    body[data-theme="midnight"] .feedback-hero,
+    body[data-theme="midnight"] .check-status,
+    body[data-theme="midnight"] .completion-streak{background:linear-gradient(180deg,#102033,#0d1826)}
+    body[data-theme="midnight"] .post:hover,
+    body[data-theme="midnight"] .answer-card:hover{background:#13273c}
+    body[data-theme="midnight"] .module-status,
+    body[data-theme="midnight"] .badge,
+    body[data-theme="midnight"] .tag,
+    body[data-theme="midnight"] .theme-badge{background:rgba(217,161,60,.14);color:#ffd991}
+    body[data-theme="midnight"] .button.primary{color:#0b1521}
+    body[data-theme="midnight"] .points-grid{stroke:#29445f}
+    body[data-theme="midnight"] .points-area{fill:rgba(217,161,60,.12)}
+    body[data-theme="midnight"] .points-streak-line{stroke:#ffd991}
+    body[data-theme="midnight"] .mini-avatar,
+    body[data-theme="midnight"] .avatar-icon{background:#183049;color:#ffd991}
+    body[data-theme="midnight"] .post-actions button:hover,
+    body[data-theme="midnight"] .post-actions button.active{background:rgba(217,161,60,.14);color:#ffd991}
+    body[data-theme="midnight"] .bottom-nav{background:rgba(10,20,32,.98)}
+
+    body[data-theme="playful"]{background:#f7f4eb}
+    body[data-theme="playful"]{
+      --bg:#f7f4eb; --phone:#fffdf8; --surface:#fffefb; --surface-soft:#f2f7ff;
+      --ink:#39485a; --muted:#77869a; --line:#d8e4ee;
+      --green:#5b92f5; --green-dark:#4a7bd5;
+    }
+    body[data-theme="playful"] .desktop-frame{border-radius:22px}
+    body[data-theme="playful"] .phone{border-radius:28px}
+    body[data-theme="playful"] .desktop-nav, body[data-theme="playful"] .desktop-right, body[data-theme="playful"] .desktop-topbar, body[data-theme="playful"] .desktop-main{background:var(--surface)}
+    body[data-theme="playful"] .desktop-nav-item,
+    body[data-theme="playful"] .button,
+    body[data-theme="playful"] .check-module,
+    body[data-theme="playful"] .history-card,
+    body[data-theme="playful"] .desktop-profile-card,
+    body[data-theme="playful"] .utility-card,
+    body[data-theme="playful"] .stat,
+    body[data-theme="playful"] .summary-list,
+    body[data-theme="playful"] .quiz-card,
+    body[data-theme="playful"] .answer-card,
+    body[data-theme="playful"] .feedback-hero,
+    body[data-theme="playful"] .completion-streak{border-radius:18px}
+    body[data-theme="playful"] .desktop-nav-item.active,
+    body[data-theme="playful"] .nav-item.active{background:#e9f1ff;color:var(--ink)}
+    body[data-theme="playful"] .search,
+    body[data-theme="playful"] .icon-button,
+    body[data-theme="playful"] .bonus-feed-chip,
+    body[data-theme="playful"] .check-module,
+    body[data-theme="playful"] .history-card,
+    body[data-theme="playful"] .desktop-profile-card,
+    body[data-theme="playful"] .check-card,
+    body[data-theme="playful"] .utility-card,
+    body[data-theme="playful"] .stat,
+    body[data-theme="playful"] .summary-list,
+    body[data-theme="playful"] .point-balance,
+    body[data-theme="playful"] .streak-caption,
+    body[data-theme="playful"] .check-module-meta .meta-box,
+    body[data-theme="playful"] .post,
+    body[data-theme="playful"] .quiz-card,
+    body[data-theme="playful"] .answer-card,
+    body[data-theme="playful"] .feedback-hero,
+    body[data-theme="playful"] .check-status,
+    body[data-theme="playful"] .completion-streak{background:linear-gradient(180deg,#fffefb,#f8fbff)}
+    body[data-theme="playful"] .module-status,
+    body[data-theme="playful"] .badge,
+    body[data-theme="playful"] .tag,
+    body[data-theme="playful"] .theme-badge{background:#eef5ff;color:#4a7bd5}
+    body[data-theme="playful"] .streak-icon,
+    body[data-theme="playful"] .answer-mark,
+    body[data-theme="playful"] .mini-avatar,
+    body[data-theme="playful"] .avatar-icon{background:#eef5ff;color:#4a7bd5}
+    body[data-theme="playful"] .button.primary{background:#5b92f5;border-color:#5b92f5}
+    body[data-theme="playful"] .button.primary:hover{background:#4a7bd5;border-color:#4a7bd5}
+    body[data-theme="playful"] .post-actions button:hover,
+    body[data-theme="playful"] .post-actions button.active{background:#eaf2ff;color:#4a7bd5}
+    body[data-theme="playful"] .points-area{fill:rgba(91,146,245,.10)}
+    body[data-theme="playful"] .points-grid{stroke:#dfe8f4}
 
     @media(max-width:820px){
       .phone{background:var(--phone);border:0}
@@ -1731,6 +1930,8 @@
           <button class="desktop-nav-item" data-desktop-nav="notifications"><i data-lucide="bell"></i><span>通知</span></button>
           <button class="desktop-nav-item" data-desktop-nav="messages"><i data-lucide="mail"></i><span>メッセージ</span></button>
           <button class="desktop-nav-item" data-desktop-nav="profile"><i data-lucide="user-round"></i><span>プロフィール</span></button>
+          <div class="desktop-nav-spacer"></div>
+          <button class="desktop-nav-item settings-trigger" data-desktop-nav="settings"><i data-lucide="settings-2"></i><span>設定</span></button>
         </nav>
 
         <main class="desktop-main">
@@ -1764,7 +1965,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">く</div>
+                <div class="mini-avatar" data-badge-tone="gold">く</div>
                 <div class="account"><strong>くらしメモ</strong><span>@kurashi_memo · 4分</span></div>
               </div>
               <span class="post-topic">暮らし</span>
@@ -1775,7 +1976,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar"><span class="avatar-icon"><i data-lucide="user-round"></i></span></div>
+                <div class="mini-avatar" data-badge-owner="self"><span class="avatar-icon" data-badge-owner="self"><i data-lucide="user-round"></i></span></div>
                 <div class="account"><strong>はる</strong><span>@haru_days · 8分</span></div>
               </div>
               <p>夕方の空がきれいだった。暑いけど、風があるだけでだいぶ違う。</p>
@@ -1785,7 +1986,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">ま</div>
+                <div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div>
                 <div class="account"><strong>まちの情報</strong><span>@machi_info · 12分</span></div>
               </div>
               <span class="post-topic">交通</span>
@@ -1796,7 +1997,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">さ</div>
+                <div class="mini-avatar" data-badge-tone="bronze">さ</div>
                 <div class="account"><strong>さき</strong><span>@saki_note · 21分</span></div>
               </div>
               <p>今夜のごはん、どっちにするか迷ってる。</p>
@@ -1806,7 +2007,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">映</div>
+                <div class="mini-avatar" data-badge-tone="platinum">映</div>
                 <div class="account"><strong>映画の話</strong><span>@movie_room · 35分</span></div>
               </div>
               <span class="post-topic">エンタメ</span>
@@ -1909,7 +2110,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">く</div>
+                <div class="mini-avatar" data-badge-tone="gold">く</div>
                 <div class="account"><strong>くらしメモ</strong><span>@kurashi_memo · 4分</span></div>
               </div>
               <span class="post-topic">暮らし</span>
@@ -1920,7 +2121,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar"><span class="avatar-icon"><i data-lucide="user-round"></i></span></div>
+                <div class="mini-avatar" data-badge-owner="self"><span class="avatar-icon" data-badge-owner="self"><i data-lucide="user-round"></i></span></div>
                 <div class="account"><strong>はる</strong><span>@haru_days · 8分</span></div>
               </div>
               <p>夕方の空がきれいだった。暑いけど、風があるだけでだいぶ違う。</p>
@@ -1930,7 +2131,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">ま</div>
+                <div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div>
                 <div class="account"><strong>まちの情報</strong><span>@machi_info · 12分</span></div>
               </div>
               <span class="post-topic">交通</span>
@@ -1941,7 +2142,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">さ</div>
+                <div class="mini-avatar" data-badge-tone="bronze">さ</div>
                 <div class="account"><strong>さき</strong><span>@saki_note · 21分</span></div>
               </div>
               <p>今夜のごはん、どっちにするか迷ってる。</p>
@@ -1951,7 +2152,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar">映</div>
+                <div class="mini-avatar" data-badge-tone="platinum">映</div>
                 <div class="account"><strong>映画の話</strong><span>@movie_room · 35分</span></div>
               </div>
               <span class="post-topic">エンタメ</span>
@@ -2113,12 +2314,87 @@
             <button class="icon-button" data-simple-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
           </div>
           <div class="utility-list" id="message-list">
-            <section class="utility-card"><h2>まちの情報</h2><p>災害情報の更新時刻を確認しました。</p></section>
-            <section class="utility-card"><h2>くらしメモ</h2><p>元のリンクを送りました。</p></section>
+            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section>
+            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold">く</div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section>
+            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="black">凛</div><div class="utility-body"><h2>凛</h2><span class="subline">@rin_watch</span><p>この前の話題，あとで一緒に確認しよう。</p></div></div></section>
           </div>
           <textarea class="message-input" id="message-input" maxlength="120" placeholder="返信を書く"></textarea>
           <button class="button primary" id="send-message"><i data-lucide="send"></i>送信</button>
         </main>
+      </section>
+
+      <section class="screen" id="screen-mode-choice" aria-label="今日のチャレンジを選択">
+        <header class="work-topbar">
+          <button class="icon-button" data-back-home aria-label="戻る"><i data-lucide="arrow-left"></i></button>
+          <div><b>今日のチャレンジ</b><span>回答方法を選んでください</span></div>
+        </header>
+        <div class="work-screen">
+          <section class="quiz-card">
+            <span class="tag">1日1回</span>
+            <h2>今日はどちらに回答しますか？</h2>
+            <p>スキップした場合，ポイントは増えません。</p>
+          </section>
+          <div class="mode-choice-grid">
+            <button class="mode-choice-card" data-mode-choice="quiz">
+              <span class="mode-choice-icon">○×</span>
+              <b>○×クイズ</b>
+              <p>「今日は○○の日」に関するニュースの正しさを判断します。</p>
+              <span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span>
+            </button>
+            <button class="mode-choice-card" data-mode-choice="reaction">
+              <span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span>
+              <b>感想を選ぶ</b>
+              <p>ニュースを読んで，感じたことを1つ以上選びます。</p>
+              <span class="mode-choice-points">回答 +2 pt</span>
+            </button>
+          </div>
+          <button class="button ghost" id="mobile-skip-challenge">今日はスキップする（+0 pt）</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-reaction" aria-label="ニュースへの感想">
+        <header class="work-topbar">
+          <button class="icon-button" id="reaction-back" aria-label="戻る"><i data-lucide="arrow-left"></i></button>
+          <div><b>感想を選ぶ</b><span>複数選択できます</span></div>
+        </header>
+        <div class="work-screen">
+          <article class="quiz-card">
+            <span class="tag">今日は何の日</span>
+            <div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div>
+            <p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p>
+          </article>
+          <div class="reaction-options" id="reaction-options">
+            <button class="reaction-option" data-reaction="おもしろい！"><span class="reaction-emoji">😊</span><span>おもしろい！</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="ふむふむ"><span class="reaction-emoji">🤔</span><span>ふむふむ</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="ほんとかなあ？"><span class="reaction-emoji">🔎</span><span>ほんとかなあ？</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="拡散しないと！"><span class="reaction-emoji">📣</span><span>拡散しないと！</span><i class="reaction-check" data-lucide="check"></i></button>
+            <button class="reaction-option" data-reaction="興味ない"><span class="reaction-emoji">😶</span><span>興味ない</span><i class="reaction-check" data-lucide="check"></i></button>
+          </div>
+          <button class="button primary" id="submit-reaction" disabled>回答する（+2 pt）</button>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-reaction-results" aria-label="感想の集計結果">
+        <header class="work-topbar">
+          <div><b>みんなの感想</b><span>回答の集計結果</span></div>
+        </header>
+        <div class="work-screen">
+          <section class="feedback-hero">
+            <h2>回答ありがとうございました</h2>
+            <p>今回の回答で +2 pt を獲得しました。</p>
+          </section>
+          <section class="quiz-card">
+            <h2>このニュースへの感想</h2>
+            <div class="reaction-results">
+              <div class="reaction-result-row"><span>おもしろい！</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:68%"></div></div><strong>34%</strong></div>
+              <div class="reaction-result-row"><span>ふむふむ</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:50%"></div></div><strong>25%</strong></div>
+              <div class="reaction-result-row"><span>ほんとかなあ？</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:34%"></div></div><strong>17%</strong></div>
+              <div class="reaction-result-row"><span>拡散しないと！</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:28%"></div></div><strong>14%</strong></div>
+              <div class="reaction-result-row"><span>興味ない</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:20%"></div></div><strong>10%</strong></div>
+            </div>
+          </section>
+          <button class="button primary" id="reaction-results-home"><i data-lucide="home"></i>通常フィードへ戻る</button>
+        </div>
       </section>
 
       <section class="screen" id="screen-quiz" aria-label="今日の投稿">
@@ -2139,7 +2415,7 @@
               <span class="time">今日の1件</span>
             </div>
             <div class="post-head">
-              <div class="mini-avatar" id="quiz-avatar-mark">H</div>
+              <div class="mini-avatar" id="quiz-avatar-mark" data-badge-tone="gold">H</div>
               <div class="account">
                 <strong id="quiz-account-name">からだのメモ</strong>
                 <span id="quiz-account-handle">@karada_memo</span>
@@ -2206,7 +2482,7 @@
               <div class="checked-source-inner">
                 <div class="checked-source-top"><span class="tag" id="checked-source-category">健康</span><span class="checked-source-meta">チェックに使った投稿</span></div>
                 <div class="post-head">
-                  <div class="mini-avatar" id="checked-source-mark">H</div>
+                  <div class="mini-avatar" id="checked-source-mark" data-badge-tone="gold">H</div>
                   <div class="account"><strong id="checked-source-name">からだのメモ</strong><span id="checked-source-handle">@karada_memo</span></div>
                 </div>
                 <p id="checked-source-text"></p>
@@ -2234,7 +2510,7 @@
           </div>
 
           <section class="profile-head compact-profile">
-            <div class="avatar small-avatar">
+            <div class="avatar small-avatar" data-badge-owner="self">
               <span class="avatar-icon"><i data-lucide="user-round"></i></span>
             </div>
             <div>
@@ -2251,6 +2527,9 @@
             <div class="stat"><b id="check-count">17件</b><span>累積回数</span></div>
             <div class="stat"><b id="profile-total-points">38 pt</b><span>累積ポイント</span></div>
           </div>
+
+          <div id="mobile-season-badge"></div>
+          <div id="mobile-bonus-metrics"></div>
 
           <section class="history-card">
             <div class="history-card-head">
@@ -2270,8 +2549,9 @@
                 <polyline class="points-line" id="points-line" points=""></polyline>
                 <g id="points-dots"></g>
               </svg>
-              <div class="points-axis-labels"><span>金</span><span>土</span><span>日</span><span>月</span><span>火</span><span>水</span><span>今日</span></div>
+              <div class="points-axis-labels" id="points-axis-labels"><span>金</span><span>土</span><span>日</span><span>月</span><span>火</span><span>水</span><span>今日</span></div><div class="points-tooltip" id="points-tooltip" aria-hidden="true"></div>
             </div>
+            <div class="streak-caption" id="streak-caption"><strong>現在2日連続中</strong><span>直近2日間は続けてチェック済みです</span></div>
             <div class="points-legend"><span><i></i>正解 +3 pt</span><span><i></i>不正解 +1 pt</span><span><i></i>スキップ +0 pt</span></div>
             <div class="history-summary"><span>正答率 <b>82%</b></span><span>通算 <b id="history-ratio">14／17件</b></span></div>
           </section>
@@ -2290,15 +2570,22 @@
       category: "健康",
       answer: "",
       total: 38,
+      seasonQuizPoints: 24,
+      seasonReactionPoints: 14,
       lastPoints: 0,
       pointsAwarded: false,
+      challengeMode: "",
+      selectedReactions: [],
+      badgePublic: true,
       streak: 2,
       bestStreak: 8,
+      quizCorrectStreak: 4,
       totalChecks: 17,
       correctCount: 14,
       level: 2,
       completed: false,
-      deferred: false
+      deferred: false,
+      skipped: false
     };
 
     const phone = document.querySelector("#phone");
@@ -2313,6 +2600,8 @@
     const answerCards = [...document.querySelectorAll(".answer-card")];
     const navItems = [...document.querySelectorAll(".nav-item[data-nav]")];
     const desktopNavItems = [...document.querySelectorAll(".desktop-nav-item[data-desktop-nav]")];
+    const bodyEl = document.body;
+    const themeStorageKey = "connect_theme_design";
     const mobileFeed = document.querySelector("#screen-home .feed");
     const desktopFeed = document.querySelector("#desktop-feed");
     const mobileFeedContainer = document.querySelector("#screen-home .feed");
@@ -2380,11 +2669,95 @@
       desktopNavItems.forEach((item) => item.classList.toggle("active", item.dataset.desktopNav === key));
     }
 
+    function currentTheme() {
+      return bodyEl.dataset.theme || "default";
+    }
+
+    function applyTheme(theme) {
+      const nextTheme = ["default", "midnight", "playful"].includes(theme) ? theme : "default";
+      bodyEl.dataset.theme = nextTheme;
+      try {
+        window.localStorage.setItem(themeStorageKey, nextTheme);
+      } catch (error) {}
+    }
+
+    function themeSettingsPanelBody() {
+      const theme = currentTheme();
+      const items = [
+        {
+          key: "default",
+          name: "ベーシック",
+          note: "今の落ち着いた配色です。",
+          badge: theme === "default" ? "現在" : "",
+          swatches: ["default-1", "default-2", "default-3", "default-4"]
+        },
+        {
+          key: "midnight",
+          name: "ナイトゴールド",
+          note: "濃紺とゴールドを基調にした，重厚なデザインです。",
+          badge: theme === "midnight" ? "現在" : "",
+          swatches: ["midnight-1", "midnight-2", "midnight-3", "midnight-4"]
+        },
+        {
+          key: "playful",
+          name: "ポップラーニング",
+          note: "やわらかい色合いで，親しみやすいデザインです。",
+          badge: theme === "playful" ? "現在" : "",
+          swatches: ["playful-1", "playful-2", "playful-3", "playful-4"]
+        }
+      ];
+      return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div><div class="theme-preview">${item.swatches.map((swatch) => `<span class="theme-swatch ${swatch}"></span>`).join("")}</div></button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
+    }
+
+    function bindThemeSettings(root = document) {
+      root.querySelectorAll("[data-theme-choice]").forEach((button) => {
+        button.addEventListener("click", () => {
+          applyTheme(button.dataset.themeChoice);
+          showDesktopPanel("settings");
+          showToast("テーマデザインを変更しました");
+        });
+      });
+    }
+
     function showMobileScreen(id, navKey) {
       closeSheet();
       if (id === "screen-check") updateCheckHub();
+      if (id === "screen-profile") {
+        const season = document.querySelector("#mobile-season-badge");
+        const bonus = document.querySelector("#mobile-bonus-metrics");
+        if (season) season.innerHTML = badgeSeasonMarkup();
+        if (bonus) bonus.innerHTML = bonusMetricsMarkup();
+      }
       showScreen(id);
+      refreshBadgeFrames(document.querySelector(`#${id}`) || document);
       setActiveNav(navKey);
+    }
+
+    function currentBadgeTone() {
+      const className = badgeInfo().current.className || "";
+      if (className.includes("bronze")) return "bronze";
+      if (className.includes("silver")) return "silver";
+      if (className.includes("gold")) return "gold";
+      if (className.includes("platinum")) return "platinum";
+      if (className.includes("black")) return "black";
+      return "bronze";
+    }
+
+    function setAvatarFrame(element, tone, visible = true) {
+      if (!element) return;
+      element.classList.remove("badge-frame-visible", "badge-frame-bronze", "badge-frame-silver", "badge-frame-gold", "badge-frame-platinum", "badge-frame-black");
+      if (!visible || !tone) return;
+      element.classList.add("badge-frame-visible", `badge-frame-${tone}`);
+    }
+
+    function refreshBadgeFrames(root = document) {
+      root.querySelectorAll("[data-badge-owner='self']").forEach((element) => {
+        setAvatarFrame(element, currentBadgeTone(), state.badgePublic);
+      });
+      root.querySelectorAll("[data-badge-tone]").forEach((element) => {
+        if (element.dataset.badgeOwner === "self") return;
+        setAvatarFrame(element, element.dataset.badgeTone, element.dataset.badgeVisible !== "false");
+      });
     }
 
     function showToast(message) {
@@ -2446,13 +2819,21 @@
       if (!card || !title || !copy || !action) return;
 
       card.classList.toggle("complete", state.completed);
-      title.textContent = state.completed ? "今日のチェックは完了しています" : "今日のチェックはまだです";
+      title.textContent = state.completed
+        ? "今日のチェックは完了しています"
+        : state.skipped
+          ? "今日はスキップしました"
+          : "今日のチェックはまだです";
       copy.textContent = state.completed
         ? "今日のチェックが記録されました。"
-        : "表示された投稿を1件だけチェックします。";
+        : state.skipped
+          ? "今日はポイントを獲得していません。"
+          : "表示された投稿を1件だけチェックします。";
       action.innerHTML = state.completed
         ? '<i data-lucide="user-round"></i>プロフィールを見る'
-        : '<i data-lucide="play"></i>チェックする';
+        : state.skipped
+          ? '<i data-lucide="home"></i>ホームへ戻る'
+          : '<i data-lucide="play"></i>チェックする';
       if (window.lucide) window.lucide.createIcons();
     }
 
@@ -2502,7 +2883,69 @@
       updateQuizContent(state.category);
     }
 
+    function renderDesktopModeChoice() {
+      showDesktopContent(
+        "今日のチャレンジ",
+        "回答方法を選んでください",
+        `<section class="quiz-card"><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
+      );
+      document.querySelectorAll("[data-desktop-mode]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.challengeMode = button.dataset.desktopMode;
+          if (state.challengeMode === "quiz") renderDesktopQuiz();
+          else renderDesktopReaction();
+        });
+      });
+      document.querySelector("#desktop-skip-challenge").addEventListener("click", () => {
+        skipChallenge();
+      });
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderDesktopReaction() {
+      state.selectedReactions = [];
+      showDesktopContent(
+        "感想を選ぶ",
+        "複数選択できます",
+        `<article class="quiz-card"><span class="tag">今日は何の日</span><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-emoji">${["😊","🤔","🔎","📣","😶"][i]}</span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
+      );
+      const submit = document.querySelector("#desktop-submit-reaction");
+      document.querySelectorAll("[data-desktop-reaction]").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.classList.toggle("selected");
+          state.selectedReactions = [...document.querySelectorAll("[data-desktop-reaction].selected")].map((item) => item.dataset.desktopReaction);
+          submit.disabled = state.selectedReactions.length === 0;
+        });
+      });
+      submit.addEventListener("click", () => completeReaction("desktop"));
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function reactionResultsMarkup() {
+      return `<section class="feedback-hero"><h2>回答ありがとうございました</h2><p>今回の回答で +2 pt を獲得しました。</p></section><section class="quiz-card"><h2>このニュースへの感想</h2><div class="reaction-results"><div class="reaction-result-row"><span>おもしろい！</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:68%"></div></div><strong>34%</strong></div><div class="reaction-result-row"><span>ふむふむ</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:50%"></div></div><strong>25%</strong></div><div class="reaction-result-row"><span>ほんとかなあ？</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:34%"></div></div><strong>17%</strong></div><div class="reaction-result-row"><span>拡散しないと！</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:28%"></div></div><strong>14%</strong></div><div class="reaction-result-row"><span>興味ない</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:20%"></div></div><strong>10%</strong></div></div></section><button class="button primary" id="desktop-reaction-home"><i data-lucide="home"></i>通常フィードへ戻る</button>`;
+    }
+
+    function completeReaction(target) {
+      if (!state.pointsAwarded) {
+        state.lastPoints = 2;
+        state.total += 2;
+        state.seasonReactionPoints += 2;
+        state.pointsAwarded = true;
+      }
+      state.answer = "reaction";
+      setCompletedHome("今日の感想に回答済み");
+      syncPointDisplays();
+      if (target === "desktop") {
+        showDesktopContent("みんなの感想", "回答の集計結果", reactionResultsMarkup());
+        document.querySelector("#desktop-reaction-home").addEventListener("click", () => showDesktopPanel("home"));
+      } else {
+        showScreen("screen-reaction-results");
+      }
+      if (window.lucide) window.lucide.createIcons();
+    }
+
     function renderDesktopQuiz() {
+      state.challengeMode = "quiz";
       const content = quizContent[state.category] || quizContent["健康"];
       showDesktopContent(
         "今日の投稿",
@@ -2510,7 +2953,7 @@
         `<article class="quiz-card">
           <div class="tag-row"><span class="tag">${state.category}</span><span class="time">今日の1件</span></div>
           <div class="post-head">
-            <div class="mini-avatar">${content.mark}</div>
+            <div class="mini-avatar" data-badge-tone="gold">${content.mark}</div>
             <div class="account"><strong>${content.name}</strong><span>${content.handle}</span></div>
           </div>
           <p>${content.text}</p>
@@ -2538,13 +2981,39 @@
       }[answer] || "";
     }
 
+    function recentDailyHistory() {
+      const history = [
+        { day: "金", points: 3, status: "correct" },
+        { day: "土", points: 1, status: "incorrect" },
+        { day: "日", points: 0, status: "skip" },
+        { day: "月", points: 0, status: "skip" },
+        { day: "火", points: 1, status: "incorrect" },
+        { day: "水", points: 3, status: "correct" },
+        { day: "今日", points: state.completed ? state.lastPoints : 0, status: state.completed ? (state.answer === "false" ? "correct" : state.answer === "hold" ? "hold" : "incorrect") : "pending" }
+      ];
+      return history;
+    }
+
+    function streakIndexes(history) {
+      let end = history.length - 1;
+      while (end >= 0 && history[end].status === "pending") end -= 1;
+      const result = [];
+      for (let i = end; i >= 0; i -= 1) {
+        if (history[i].status === "skip") break;
+        result.unshift(i);
+      }
+      return result;
+    }
+
     function cumulativePointSeries() {
-      const previousIncrements = [3, 3, 0, 3, 1, 0];
-      const todayIncrement = state.pointsAwarded ? state.lastPoints : 0;
-      const base = Math.max(0, state.total - previousIncrements.reduce((sum, value) => sum + value, 0) - todayIncrement);
-      const increments = [...previousIncrements, todayIncrement];
+      const history = recentDailyHistory();
+      const increments = history.map((item) => item.points || 0);
+      const base = Math.max(0, state.total - increments.reduce((sum, value) => sum + value, 0));
       let running = base;
-      return increments.map((value) => (running += value));
+      return history.map((item) => {
+        running += item.points || 0;
+        return running;
+      });
     }
 
     function chartGeometry(values) {
@@ -2568,22 +3037,74 @@
     }
 
     function updatePointsChart(root = document) {
+      const history = recentDailyHistory();
       const values = cumulativePointSeries();
       const geometry = chartGeometry(values);
       const line = root.querySelector?.("#points-line");
+      const streakLine = root.querySelector?.("#points-streak-line");
       const area = root.querySelector?.("#points-area");
       const dots = root.querySelector?.("#points-dots");
       const total = root.querySelector?.("#chart-total-points");
-      if (line) line.setAttribute("points", geometry.line);
-      if (area) area.setAttribute("d", geometry.area);
+      const axis = root.querySelector?.("#points-axis-labels");
+      const caption = root.querySelector?.("#streak-caption");
+      const tooltip = root.querySelector?.("#points-tooltip");
+      const chart = root.querySelector?.(".points-chart");
+      const streak = streakIndexes(history);
+      if (line) {
+        const basePoints = geometry.points.map(({ x, y }, index) => {
+          const yValue = history[index].status === "pending" ? geometry.points[Math.max(0, index - 1)].y : y;
+          return `${x.toFixed(1)},${yValue.toFixed(1)}`;
+        }).join(" ");
+        line.setAttribute("points", basePoints);
+      }
+      if (streakLine) {
+        streakLine.setAttribute("points", "");
+      }
+      if (area) {
+        area.setAttribute("d", geometry.area);
+      }
       if (dots) {
-        dots.innerHTML = geometry.points.map(({ x, y, value }, index) => `<g><circle class="points-dot${index === geometry.points.length - 1 ? " today" : ""}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4"></circle><title>${value} pt</title></g>`).join("");
+        dots.innerHTML = geometry.points.map(({ x, y, value }, index) => {
+          const item = history[index];
+          const classes = ["points-dot"];
+          if (index === geometry.points.length - 1 && state.completed) classes.push("today");
+          if (item.status === "pending") classes.push("pending");
+          const drawY = item.status === "pending" ? geometry.points[Math.max(0, index - 1)].y : y;
+          const gained = item.status === "pending" ? "未回答" : `+${item.points} pt`;
+          const statusLabel = item.status === "pending" ? "まだ未チェック" : `累積 ${value} pt`;
+          return `<g><circle class="${classes.join(" ")}" cx="${x.toFixed(1)}" cy="${drawY.toFixed(1)}" r="4.5" tabindex="0" data-day="${item.day}" data-status="${statusLabel}" data-gained="${gained}"></circle><title>${item.day}：${statusLabel}${item.status === "pending" ? "" : `（${gained}）`}</title></g>`;
+        }).join("");
+        if (tooltip && chart) {
+          const showTooltip = (circle) => {
+            const x = Number(circle.getAttribute("cx"));
+            const y = Number(circle.getAttribute("cy"));
+            tooltip.innerHTML = `<strong>${circle.dataset.day}</strong><span>${circle.dataset.status}</span><br><span>${circle.dataset.gained}</span>`;
+            tooltip.style.left = `${(x / 320) * chart.clientWidth}px`;
+            tooltip.style.top = `${(y / 126) * chart.clientHeight}px`;
+            tooltip.classList.add("visible");
+          };
+          const hideTooltip = () => tooltip.classList.remove("visible");
+          dots.querySelectorAll("circle").forEach((circle) => {
+            circle.addEventListener("mouseenter", () => showTooltip(circle));
+            circle.addEventListener("focus", () => showTooltip(circle));
+            circle.addEventListener("mouseleave", hideTooltip);
+            circle.addEventListener("blur", hideTooltip);
+          });
+        }
+      }
+      if (axis) {
+        const streakSet = new Set(streak);
+        axis.innerHTML = history.map((item, index) => `<span class="${item.status === "pending" ? "pending" : ""} ${streakSet.has(index) && item.status !== "pending" ? "streak" : ""}">${item.day}</span>`).join("");
+      }
+      if (caption) {
+        const nextText = state.completed ? `今日で${state.streak}日連続です` : `直近${state.streak}日間は続けてチェック済みです`;
+        caption.innerHTML = `<strong>現在${state.streak}日連続中</strong><span>${nextText}</span>`;
       }
       if (total) total.textContent = `${state.total} pt`;
     }
 
     function historyChartMarkup() {
-      return `<section class="history-card"><div class="history-card-head"><div><h3>ポイントの推移</h3><p>直近7日間の累積ポイント</p></div><div class="score-value"><strong id="chart-total-points">${state.total} pt</strong><span>現在の合計</span></div></div><div class="points-chart" aria-label="直近7日間の累積ポイント"><svg viewBox="0 0 320 126" role="img"><line class="points-grid" x1="20" y1="22" x2="304" y2="22"></line><line class="points-grid" x1="20" y1="62" x2="304" y2="62"></line><line class="points-grid" x1="20" y1="102" x2="304" y2="102"></line><path class="points-area" id="points-area" d=""></path><polyline class="points-line" id="points-line" points=""></polyline><g id="points-dots"></g></svg><div class="points-axis-labels"><span>金</span><span>土</span><span>日</span><span>月</span><span>火</span><span>水</span><span>今日</span></div></div><div class="points-legend"><span><i></i>正解 +3 pt</span><span><i></i>不正解 +1 pt</span><span><i></i>スキップ +0 pt</span></div><div class="history-summary"><span>正答率 <b>82%</b></span><span>通算 <b id="history-ratio">14／17件</b></span></div></section>`;
+      return `<section class="history-card"><div class="history-card-head"><div><h3>ポイントの推移</h3><p>直近7日間の累積ポイント</p></div><div class="score-value"><strong id="chart-total-points">${state.total} pt</strong><span>現在の合計</span></div></div><div class="points-chart" aria-label="直近7日間の累積ポイント"><svg viewBox="0 0 320 126" role="img"><line class="points-grid" x1="20" y1="22" x2="304" y2="22"></line><line class="points-grid" x1="20" y1="62" x2="304" y2="62"></line><line class="points-grid" x1="20" y1="102" x2="304" y2="102"></line><path class="points-area" id="points-area" d=""></path><polyline class="points-line" id="points-line" points=""></polyline><polyline class="points-streak-line" id="points-streak-line" points=""></polyline><g id="points-dots"></g></svg><div class="points-axis-labels" id="points-axis-labels"><span>金</span><span>土</span><span>日</span><span>月</span><span>火</span><span>水</span><span>今日</span></div><div class="points-tooltip" id="points-tooltip" aria-hidden="true"></div></div><div class="streak-caption" id="streak-caption"><strong>現在${state.streak}日連続中</strong><span>${state.completed ? `今日で${state.streak}日連続です` : `直近${state.streak}日間は続けてチェック済みです`}</span></div><div class="points-legend"><span><i></i>正解 +3 pt</span><span><i></i>不正解 +1 pt</span><span><i></i>スキップ +0 pt</span></div><div class="history-summary"><span>正答率 <b>82%</b></span><span>通算 <b id="history-ratio">14／17件</b></span></div></section>`;
     }
 
     function recentThemeText() {
@@ -2611,6 +3132,41 @@
       if (profileSummary) profileSummary.textContent = "これまでのチェック結果";
     }
 
+    function seasonTotalPoints() {
+      return state.seasonQuizPoints + state.seasonReactionPoints;
+    }
+
+    function badgeInfo() {
+      const total = seasonTotalPoints();
+      const levels = [
+        { name: "銅", min: 0, className: "badge-bronze" },
+        { name: "銀", min: 20, className: "badge-silver" },
+        { name: "金", min: 40, className: "badge-gold" },
+        { name: "プラチナ", min: 65, className: "badge-platinum" },
+        { name: "黒", min: 100, className: "badge-black" }
+      ];
+      let current = levels[0];
+      levels.forEach((level) => {
+        const canEarn = level.name !== "黒" || state.seasonQuizPoints >= 80;
+        if (total >= level.min && canEarn) current = level;
+      });
+      const index = levels.findIndex((level) => level.name === current.name);
+      const next = levels[Math.min(index + 1, levels.length - 1)];
+      return { current, next, levels, total };
+    }
+
+    function badgeSeasonMarkup() {
+      const info = badgeInfo();
+      const nextText = info.current.name === "黒" ? "最高ランクに到達" : `次の「${info.next.name}」まで ${Math.max(0, info.next.min - info.total)} pt`;
+      const progressMax = info.current.name === "黒" ? 100 : Math.max(1, info.next.min);
+      const progress = Math.min(100, (info.total / progressMax) * 100);
+      return `<section class="season-card"><div class="season-card-head"><div><h3>今シーズンのバッジ</h3><p>シーズン終了時に確定し，次のシーズンにも表示されます。</p></div><div class="season-badge-current"><span class="badge-medal ${info.current.className}">${info.current.name}</span><span>${info.current.name}バッジ</span></div></div><div class="season-progress"><div class="season-progress-fill" style="width:${progress}%"></div></div><div class="theme-note" style="margin-top:7px">${info.total} pt・${nextText}</div><div class="badge-track">${info.levels.map((level) => `<div class="badge-step ${info.total >= level.min ? "earned" : ""}"><span class="badge-medal ${level.className}">${level.name === "プラチナ" ? "P" : level.name}</span><span>${level.name}</span></div>`).join("")}</div><div class="previous-season"><span>前シーズン</span><strong>金バッジ・黒バッジ連続 0回</strong></div><div class="privacy-toggle"><span>バッジをアイコンのフレームに表示</span><button id="badge-privacy-toggle">${state.badgePublic ? "公開中" : "非公開"}</button></div></section>`;
+    }
+
+    function bonusMetricsMarkup() {
+      return `<div class="bonus-metrics"><div class="bonus-metric"><b>${state.streak}日</b><span>現在の連続日数</span></div><div class="bonus-metric"><b>${Math.round((state.correctCount / state.totalChecks) * 100)}%</b><span>通算正答率</span></div><div class="bonus-metric"><b>${state.quizCorrectStreak}問</b><span>○×クイズ連続正解</span></div></div>`;
+    }
+
     function pointsForAnswer(answer) {
       return answer === "false" ? 3 : 1;
     }
@@ -2619,6 +3175,7 @@
       if (state.pointsAwarded) return state.lastPoints;
       state.lastPoints = pointsForAnswer(answer);
       state.total += state.lastPoints;
+      state.seasonQuizPoints += state.lastPoints;
       state.pointsAwarded = true;
       syncPointDisplays();
       return state.lastPoints;
@@ -2670,7 +3227,7 @@
           <article class="quiz-card" id="desktop-checked-source-card">
             <div class="checked-source-inner">
               <div class="checked-source-top"><span class="tag">${state.category}</span><span class="checked-source-meta">チェックに使った投稿</span></div>
-              <div class="post-head"><div class="mini-avatar">${(quizContent[state.category] || quizContent["健康"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["健康"]).name}</strong><span>${(quizContent[state.category] || quizContent["健康"]).handle}</span></div></div>
+              <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["健康"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["健康"]).name}</strong><span>${(quizContent[state.category] || quizContent["健康"]).handle}</span></div></div>
               <p>${(quizContent[state.category] || quizContent["健康"]).text}</p>
               <div class="checked-source-note">気になったときは、いいね・保存・共有などのリアクションもできます。</div>
             </div>
@@ -2696,7 +3253,8 @@
       head.className = "post-head";
       const avatar = document.createElement("div");
       avatar.className = "mini-avatar";
-      avatar.textContent = "T";
+      avatar.setAttribute("data-badge-owner", "self");
+      avatar.textContent = "は";
       const account = document.createElement("div");
       account.className = "account";
       const name = document.createElement("strong");
@@ -2718,6 +3276,7 @@
 
       article.append(head, body, actions);
       enhancePostActions(article);
+      refreshBadgeFrames(article);
       return article;
     }
 
@@ -2750,16 +3309,18 @@
           const button = document.createElement("button");
           const label = document.createElement("span");
           const count = document.createElement("span");
-          const iconMap = {
-            "いいね": "heart",
-            "コメント": "message-circle",
-            "リポスト": "repeat-2",
-            "保存": "bookmark",
-            "共有": "share-2",
-            "返信": "message-circle"
+          const glyphMap = {
+            "いいね": "♡",
+            "コメント": "○",
+            "リポスト": "↻",
+            "保存": "▱",
+            "共有": "↗",
+            "返信": "○"
           };
-          const icon = document.createElement("i");
-          icon.setAttribute("data-lucide", iconMap[match[1]] || "circle");
+          const icon = document.createElement("span");
+          icon.className = "action-glyph";
+          icon.setAttribute("aria-hidden", "true");
+          icon.textContent = glyphMap[match[1]] || "•";
           label.textContent = match[1];
           count.textContent = match[2];
           button.dataset.socialAction = match[1];
@@ -2772,6 +3333,7 @@
         });
       });
       if (window.lucide) window.lucide.createIcons();
+      refreshBadgeFrames(root);
     }
 
     function handlePostAction(button, countNode) {
@@ -2842,12 +3404,17 @@
         messages: {
           title: "メッセージ",
           sub: "メッセージ",
-          body: '<div class="utility-list"><section class="utility-card"><h2>まちの情報</h2><p>災害情報の更新時刻を確認しました。</p></section><section class="utility-card"><h2>くらしメモ</h2><p>元のリンクを送りました。</p></section></div>'
+          body: '<div class="utility-list"><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold">く</div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="bronze">紗</div><div class="utility-body"><h2>紗季</h2><span class="subline">@saki_note</span><p>この話題，気になって保存しておいたよ。</p></div></div></section></div>'
         },
         profile: {
           title: "プロフィール",
           sub: "これまでのチェック結果",
-          body: '<section class="profile-head compact-profile"><div class="avatar small-avatar"><div class="avatar-icon"><i data-lucide="user-round"></i></div></div><div><div class="profile-name"><h2>はる</h2></div><div class="sub">これまでのチェック結果</div></div></section><div class="stats simple-stats profile-metrics"><div class="stat"><b>'+state.streak+'日</b><span>現在の連続日数</span></div><div class="stat"><b>'+state.bestStreak+'日</b><span>最長の連続日数</span></div><div class="stat"><b>'+state.totalChecks+'件</b><span>累積回数</span></div><div class="stat"><b>'+state.total+' pt</b><span>累積ポイント</span></div></div>'+historyChartMarkup()
+          body: '<section class="profile-head compact-profile"><div class="avatar small-avatar" data-badge-owner="self"><div class="avatar-icon"><i data-lucide="user-round"></i></div></div><div><div class="profile-name"><h2>はる</h2></div><div class="sub">これまでのチェック結果</div></div></section><div class="stats simple-stats profile-metrics"><div class="stat"><b>'+state.streak+'日</b><span>現在の連続日数</span></div><div class="stat"><b>'+state.bestStreak+'日</b><span>最長の連続日数</span></div><div class="stat"><b>'+state.totalChecks+'件</b><span>累積回数</span></div><div class="stat"><b>'+state.total+' pt</b><span>累積ポイント</span></div></div>'+badgeSeasonMarkup()+bonusMetricsMarkup()+historyChartMarkup()
+        },
+        settings: {
+          title: "設定",
+          sub: "テーマデザイン",
+          body: themeSettingsPanelBody()
         }
       }[key];
 
@@ -2858,7 +3425,20 @@
         renderSearchResults(desktopSearchResults);
         desktopSearchInput.addEventListener("input", () => renderSearchResults(desktopSearchResults, desktopSearchInput.value));
       }
-      if (key === "profile") updatePointsChart(desktopUtilityPanel);
+      refreshBadgeFrames(desktopUtilityPanel);
+      if (key === "profile") {
+        updatePointsChart(desktopUtilityPanel);
+        const privacyButton = desktopUtilityPanel.querySelector("#badge-privacy-toggle");
+        if (privacyButton) {
+          privacyButton.addEventListener("click", () => {
+            state.badgePublic = !state.badgePublic;
+            privacyButton.textContent = state.badgePublic ? "公開中" : "非公開";
+            refreshBadgeFrames(document);
+            showToast(state.badgePublic ? "バッジを公開しました" : "バッジを非公開にしました");
+          });
+        }
+      }
+      if (key === "settings") bindThemeSettings(desktopUtilityPanel);
       if (key === "check") {
         document.querySelector("#desktop-check-primary").addEventListener("click", () => {
           if (state.completed) {
@@ -2882,6 +3462,9 @@
 
     function openCheckFlow(target = "mobile") {
       state.deferred = false;
+      state.skipped = false;
+      state.challengeMode = "";
+      state.selectedReactions = [];
       if (desktopOverlay) desktopOverlay.classList.add("hidden");
       bonusSheet.classList.add("hidden");
       phone.classList.remove("deferred");
@@ -2897,9 +3480,19 @@
     }
 
     function setCompletedHome(message = "今日のチェック完了") {
+      if (!state.completed) {
+        state.streak += 1;
+        state.totalChecks += 1;
+        if (state.answer === "false") {
+          state.correctCount += 1;
+          state.quizCorrectStreak += 1;
+        } else if (state.answer !== "reaction") {
+          state.quizCorrectStreak = 0;
+        }
+        if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+      }
       state.completed = true;
       state.deferred = false;
-      state.streak = 8;
       setFeedVisible(true);
       phone.classList.remove("deferred");
       phone.classList.add("completed");
@@ -2916,6 +3509,31 @@
       updateCheckNav();
       updateCheckHub();
       updateHomeCheckModules();
+    }
+
+    function skipChallenge() {
+      state.completed = false;
+      state.deferred = false;
+      state.skipped = true;
+      state.lastPoints = 0;
+      state.pointsAwarded = false;
+      setFeedVisible(true);
+      phone.classList.remove("completed", "deferred");
+      if (mobileChip) mobileChip.textContent = "今日はスキップ済み（+0 pt）";
+      if (desktopChip) desktopChip.textContent = "今日はスキップ済み（+0 pt）";
+      if (desktopCheckChip) {
+        desktopCheckChip.classList.add("visible", "deferred");
+        desktopCheckChip.classList.remove("completed");
+      }
+      if (desktopOverlay) desktopOverlay.classList.add("hidden");
+      closeSheet();
+      showScreen("screen-home");
+      setActiveNav("home");
+      showDesktopPanel("home");
+      updateCheckNav();
+      updateCheckHub();
+      updateHomeCheckModules();
+      showToast("今日はスキップしました（+0 pt）");
     }
 
     function deferCheck(target = "mobile") {
@@ -2976,6 +3594,41 @@
     document.querySelector("#start-checkin").addEventListener("click", () => {
       openCheckFlow("mobile");
     });
+
+    document.querySelectorAll("[data-mode-choice]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.challengeMode = button.dataset.modeChoice;
+        if (state.challengeMode === "quiz") {
+          showScreen("screen-quiz");
+        } else {
+          state.selectedReactions = [];
+          document.querySelectorAll(".reaction-option").forEach((item) => item.classList.remove("selected"));
+          document.querySelector("#submit-reaction").disabled = true;
+          showScreen("screen-reaction");
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-back-home]").forEach((button) => {
+      button.addEventListener("click", () => showScreen("screen-home"));
+    });
+
+    document.querySelector("#mobile-skip-challenge").addEventListener("click", () => {
+      skipChallenge();
+    });
+
+    document.querySelector("#reaction-back").addEventListener("click", () => showScreen("screen-mode-choice"));
+
+    document.querySelectorAll("#reaction-options .reaction-option").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("selected");
+        state.selectedReactions = [...document.querySelectorAll("#reaction-options .reaction-option.selected")].map((item) => item.dataset.reaction);
+        document.querySelector("#submit-reaction").disabled = state.selectedReactions.length === 0;
+      });
+    });
+
+    document.querySelector("#submit-reaction").addEventListener("click", () => completeReaction("mobile"));
+    document.querySelector("#reaction-results-home").addEventListener("click", () => showScreen("screen-home"));
 
     document.querySelector("#mobile-start-inline").addEventListener("click", () => {
       openCheckFlow("mobile");
@@ -3072,18 +3725,16 @@
       }
       const card = document.createElement("section");
       card.className = "utility-card";
-      const title = document.createElement("h2");
-      title.textContent = "はる";
-      const body = document.createElement("p");
-      body.textContent = text;
-      card.append(title, body);
+      card.innerHTML = `<div class="utility-person"><div class="mini-avatar" data-badge-owner="self">は</div><div class="utility-body"><h2>はる</h2><span class="subline">@haru_days</span><p>${text}</p></div></div>`;
       document.querySelector("#message-list").prepend(card);
+      refreshBadgeFrames(card);
       input.value = "";
       showToast("送信しました");
     });
 
     answerCards.forEach((card) => {
       card.addEventListener("click", () => {
+        state.challengeMode = "quiz";
         answerCards.forEach((item) => item.classList.remove("selected"));
         card.classList.add("selected");
         state.answer = card.dataset.answer;
