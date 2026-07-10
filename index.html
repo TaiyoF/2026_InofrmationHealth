@@ -880,9 +880,7 @@
       cursor: not-allowed;
     }
 
-    .search-input,
-    .compose-textarea,
-    .message-input {
+    .compose-textarea {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -892,23 +890,12 @@
       outline: none;
     }
 
-    .search-input {
-      height: 44px;
-      padding: 0 12px;
-      margin-bottom: 12px;
-    }
-
-    .compose-textarea,
-    .message-input {
+    .compose-textarea {
       resize: none;
       min-height: 132px;
       padding: 12px;
       line-height: 1.6;
       margin-bottom: 12px;
-    }
-
-    .message-input {
-      min-height: 86px;
     }
 
     .utility-list {
@@ -1704,6 +1691,11 @@
     .point-rule b { color:var(--ink); }
     .desktop-nav-spacer{flex:1 1 auto}
     .desktop-nav-item.settings-trigger{margin-top:auto}
+    .is-dormant,.is-dormant:hover,.is-dormant.active{opacity:.34!important;color:var(--muted)!important;cursor:default!important;pointer-events:none;background:transparent!important;box-shadow:none!important;transform:none!important}
+    .search.is-dormant{background:var(--surface-soft)!important;border-color:var(--line)!important}
+    .dormant-empty{min-height:220px;display:grid;place-items:center;color:var(--muted);font-size:13px;font-weight:500;opacity:.42;text-align:center}
+    .dormant-empty>div{display:grid;justify-items:center;gap:8px}
+    .dormant-empty svg{width:26px;height:26px}
     .panel-title-actions{display:flex;align-items:center;gap:8px}
     .settings-panel{display:grid;gap:16px}
     .settings-copy{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
@@ -2048,11 +2040,11 @@
     body[data-theme="playful"] .badge-frame-platinum{--playful-badge-background:linear-gradient(145deg,#eaffff,#71b8ca);--playful-badge-border:#4e98ad;--playful-badge-highlight:#efffff;--playful-badge-depth:#347b8f;--playful-badge-shadow:rgba(52,123,143,.22)}
     body[data-theme="playful"] .badge-medal.badge-black,
     body[data-theme="playful"] .badge-frame-black{--playful-badge-background:linear-gradient(145deg,#66707c,#171b21);--playful-badge-border:#11151a;--playful-badge-highlight:#8a949f;--playful-badge-depth:#05070a;--playful-badge-shadow:rgba(5,7,10,.28)}
-    body[data-theme="playful"] .badge-medal::after{display:block;z-index:1;left:8%;right:8%;top:55%;bottom:auto;height:72%;background:linear-gradient(90deg,var(--playful-badge-border) 0 47%,var(--playful-badge-highlight) 47% 53%,var(--playful-badge-border) 53% 100%);box-shadow:0 4px 0 var(--playful-badge-depth);clip-path:polygon(0 0,43% 0,50% 100%,57% 0,100% 0,84% 100%,50% 70%,16% 100%);filter:drop-shadow(0 3px 2px var(--playful-badge-shadow));opacity:1}
-    body[data-theme="playful"] .badge-step .badge-medal{margin-bottom:13px}
+    body[data-theme="playful"] .badge-medal::after{display:block;z-index:1;left:-20%;right:-20%;top:35%;bottom:auto;height:100%;background:url("assets/wanko-ribbon.png") center/100% 100% no-repeat;box-shadow:none;clip-path:none;filter:drop-shadow(0 3px 2px rgba(185,83,72,.28));opacity:1}
+    body[data-theme="playful"] .badge-step .badge-medal{margin-bottom:10px}
     body[data-theme="playful"] .badge-frame-visible{overflow:visible;isolation:isolate;border:1px solid #d7e6f4;border-radius:50%;background:#eef5ff;color:#4a7bd5;box-shadow:none;text-shadow:none}
     body[data-theme="playful"] .badge-frame-visible::before{content:"";position:absolute;inset:-6px;z-index:-1;border:3px solid var(--playful-badge-border);border-radius:50%;background:var(--playful-badge-background);box-shadow:inset 0 0 0 2px var(--playful-badge-highlight),0 5px 0 var(--playful-badge-depth),0 8px 16px var(--playful-badge-shadow);pointer-events:none}
-    body[data-theme="playful"] .badge-frame-visible::after{content:"";display:block;position:absolute;z-index:0;left:5%;right:5%;top:70%;height:55%;background:linear-gradient(90deg,var(--playful-badge-border) 0 47%,var(--playful-badge-highlight) 47% 53%,var(--playful-badge-border) 53% 100%);box-shadow:0 3px 0 var(--playful-badge-depth);clip-path:polygon(0 0,43% 0,50% 100%,57% 0,100% 0,84% 100%,50% 70%,16% 100%);filter:drop-shadow(0 3px 2px var(--playful-badge-shadow));pointer-events:none}
+    body[data-theme="playful"] .badge-frame-visible::after{content:"";display:block;position:absolute;z-index:0;left:-18%;right:-18%;top:40%;height:95%;background:url("assets/wanko-ribbon.png") center/100% 100% no-repeat;filter:drop-shadow(0 3px 2px rgba(185,83,72,.28));pointer-events:none}
     body[data-theme="playful"] .badge-frame-visible > *{position:relative;z-index:1}
     body[data-theme="playful"] .badge-frame-visible > .avatar-icon{width:100%;height:100%;border-radius:50%;background:#eef5ff;color:#4a7bd5;box-shadow:none;opacity:1}
     body[data-theme="playful"] .badge-frame-visible > .avatar-icon svg{width:58%;height:58%;opacity:1;stroke:currentColor}
@@ -2191,9 +2183,9 @@
           <div class="desktop-brand"><span class="brand-mark">S</span><span class="desktop-brand-label">Connect</span><button class="desktop-nav-toggle" id="desktop-nav-toggle" type="button" aria-controls="desktop-primary-nav" aria-expanded="false" aria-label="ナビゲーションを開く"><i data-lucide="panel-left"></i></button></div>
           <button class="desktop-nav-item active" data-desktop-nav="home"><i data-lucide="home"></i><span>ホーム</span></button>
           <button class="desktop-nav-item" data-desktop-nav="check"><i data-lucide="shield-check"></i><span>チェック</span><span class="nav-badge" aria-hidden="true"></span></button>
-          <button class="desktop-nav-item" data-desktop-nav="search"><i data-lucide="search"></i><span>検索</span></button>
-          <button class="desktop-nav-item" data-desktop-nav="notifications"><i data-lucide="bell"></i><span>通知</span></button>
-          <button class="desktop-nav-item" data-desktop-nav="messages"><i data-lucide="mail"></i><span>メッセージ</span></button>
+          <button class="desktop-nav-item is-dormant" data-desktop-nav="search" disabled aria-disabled="true"><i data-lucide="search"></i><span>検索</span></button>
+          <button class="desktop-nav-item is-dormant" data-desktop-nav="notifications" disabled aria-disabled="true"><i data-lucide="bell"></i><span>通知</span></button>
+          <button class="desktop-nav-item is-dormant" data-desktop-nav="messages" disabled aria-disabled="true"><i data-lucide="mail"></i><span>メッセージ</span></button>
           <button class="desktop-nav-item" data-desktop-nav="profile"><i data-lucide="user-round"></i><span>プロフィール</span></button>
           <div class="desktop-nav-spacer"></div>
           <button class="desktop-nav-item settings-trigger" data-desktop-nav="settings"><i data-lucide="settings-2"></i><span>設定</span></button>
@@ -2202,8 +2194,8 @@
 
         <main class="desktop-main">
           <header class="desktop-topbar">
-            <button class="search" id="desktop-search-open"><i data-lucide="search"></i><span>検索</span></button>
-            <button class="icon-button" id="desktop-notifications-open" aria-label="通知"><i data-lucide="bell"></i></button>
+            <button class="search is-dormant" id="desktop-search-open" disabled aria-disabled="true"><i data-lucide="search"></i><span>検索</span></button>
+            <button class="icon-button is-dormant" id="desktop-notifications-open" disabled aria-disabled="true" aria-label="通知（未使用）"><i data-lucide="bell"></i></button>
           </header>
           <div class="desktop-feed feed-locked" id="desktop-feed">
             <section class="check-module" id="desktop-check-module">
@@ -2342,9 +2334,9 @@
     <div class="phone" id="phone">
       <section class="screen active" id="screen-home" aria-label="SNSホーム">
         <header class="topbar">
-          <button class="search" id="mobile-search-open"><i data-lucide="search"></i><span>検索</span></button>
-          <button class="icon-button" id="mobile-notifications-open" aria-label="通知"><i data-lucide="bell"></i></button>
-          <button class="icon-button" id="mobile-messages-open" aria-label="メッセージ"><i data-lucide="mail"></i></button>
+          <button class="search is-dormant" id="mobile-search-open" disabled aria-disabled="true"><i data-lucide="search"></i><span>検索</span></button>
+          <button class="icon-button is-dormant" id="mobile-notifications-open" disabled aria-disabled="true" aria-label="通知（未使用）"><i data-lucide="bell"></i></button>
+          <button class="icon-button is-dormant" id="mobile-messages-open" disabled aria-disabled="true" aria-label="メッセージ（未使用）"><i data-lucide="mail"></i></button>
         </header>
 
         <main class="feed feed-locked">
@@ -2424,9 +2416,9 @@
         <nav class="bottom-nav" aria-label="SNSナビゲーション">
           <button class="nav-item active" data-nav="home"><i data-lucide="home"></i><span>ホーム</span></button>
           <button class="nav-item" data-nav="check"><i data-lucide="shield-check"></i><span>チェック</span></button>
-          <button class="nav-item" data-nav="search"><i data-lucide="compass"></i><span>検索</span></button>
+          <button class="nav-item is-dormant" data-nav="search" disabled aria-disabled="true"><i data-lucide="compass"></i><span>検索</span></button>
           <button class="nav-item" data-nav="settings"><i data-lucide="palette"></i><span>テーマ</span></button>
-          <button class="nav-item" data-nav="notifications"><i data-lucide="bell"></i><span>通知</span></button>
+          <button class="nav-item is-dormant" data-nav="notifications" disabled aria-disabled="true"><i data-lucide="bell"></i><span>通知</span></button>
           <button class="nav-item" id="profile-nav" data-nav="profile"><i data-lucide="user-round"></i><span>プロフィール</span></button>
         </nav>
 
@@ -2521,12 +2513,11 @@
           <div class="panel-title">
             <div>
               <h1>検索</h1>
-              <div class="sub">投稿やアカウントを検索できます</div>
+              <div class="sub">このデモでは使用していません</div>
             </div>
             <button class="icon-button" data-simple-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
           </div>
-          <input class="search-input" id="search-input" type="search" placeholder="キーワードを入力">
-          <div class="utility-list" id="search-results"></div>
+          <div class="dormant-empty"><div><i data-lucide="search" aria-hidden="true"></i><span>このデモでは使用していません</span></div></div>
         </main>
       </section>
 
@@ -2551,16 +2542,11 @@
           <div class="panel-title">
             <div>
               <h1>通知</h1>
-              <div class="sub">新着のお知らせ</div>
+              <div class="sub">このデモでは使用していません</div>
             </div>
             <button class="icon-button" data-simple-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
           </div>
-          <div class="utility-list" id="notification-list">
-            <section class="utility-card"><h2>今日のチェック</h2><p>今日のチェックが完了しました。</p></section>
-            <section class="utility-card"><h2>保存</h2><p>くらしメモ の投稿が保存されました。</p></section>
-            <section class="utility-card"><h2>テーマ</h2><p>今日のテーマは「災害」です。</p></section>
-          </div>
-          <button class="button" id="mark-read"><i data-lucide="check"></i>すべて既読にする</button>
+          <div class="dormant-empty"><div><i data-lucide="bell" aria-hidden="true"></i><span>このデモでは使用していません</span></div></div>
         </main>
       </section>
 
@@ -2569,17 +2555,11 @@
           <div class="panel-title">
             <div>
               <h1>メッセージ</h1>
-              <div class="sub">メッセージ</div>
+              <div class="sub">このデモでは使用していません</div>
             </div>
             <button class="icon-button" data-simple-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
           </div>
-          <div class="utility-list" id="message-list">
-            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false"><span class="avatar-icon"><i data-lucide="train-front" aria-hidden="true"></i></span></div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section>
-            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold"><span class="avatar-icon"><i data-lucide="snowflake" aria-hidden="true"></i></span></div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section>
-            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="black"><span class="avatar-icon"><i data-lucide="user-round" aria-hidden="true"></i></span></div><div class="utility-body"><h2>凛</h2><span class="subline">@rin_watch</span><p>この前の話題，あとで一緒に確認しよう。</p></div></div></section>
-          </div>
-          <textarea class="message-input" id="message-input" maxlength="120" placeholder="返信を書く"></textarea>
-          <button class="button primary" id="send-message"><i data-lucide="send"></i>送信</button>
+          <div class="dormant-empty"><div><i data-lucide="mail" aria-hidden="true"></i><span>このデモでは使用していません</span></div></div>
         </main>
       </section>
 
@@ -2876,14 +2856,6 @@
     const desktopUtilityPanel = document.querySelector("#desktop-utility-panel");
     const mobileCheckModule = document.querySelector("#mobile-check-module");
     const desktopCheckModule = document.querySelector("#desktop-check-module");
-    const searchItems = [
-      { title: "くらしメモ", text: "新しい冷凍保存の方法を試してみた。保存できる期間は食材ごとに違うみたい。" },
-      { title: "はる", text: "夕方の空がきれいだった。暑いけど、風があるだけでだいぶ違う。" },
-      { title: "まちの情報", text: "中央線は一部区間で遅れが出ています。" },
-      { title: "さき", text: "今夜のごはん、どっちにするか迷ってる。" },
-      { title: "映画の話", text: "週末に観る作品を探しています。" },
-      { title: "今日のチェック", text: "1日1回、表示された投稿を1件だけチェックします。" }
-    ];
     const categoryMeta = [
       { name: "本の日", icon: "book-open", copy: "読書・文化" },
       { name: "宇宙の日", icon: "orbit", copy: "宇宙・科学" },
@@ -3083,26 +3055,6 @@
 
     function closeSheet() {
       bonusSheet.classList.add("hidden");
-    }
-
-    function renderSearchResults(target, query = "") {
-      const normalized = query.trim().toLowerCase();
-      const results = searchItems.filter((item) => {
-        if (!normalized) return true;
-        return `${item.title} ${item.text}`.toLowerCase().includes(normalized);
-      });
-      target.textContent = "";
-      const visibleResults = results.length ? results : [{ title: "該当する投稿はありません", text: "キーワードを変えて検索してみてください。" }];
-      visibleResults.forEach((item) => {
-        const card = document.createElement("section");
-        card.className = "utility-card";
-        const title = document.createElement("h2");
-        title.textContent = item.title;
-        const body = document.createElement("p");
-        body.textContent = item.text;
-        card.append(title, body);
-        target.append(card);
-      });
     }
 
     function updateCheckNav() {
@@ -3606,7 +3558,6 @@
       const desktopAnchor = document.querySelector(".desktop-completed-chip");
       mobileFeed.insertBefore(mobilePost, mobileAnchor.nextElementSibling);
       desktopFeed.insertBefore(desktopPost, desktopAnchor.nextElementSibling);
-      searchItems.unshift({ title: "はる", text: content });
       document.querySelector("#compose-text").value = "";
       showMobileScreen("screen-home", "home");
       showDesktopPanel("home");
@@ -3707,18 +3658,18 @@
         },
         search: {
           title: "検索",
-          sub: "投稿やアカウントを検索できます",
-          body: '<input class="search-input" id="desktop-search-input" type="search" placeholder="キーワードを入力"><div class="utility-list" id="desktop-search-results"></div>'
+          sub: "このデモでは使用していません",
+          body: '<div class="dormant-empty"><div><i data-lucide="search" aria-hidden="true"></i><span>このデモでは使用していません</span></div></div>'
         },
         notifications: {
           title: "通知",
-          sub: "新着のお知らせ",
-          body: '<div class="utility-list"><section class="utility-card"><h2>今日のチェック</h2><p>今日のチェックが完了しました。</p></section><section class="utility-card"><h2>保存</h2><p>くらしメモ の投稿が保存されました。</p></section><section class="utility-card"><h2>テーマ</h2><p>今日のテーマは「災害」です。</p></section></div>'
+          sub: "このデモでは使用していません",
+          body: '<div class="dormant-empty"><div><i data-lucide="bell" aria-hidden="true"></i><span>このデモでは使用していません</span></div></div>'
         },
         messages: {
           title: "メッセージ",
-          sub: "メッセージ",
-          body: `<div class="utility-list"><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">${avatarIconMarkup("train-front")}</div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold">${avatarIconMarkup("snowflake")}</div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="bronze">${avatarIconMarkup("user-round")}</div><div class="utility-body"><h2>紗季</h2><span class="subline">@saki_note</span><p>この話題，気になって保存しておいたよ。</p></div></div></section></div>`
+          sub: "このデモでは使用していません",
+          body: '<div class="dormant-empty"><div><i data-lucide="mail" aria-hidden="true"></i><span>このデモでは使用していません</span></div></div>'
         },
         profile: {
           title: "プロフィール",
@@ -3734,12 +3685,6 @@
 
       desktopUtilityPanel.dataset.panel = key;
       desktopUtilityPanel.innerHTML = `<div class="panel-title"><div><h1>${panel.title}</h1><div class="sub">${panel.sub}</div></div></div>${panel.body}`;
-      if (key === "search") {
-        const desktopSearchInput = document.querySelector("#desktop-search-input");
-        const desktopSearchResults = document.querySelector("#desktop-search-results");
-        renderSearchResults(desktopSearchResults);
-        desktopSearchInput.addEventListener("input", () => renderSearchResults(desktopSearchResults, desktopSearchInput.value));
-      }
       refreshBadgeFrames(desktopUtilityPanel);
       if (key === "profile") {
         updatePointsChart(desktopUtilityPanel);
@@ -3981,35 +3926,13 @@
       });
     });
 
-    document.querySelector("#mobile-search-open").addEventListener("click", () => {
-      showMobileScreen("screen-search", "search");
-      document.querySelector("#search-input").focus();
-    });
-
-    document.querySelector("#mobile-notifications-open").addEventListener("click", () => {
-      showMobileScreen("screen-notifications", "notifications");
-    });
-
-    document.querySelector("#mobile-messages-open").addEventListener("click", () => {
-      showMobileScreen("screen-messages", "messages");
-    });
-
-    document.querySelector("#desktop-search-open").addEventListener("click", () => {
-      showDesktopPanel("search");
-    });
-
-    document.querySelector("#desktop-notifications-open").addEventListener("click", () => {
-      showDesktopPanel("notifications");
-    });
-
     navItems.forEach((item) => {
+      if (item.disabled) return;
       item.addEventListener("click", () => {
         const nav = item.dataset.nav;
         if (nav === "home") showMobileScreen("screen-home", "home");
         if (nav === "check") showMobileScreen("screen-check", "check");
-        if (nav === "search") showMobileScreen("screen-search", "search");
         if (nav === "settings") showMobileScreen("screen-settings", "settings");
-        if (nav === "notifications") showMobileScreen("screen-notifications", "notifications");
         if (nav === "profile") showMobileScreen("screen-profile", "profile");
       });
     });
@@ -4017,6 +3940,7 @@
     desktopNavItems.forEach((item) => {
       const itemLabel = item.querySelector("span:not(.nav-badge)")?.textContent?.trim();
       if (itemLabel) item.setAttribute("aria-label", itemLabel);
+      if (item.disabled) return;
       item.addEventListener("click", () => {
         showDesktopPanel(item.dataset.desktopNav);
         setDesktopNavExpanded(false);
@@ -4037,33 +3961,8 @@
       if (!canCollapseDesktopNav()) setDesktopNavExpanded(false);
     });
 
-    document.querySelector("#search-input").addEventListener("input", (event) => {
-      renderSearchResults(document.querySelector("#search-results"), event.target.value);
-    });
-
     document.querySelector("#publish-post").addEventListener("click", () => {
       addPost(document.querySelector("#compose-text").value);
-    });
-
-    document.querySelector("#mark-read").addEventListener("click", () => {
-      document.querySelector("#notification-list").innerHTML = '<section class="utility-card"><h2>通知はありません</h2><p>新しい反応があるとここに表示されます。</p></section>';
-      showToast("既読にしました");
-    });
-
-    document.querySelector("#send-message").addEventListener("click", () => {
-      const input = document.querySelector("#message-input");
-      const text = input.value.trim();
-      if (!text) {
-        showToast("メッセージを入力してください");
-        return;
-      }
-      const card = document.createElement("section");
-      card.className = "utility-card";
-      card.innerHTML = `<div class="utility-person"><div class="mini-avatar" data-badge-owner="self">${avatarIconMarkup("user-round")}</div><div class="utility-body"><h2>はる</h2><span class="subline">@haru_days</span><p>${text}</p></div></div>`;
-      document.querySelector("#message-list").prepend(card);
-      refreshBadgeFrames(card);
-      input.value = "";
-      showToast("送信しました");
     });
 
     answerCards.forEach((card) => {
@@ -4143,7 +4042,6 @@
     window.addEventListener("load", () => {
       pickRandomCategory();
       enhancePostActions();
-      renderSearchResults(document.querySelector("#search-results"));
       updateCheckNav();
       updateCheckHub();
       syncProfileSummary();
