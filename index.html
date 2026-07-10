@@ -625,8 +625,9 @@
     }
 
     .avatar-icon svg {
-      width: 52%;
-      height: 52%;
+      width: 58%;
+      height: 58%;
+      stroke-width: 2.2;
     }
 
     .checked-source {
@@ -1926,6 +1927,7 @@
     .theme-mascot-wrap{display:none;align-items:center;justify-content:center;margin:-4px 0 12px}
     .theme-preview-scene{height:76px;border-radius:14px;display:grid;grid-template-columns:54px 1fr;gap:10px;align-items:center;padding:9px 11px;overflow:hidden;position:relative}
     .theme-preview-emblem{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:17px}
+    .theme-preview-emblem svg{width:54%;height:54%;stroke-width:2.2}
     .theme-preview-lines{display:grid;gap:6px}
     .theme-preview-lines span{display:block;height:7px;border-radius:999px}
     .theme-preview-lines span:last-child{width:68%}
@@ -1933,7 +1935,8 @@
     .preview-default .theme-preview-emblem{background:#fff;color:#2f8b70;border:1px solid #dce6e1}
     .preview-default .theme-preview-lines span{background:#bdd9cf}
     .preview-game{background:radial-gradient(circle at 80% 10%,rgba(255,205,100,.18),transparent 34%),linear-gradient(145deg,#132238,#080f1b);border:1px solid #97712a;box-shadow:inset 0 0 0 2px #263b59}
-    .preview-game .theme-preview-emblem{background:linear-gradient(145deg,#f7d67a,#8e5d12);color:#101827;border:3px double #ffe39b;clip-path:polygon(50% 0,91% 20%,100% 65%,72% 100%,28% 100%,0 65%,9% 20%)}
+    .preview-game .theme-preview-emblem{position:relative;isolation:isolate;background:#183049;color:#fff1c7;border:1px solid #36506a;clip-path:none}
+    .preview-game .theme-preview-emblem::before{content:"";position:absolute;inset:-15px;z-index:-1;background:url("assets/quest-badge-frame.png") center/100% 100% no-repeat;filter:sepia(1) saturate(5.4) hue-rotate(353deg) brightness(.98) contrast(1.08);pointer-events:none}
     .preview-game .theme-preview-lines span{background:linear-gradient(90deg,#f0be55,#8d651e)}
     .preview-dog{background:#eaf6ff;border:2px solid #a9cef0}
     .preview-dog img{width:58px;height:58px;border-radius:18px;object-fit:cover}
@@ -2050,7 +2053,7 @@
     body[data-theme="playful"] .badge-frame-visible::after{display:none}
     body[data-theme="playful"] .badge-frame-visible > *{position:relative;z-index:1}
     body[data-theme="playful"] .badge-frame-visible > .avatar-icon{width:100%;height:100%;border-radius:50%;background:#eef5ff;color:#4a7bd5;box-shadow:none;opacity:1}
-    body[data-theme="playful"] .badge-frame-visible > .avatar-icon svg{width:52%;height:52%;opacity:1;stroke:currentColor}
+    body[data-theme="playful"] .badge-frame-visible > .avatar-icon svg{width:58%;height:58%;opacity:1;stroke:currentColor}
     body[data-theme="playful"] .season-progress{height:14px;border:2px solid #9dcde8;background:#eaf6ff}
     body[data-theme="playful"] .season-progress-fill{background:linear-gradient(90deg,#70bd76,#a8dc77)}
     body[data-theme="playful"] .streak-icon{background:#fff0cf;color:#ef9c24;border:2px solid #ffd17c}
@@ -2073,11 +2076,16 @@
     body:not([data-theme]) .badge-medal.badge-black,
     body[data-theme="default"] .badge-medal.badge-black{background-image:url("assets/badge-black.png")}
 
-    .badge-frame-bronze{--default-badge-image:url("assets/badge-bronze.png");--quest-badge-image:url("assets/quest-badge-bronze.png")}
-    .badge-frame-silver{--default-badge-image:url("assets/badge-silver.png");--quest-badge-image:url("assets/quest-badge-silver.png")}
-    .badge-frame-gold{--default-badge-image:url("assets/badge-gold.png");--quest-badge-image:url("assets/quest-badge-gold.png")}
-    .badge-frame-platinum{--default-badge-image:url("assets/badge-platinum.png");--quest-badge-image:url("assets/quest-badge-platinum.png")}
-    .badge-frame-black{--default-badge-image:url("assets/badge-black.png");--quest-badge-image:url("assets/quest-badge-black.png")}
+    .badge-frame-bronze{--default-badge-image:url("assets/badge-bronze.png")}
+    .badge-frame-silver{--default-badge-image:url("assets/badge-silver.png")}
+    .badge-frame-gold{--default-badge-image:url("assets/badge-gold.png")}
+    .badge-frame-platinum{--default-badge-image:url("assets/badge-platinum.png")}
+    .badge-frame-black{--default-badge-image:url("assets/badge-black.png")}
+    .badge-bronze,.badge-frame-bronze{--quest-badge-filter:sepia(1) saturate(3.8) hue-rotate(338deg) brightness(.76) contrast(1.12)}
+    .badge-silver,.badge-frame-silver{--quest-badge-filter:brightness(1)}
+    .badge-gold,.badge-frame-gold{--quest-badge-filter:sepia(1) saturate(5.4) hue-rotate(353deg) brightness(.98) contrast(1.08)}
+    .badge-platinum,.badge-frame-platinum{--quest-badge-filter:sepia(.32) saturate(2.2) hue-rotate(142deg) brightness(1.08) contrast(1.04)}
+    .badge-black,.badge-frame-black{--quest-badge-filter:grayscale(1) brightness(.34) contrast(1.5)}
     .badge-frame-bronze{--badge-icon-color:#321b0b}
     .badge-frame-silver{--badge-icon-color:#24313d}
     .badge-frame-gold{--badge-icon-color:#3a2800}
@@ -2096,7 +2104,7 @@
     body[data-theme="midnight"] .badge-frame-visible::before{content:"";position:absolute;inset:-6px;border-radius:50%;z-index:-1;background-position:center;background-repeat:no-repeat;pointer-events:none}
     body:not([data-theme]) .badge-frame-visible::before,
     body[data-theme="default"] .badge-frame-visible::before{background-image:var(--default-badge-image);background-size:contain}
-    body[data-theme="midnight"] .badge-frame-visible::before{background-image:var(--quest-badge-image);background-size:145% 145%}
+    body[data-theme="midnight"] .badge-frame-visible::before{inset:-15px;background-image:url("assets/quest-badge-frame.png");background-size:100% 100%;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52))}
     body:not([data-theme]) .badge-frame-visible > *,
     body[data-theme="default"] .badge-frame-visible > *,
     body[data-theme="midnight"] .badge-frame-visible > *{position:relative;z-index:1}
@@ -2112,19 +2120,11 @@
     body[data-theme="default"] .badge-frame-visible > .avatar-icon svg,
     body[data-theme="midnight"] .badge-frame-visible > .avatar-icon svg{opacity:1;stroke:currentColor}
 
-    body[data-theme="midnight"] .badge-medal{clip-path:none;border:0;background-color:transparent;background-position:center;background-size:145% 145%;background-repeat:no-repeat;box-shadow:none;border-radius:50%}
-    body[data-theme="midnight"] .badge-medal::before,
-    body[data-theme="midnight"] .badge-medal::after{display:none}
-    body[data-theme="midnight"] .badge-medal.badge-bronze,
-    body[data-theme="midnight"] .badge-medal.badge-silver,
-    body[data-theme="midnight"] .badge-medal.badge-gold,
-    body[data-theme="midnight"] .badge-medal.badge-platinum,
-    body[data-theme="midnight"] .badge-medal.badge-black{background-color:transparent;background-position:center;background-size:145% 145%;background-repeat:no-repeat}
-    body[data-theme="midnight"] .badge-medal.badge-bronze{background-image:url("assets/quest-badge-bronze.png")}
-    body[data-theme="midnight"] .badge-medal.badge-silver{background-image:url("assets/quest-badge-silver.png")}
-    body[data-theme="midnight"] .badge-medal.badge-gold{background-image:url("assets/quest-badge-gold.png")}
-    body[data-theme="midnight"] .badge-medal.badge-platinum{background-image:url("assets/quest-badge-platinum.png")}
-    body[data-theme="midnight"] .badge-medal.badge-black{background-image:url("assets/quest-badge-black.png")}
+    body[data-theme="midnight"] .badge-medal{--quest-medal-icon-size:12px;clip-path:none;border:0;background:transparent;box-shadow:none;border-radius:50%;overflow:visible;isolation:isolate;color:#fff1c7}
+    body[data-theme="midnight"] .season-badge-current .badge-medal{--quest-medal-icon-size:18px}
+    body[data-theme="midnight"] .badge-step .badge-medal{--quest-medal-icon-size:9px}
+    body[data-theme="midnight"] .badge-medal::before{content:"★";display:grid;place-items:center;position:absolute;inset:21%;z-index:1;border:1px solid #52708f;border-radius:50%;background:#183049;color:#fff1c7;font-size:var(--quest-medal-icon-size);line-height:1;opacity:1}
+    body[data-theme="midnight"] .badge-medal::after{content:"";display:block;position:absolute;inset:0;z-index:0;height:auto;background:url("assets/quest-badge-frame.png") center/120% 120% no-repeat;clip-path:none;opacity:1;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52));pointer-events:none}
     body[data-theme="playful"] .badge-medal::after{display:none}
 
     /* Media Quest uses gold only against dark navy surfaces. */
@@ -2227,7 +2227,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="gold">く</div>
+                <div class="mini-avatar" data-badge-tone="gold"><span class="avatar-icon"><i data-lucide="snowflake" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>くらしメモ</strong><span>@kurashi_memo · 4分</span></div>
               </div>
               <p>新しい冷凍保存の方法を試してみた。便利そうだけど、保存できる期間は食材ごとに違うみたい。</p>
@@ -2247,7 +2247,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div>
+                <div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false"><span class="avatar-icon"><i data-lucide="train-front" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>まちの情報</strong><span>@machi_info · 12分</span></div>
               </div>
               <p>中央線は一部区間で遅れが出ています。利用する人は、出発前に最新の運行情報を確認してください。</p>
@@ -2257,7 +2257,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="bronze">さ</div>
+                <div class="mini-avatar" data-badge-tone="bronze"><span class="avatar-icon"><i data-lucide="utensils" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>さき</strong><span>@saki_note · 21分</span></div>
               </div>
               <p>今夜のごはん、どっちにするか迷ってる。</p>
@@ -2267,7 +2267,7 @@
 
             <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="platinum">映</div>
+                <div class="mini-avatar" data-badge-tone="platinum"><span class="avatar-icon"><i data-lucide="clapperboard" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>映画の話</strong><span>@movie_room · 35分</span></div>
               </div>
               <p>週末に観る作品を探しています。後味が重すぎず、2時間くらいで観られるおすすめが知りたい。</p>
@@ -2369,7 +2369,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="gold">く</div>
+                <div class="mini-avatar" data-badge-tone="gold"><span class="avatar-icon"><i data-lucide="snowflake" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>くらしメモ</strong><span>@kurashi_memo · 4分</span></div>
               </div>
               <p>新しい冷凍保存の方法を試してみた。便利そうだけど、保存できる期間は食材ごとに違うみたい。</p>
@@ -2389,7 +2389,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div>
+                <div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false"><span class="avatar-icon"><i data-lucide="train-front" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>まちの情報</strong><span>@machi_info · 12分</span></div>
               </div>
               <p>中央線は一部区間で遅れが出ています。利用する人は、出発前に最新の運行情報を確認してください。</p>
@@ -2399,7 +2399,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="bronze">さ</div>
+                <div class="mini-avatar" data-badge-tone="bronze"><span class="avatar-icon"><i data-lucide="utensils" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>さき</strong><span>@saki_note · 21分</span></div>
               </div>
               <p>今夜のごはん、どっちにするか迷ってる。</p>
@@ -2409,7 +2409,7 @@
 
           <article class="post">
               <div class="post-head">
-                <div class="mini-avatar" data-badge-tone="platinum">映</div>
+                <div class="mini-avatar" data-badge-tone="platinum"><span class="avatar-icon"><i data-lucide="clapperboard" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>映画の話</strong><span>@movie_room · 35分</span></div>
               </div>
               <p>週末に観る作品を探しています。後味が重すぎず、2時間くらいで観られるおすすめが知りたい。</p>
@@ -2570,9 +2570,9 @@
             <button class="icon-button" data-simple-home aria-label="ホームへ戻る"><i data-lucide="x"></i></button>
           </div>
           <div class="utility-list" id="message-list">
-            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section>
-            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold">く</div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section>
-            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="black">凛</div><div class="utility-body"><h2>凛</h2><span class="subline">@rin_watch</span><p>この前の話題，あとで一緒に確認しよう。</p></div></div></section>
+            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false"><span class="avatar-icon"><i data-lucide="train-front" aria-hidden="true"></i></span></div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section>
+            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold"><span class="avatar-icon"><i data-lucide="snowflake" aria-hidden="true"></i></span></div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section>
+            <section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="black"><span class="avatar-icon"><i data-lucide="user-round" aria-hidden="true"></i></span></div><div class="utility-body"><h2>凛</h2><span class="subline">@rin_watch</span><p>この前の話題，あとで一緒に確認しよう。</p></div></div></section>
           </div>
           <textarea class="message-input" id="message-input" maxlength="120" placeholder="返信を書く"></textarea>
           <button class="button primary" id="send-message"><i data-lucide="send"></i>送信</button>
@@ -2616,7 +2616,7 @@
             <button class="icon-button" id="reaction-back" aria-label="回答方法の選択へ戻る"><i data-lucide="arrow-left"></i></button>
           </div>
           <article class="quiz-card">
-            <div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div>
+            <div class="post-head"><div class="mini-avatar" data-badge-tone="bronze"><span class="avatar-icon"><i data-lucide="calendar-days" aria-hidden="true"></i></span></div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div>
             <p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p>
           </article>
           <div class="reaction-options" id="reaction-options">
@@ -2667,7 +2667,7 @@
 
           <article class="quiz-card">
             <div class="post-head">
-              <div class="mini-avatar" id="quiz-avatar-mark" data-badge-tone="gold">本</div>
+              <div class="mini-avatar" id="quiz-avatar-mark" data-badge-tone="gold"><span class="avatar-icon"><i data-lucide="book-open" aria-hidden="true"></i></span></div>
               <div class="account">
                 <strong id="quiz-account-name">今日は何の日</strong>
                 <span id="quiz-account-handle">@today_note</span>
@@ -2728,7 +2728,7 @@
             <article class="quiz-card" id="checked-source-card">
               <div class="checked-source-inner">
                 <div class="post-head">
-                  <div class="mini-avatar" id="checked-source-mark" data-badge-tone="gold">H</div>
+                  <div class="mini-avatar" id="checked-source-mark" data-badge-tone="gold"><span class="avatar-icon"><i data-lucide="book-open" aria-hidden="true"></i></span></div>
                   <div class="account"><strong id="checked-source-name">からだのメモ</strong><span id="checked-source-handle">@karada_memo</span></div>
                 </div>
                 <p id="checked-source-text"></p>
@@ -2881,15 +2881,15 @@
       { title: "今日のチェック", text: "1日1回、表示された投稿を1件だけチェックします。" }
     ];
     const categoryMeta = [
-      { name: "本の日", mark: "本", copy: "読書・文化" },
-      { name: "宇宙の日", mark: "宇", copy: "宇宙・科学" },
-      { name: "水の日", mark: "水", copy: "環境・くらし" },
-      { name: "地球の日", mark: "地", copy: "環境・自然" },
-      { name: "海の日", mark: "海", copy: "祝日・文化" }
+      { name: "本の日", icon: "book-open", copy: "読書・文化" },
+      { name: "宇宙の日", icon: "orbit", copy: "宇宙・科学" },
+      { name: "水の日", icon: "droplets", copy: "環境・くらし" },
+      { name: "地球の日", icon: "earth", copy: "環境・自然" },
+      { name: "海の日", icon: "waves", copy: "祝日・文化" }
     ];
     const quizContent = {
       "本の日": {
-        mark: "本",
+        icon: "book-open",
         name: "今日は何の日",
         handle: "@today_note",
         text: "4月23日は「世界本の日」です。読書や出版，著作権について考える日として知られています。",
@@ -2897,7 +2897,7 @@
         explanation: "4月23日はユネスコが定める「世界本・著作権デー」です。"
       },
       "宇宙の日": {
-        mark: "宇",
+        icon: "orbit",
         name: "今日は何の日",
         handle: "@today_note",
         text: "9月12日は「宇宙の日」です。",
@@ -2905,7 +2905,7 @@
         explanation: "9月12日は，宇宙や地球環境について考える「宇宙の日」です。"
       },
       "水の日": {
-        mark: "水",
+        icon: "droplets",
         name: "今日は何の日",
         handle: "@today_note",
         text: "3月21日は，国連が定めた「世界水の日」です。",
@@ -2913,7 +2913,7 @@
         explanation: "「世界水の日」は3月22日です。1日違いなので要注意です。"
       },
       "地球の日": {
-        mark: "地",
+        icon: "earth",
         name: "今日は何の日",
         handle: "@today_note",
         text: "4月22日は「アースデイ（地球の日）」です。",
@@ -2921,7 +2921,7 @@
         explanation: "4月22日は，環境について考える「アースデイ」として広く知られています。"
       },
       "海の日": {
-        mark: "海",
+        icon: "waves",
         name: "今日は何の日",
         handle: "@today_note",
         text: "日本の「海の日」は，毎年7月の第2月曜日です。",
@@ -2929,6 +2929,11 @@
         explanation: "「海の日」は原則として7月の第3月曜日です。"
       }
     };
+
+    function avatarIconMarkup(icon = "user-round") {
+      const safeIcon = /^[a-z0-9-]+$/.test(icon) ? icon : "user-round";
+      return `<span class="avatar-icon"><i data-lucide="${safeIcon}" aria-hidden="true"></i></span>`;
+    }
 
     function showScreen(id) {
       screens.forEach((screen) => screen.classList.toggle("active", screen.id === id));
@@ -2984,14 +2989,14 @@
           name: "ベーシック",
           note: "今の落ち着いた配色です。",
           badge: theme === "default" ? "現在" : "",
-          preview: `<div class="theme-preview-scene preview-default"><span class="theme-preview-emblem">S</span><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
+          preview: `<div class="theme-preview-scene preview-default"><span class="theme-preview-emblem"><i data-lucide="shield-check" aria-hidden="true"></i></span><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         },
         {
           key: "midnight",
           name: "メディアクエスト",
           note: "ランクや経験値を集める，ゲーム風のデザインです。",
           badge: theme === "midnight" ? "現在" : "",
-          preview: `<div class="theme-preview-scene preview-game"><span class="theme-preview-emblem">★</span><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
+          preview: `<div class="theme-preview-scene preview-game"><span class="theme-preview-emblem"><i data-lucide="swords" aria-hidden="true"></i></span><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         },
         {
           key: "playful",
@@ -3009,6 +3014,7 @@
       if (!root) return;
       root.innerHTML = themeSettingsPanelBody();
       bindThemeSettings(root, "mobile");
+      if (window.lucide) window.lucide.createIcons();
     }
 
     function bindThemeSettings(root = document, surface = "desktop") {
@@ -3214,7 +3220,7 @@
       showDesktopContent(
         "感想を選ぶ",
         "複数選択できます",
-        `<article class="quiz-card"><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
+        `<article class="quiz-card"><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">${avatarIconMarkup("calendar-days")}</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
       );
       const submit = document.querySelector("#desktop-submit-reaction");
       document.querySelectorAll("[data-desktop-reaction]").forEach((button) => {
@@ -3259,7 +3265,7 @@
         "投稿の内容が正しいか，○か×で答えてください",
         `<article class="quiz-card">
           <div class="post-head">
-            <div class="mini-avatar" data-badge-tone="gold">${content.mark}</div>
+            <div class="mini-avatar" data-badge-tone="gold">${avatarIconMarkup(content.icon)}</div>
             <div class="account"><strong>${content.name}</strong><span>${content.handle}</span></div>
           </div>
           <p>${content.text}</p>
@@ -3532,7 +3538,7 @@
           </div>
           <article class="quiz-card" id="desktop-checked-source-card">
             <div class="checked-source-inner">
-              <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["本の日"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["本の日"]).name}</strong><span>${(quizContent[state.category] || quizContent["本の日"]).handle}</span></div></div>
+              <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${avatarIconMarkup((quizContent[state.category] || quizContent["本の日"]).icon)}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["本の日"]).name}</strong><span>${(quizContent[state.category] || quizContent["本の日"]).handle}</span></div></div>
               <p>${(quizContent[state.category] || quizContent["本の日"]).text}</p>
             </div>
             <div class="post-actions"><span>いいね 24</span><span>コメント 6</span><span>リポスト 2</span><span>保存 8</span><span>共有 1</span></div>
@@ -3558,7 +3564,7 @@
       const avatar = document.createElement("div");
       avatar.className = "mini-avatar";
       avatar.setAttribute("data-badge-owner", "self");
-      avatar.textContent = "は";
+      avatar.innerHTML = avatarIconMarkup("user-round");
       const account = document.createElement("div");
       account.className = "account";
       const name = document.createElement("strong");
@@ -3708,7 +3714,7 @@
         messages: {
           title: "メッセージ",
           sub: "メッセージ",
-          body: '<div class="utility-list"><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">ま</div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold">く</div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="bronze">紗</div><div class="utility-body"><h2>紗季</h2><span class="subline">@saki_note</span><p>この話題，気になって保存しておいたよ。</p></div></div></section></div>'
+          body: `<div class="utility-list"><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="silver" data-badge-visible="false">${avatarIconMarkup("train-front")}</div><div class="utility-body"><h2>まちの情報</h2><span class="subline">@machi_info</span><p>災害情報の更新時刻を確認しました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="gold">${avatarIconMarkup("snowflake")}</div><div class="utility-body"><h2>くらしメモ</h2><span class="subline">@kurashi_memo</span><p>元のリンクを送りました。</p></div></div></section><section class="utility-card"><div class="utility-person"><div class="mini-avatar" data-badge-tone="bronze">${avatarIconMarkup("user-round")}</div><div class="utility-body"><h2>紗季</h2><span class="subline">@saki_note</span><p>この話題，気になって保存しておいたよ。</p></div></div></section></div>`
         },
         profile: {
           title: "プロフィール",
@@ -3758,10 +3764,11 @@
 
     function updateQuizContent(category) {
       const content = quizContent[category] || quizContent["本の日"];
-      document.querySelector("#quiz-avatar-mark").textContent = content.mark;
+      document.querySelector("#quiz-avatar-mark").innerHTML = avatarIconMarkup(content.icon);
       document.querySelector("#quiz-account-name").textContent = content.name;
       document.querySelector("#quiz-account-handle").textContent = content.handle;
       document.querySelector("#quiz-post-text").textContent = content.text;
+      if (window.lucide) window.lucide.createIcons();
     }
 
     function openCheckFlow(target = "mobile") {
@@ -4048,7 +4055,7 @@
       }
       const card = document.createElement("section");
       card.className = "utility-card";
-      card.innerHTML = `<div class="utility-person"><div class="mini-avatar" data-badge-owner="self">は</div><div class="utility-body"><h2>はる</h2><span class="subline">@haru_days</span><p>${text}</p></div></div>`;
+      card.innerHTML = `<div class="utility-person"><div class="mini-avatar" data-badge-owner="self">${avatarIconMarkup("user-round")}</div><div class="utility-body"><h2>はる</h2><span class="subline">@haru_days</span><p>${text}</p></div></div>`;
       document.querySelector("#message-list").prepend(card);
       refreshBadgeFrames(card);
       input.value = "";
@@ -4084,7 +4091,7 @@
       document.querySelector("#earned-points").textContent = `＋${earned} pt`;
       document.querySelector("#total-points").textContent = `${state.total} pt`;
 
-      document.querySelector("#checked-source-mark").textContent = content.mark;
+      document.querySelector("#checked-source-mark").innerHTML = avatarIconMarkup(content.icon);
       document.querySelector("#checked-source-name").textContent = content.name;
       document.querySelector("#checked-source-handle").textContent = content.handle;
       document.querySelector("#checked-source-text").textContent = content.text;
