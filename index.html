@@ -2048,6 +2048,8 @@
     body[data-theme="playful"] .badge-frame-platinum{--playful-badge-background:linear-gradient(145deg,#eaffff,#71b8ca);--playful-badge-border:#4e98ad;--playful-badge-highlight:#efffff;--playful-badge-depth:#347b8f;--playful-badge-shadow:rgba(52,123,143,.22)}
     body[data-theme="playful"] .badge-medal.badge-black,
     body[data-theme="playful"] .badge-frame-black{--playful-badge-background:linear-gradient(145deg,#66707c,#171b21);--playful-badge-border:#11151a;--playful-badge-highlight:#8a949f;--playful-badge-depth:#05070a;--playful-badge-shadow:rgba(5,7,10,.28)}
+    body[data-theme="playful"] .badge-medal::after{display:block;left:15%;right:15%;bottom:-10px;height:16px;background:var(--playful-badge-border);box-shadow:0 4px 0 var(--playful-badge-depth);clip-path:polygon(0 0,43% 0,50% 100%,57% 0,100% 0,84% 100%,50% 70%,16% 100%);opacity:1}
+    body[data-theme="playful"] .badge-step .badge-medal{margin-bottom:11px}
     body[data-theme="playful"] .badge-frame-visible{overflow:visible;isolation:isolate;border:1px solid #d7e6f4;border-radius:50%;background:#eef5ff;color:#4a7bd5;box-shadow:none;text-shadow:none}
     body[data-theme="playful"] .badge-frame-visible::before{content:"";position:absolute;inset:-6px;z-index:-1;border:3px solid var(--playful-badge-border);border-radius:50%;background:var(--playful-badge-background);box-shadow:inset 0 0 0 2px var(--playful-badge-highlight),0 5px 0 var(--playful-badge-depth),0 8px 16px var(--playful-badge-shadow);pointer-events:none}
     body[data-theme="playful"] .badge-frame-visible::after{display:none}
@@ -2061,6 +2063,10 @@
     /* User-provided rank artwork belongs to the Basic theme only. */
     body:not([data-theme]) .badge-medal,
     body[data-theme="default"] .badge-medal{clip-path:none;border:0;background-color:transparent;background-position:center;background-size:contain;background-repeat:no-repeat;box-shadow:none;border-radius:50%}
+    body:not([data-theme]) .season-badge-current .badge-medal,
+    body[data-theme="default"] .season-badge-current .badge-medal{width:58px;height:58px;flex-basis:58px}
+    body:not([data-theme]) .badge-step .badge-medal,
+    body[data-theme="default"] .badge-step .badge-medal{width:30px;height:30px;flex-basis:30px}
     body:not([data-theme]) .badge-medal::before,
     body:not([data-theme]) .badge-medal::after,
     body[data-theme="default"] .badge-medal::before,
@@ -2103,7 +2109,7 @@
     body[data-theme="default"] .badge-frame-visible::before,
     body[data-theme="midnight"] .badge-frame-visible::before{content:"";position:absolute;inset:-6px;border-radius:50%;z-index:-1;background-position:center;background-repeat:no-repeat;pointer-events:none}
     body:not([data-theme]) .badge-frame-visible::before,
-    body[data-theme="default"] .badge-frame-visible::before{background-image:var(--default-badge-image);background-size:contain}
+    body[data-theme="default"] .badge-frame-visible::before{inset:-8px;background-image:var(--default-badge-image);background-size:contain}
     body[data-theme="midnight"] .badge-frame-visible::before{inset:-15px;background-image:url("assets/quest-badge-frame.png");background-size:100% 100%;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52))}
     body:not([data-theme]) .badge-frame-visible > *,
     body[data-theme="default"] .badge-frame-visible > *,
@@ -2125,8 +2131,6 @@
     body[data-theme="midnight"] .badge-step .badge-medal{--quest-medal-icon-size:9px}
     body[data-theme="midnight"] .badge-medal::before{content:"★";display:grid;place-items:center;position:absolute;inset:21%;z-index:1;border:1px solid #52708f;border-radius:50%;background:#183049;color:#fff1c7;font-size:var(--quest-medal-icon-size);line-height:1;opacity:1}
     body[data-theme="midnight"] .badge-medal::after{content:"";display:block;position:absolute;inset:0;z-index:0;height:auto;background:url("assets/quest-badge-frame.png") center/120% 120% no-repeat;clip-path:none;opacity:1;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52));pointer-events:none}
-    body[data-theme="playful"] .badge-medal::after{display:none}
-
     /* Media Quest uses gold only against dark navy surfaces. */
     body[data-theme="midnight"] .streak-panel{background:#0f1f32;border-color:#36506a}
     body[data-theme="midnight"] .streak-icon,
