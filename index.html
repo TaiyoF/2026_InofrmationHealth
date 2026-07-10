@@ -692,16 +692,6 @@
       line-height: 1.7;
     }
 
-    .checked-source-note {
-      margin-top: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: #f6faf8;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
     .checked-source .post-actions {
       margin-left: 0;
       gap: 4px;
@@ -712,6 +702,10 @@
 
     .checked-source .post-actions button {
       min-width: auto;
+    }
+
+    .checked-source + .button-row {
+      margin-top: 20px;
     }
 
     .bottom-nav {
@@ -1873,7 +1867,6 @@
     body[data-theme="midnight"] .check-card p{color:#c6d0da}
     body[data-theme="midnight"] .check-status h2,
     body[data-theme="midnight"] .check-card h2{color:#fff1c7}
-    body[data-theme="midnight"] .checked-source-note,
     body[data-theme="midnight"] .checked-source .post-actions{background:#101f31;color:#c6d0da;border-color:#36506a}
     body[data-theme="midnight"] .reaction-result-track{background:#22364b}
     body[data-theme="midnight"] .post-link,
@@ -2777,7 +2770,6 @@
                   <div class="account"><strong id="checked-source-name">からだのメモ</strong><span id="checked-source-handle">@karada_memo</span></div>
                 </div>
                 <p id="checked-source-text"></p>
-                <div class="checked-source-note">気になったときは、そのままリアクションできます。</div>
               </div>
               <div class="post-actions"><span>いいね 24</span><span>コメント 6</span><span>リポスト 2</span><span>保存 8</span><span>共有 1</span></div>
             </article>
@@ -3580,7 +3572,6 @@
             <div class="checked-source-inner">
               <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["本の日"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["本の日"]).name}</strong><span>${(quizContent[state.category] || quizContent["本の日"]).handle}</span></div></div>
               <p>${(quizContent[state.category] || quizContent["本の日"]).text}</p>
-              <div class="checked-source-note">気になったときは、そのままリアクションできます。</div>
             </div>
             <div class="post-actions"><span>いいね 24</span><span>コメント 6</span><span>リポスト 2</span><span>保存 8</span><span>共有 1</span></div>
           </article>
