@@ -2,7 +2,7 @@
 
 ## UI design rules
 
-- The theme picker has a neutral page surface, but every option card is always rendered in its own theme: Basic stays neutral, Media Quest stays navy/gold, and Wanko Challenge stays light blue/cream. Selecting one card must not recolor the other cards.
+- The theme picker page surface follows the currently selected theme, while every option card is always rendered in its own theme: Basic stays neutral, Media Quest stays navy/gold, and Wanko Challenge stays light blue/cream. Selecting one card must update the surrounding settings surface without recoloring the other option cards.
 - Mobile must expose Theme as a labeled item in the Home bottom navigation and as a labeled action in Profile. Do not rely on an unlabeled gear icon or a Profile-only route for theme discovery.
 - Each theme must keep readable foreground/background contrast across home, check, reaction, profile, and settings screens.
 - Reaction choices use the shared line-icon system instead of emoji standing in for interface icons.

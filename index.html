@@ -1722,13 +1722,8 @@
     .theme-swatch.playful-1{background:#fff8ea}.theme-swatch.playful-2{background:#f3f8ff}.theme-swatch.playful-3{background:#6ea5ff}.theme-swatch.playful-4{background:#8dd07d}
     .theme-note{font-size:12px;color:var(--muted)}
 
-    /* The picker surface stays neutral; each option is a persistent sample of its own skin. */
-    .settings-panel{
-      --surface:#fff;--surface-soft:#eef7f3;--ink:#172124;--muted:#607077;
-      --line:#dce6e1;--green:#2f8b70;--green-dark:#216751;
-      color:#172124;color-scheme:light;
-    }
-    .settings-panel .settings-copy,.settings-panel .theme-note{color:#607077}
+    /* The picker surface follows the active theme; each option is a persistent sample of its own skin. */
+    .settings-panel .settings-copy,.settings-panel .theme-note{color:var(--muted)}
     .settings-panel .theme-option--default{background:#fff;border-color:#dce6e1;color:#172124}
     .settings-panel .theme-option--default:hover{border-color:#2f8b70;background:#fbfdfc}
     .settings-panel .theme-option--default.is-selected{border-color:#2f8b70;background:#f4f9f7;box-shadow:0 0 0 1px rgba(47,139,112,.18)}
@@ -1868,23 +1863,6 @@
     body[data-theme="midnight"] .post-photo{background:linear-gradient(145deg,#172c43,#263c50 58%,#101c2b);color:#f7f0df}
     body[data-theme="midnight"] .post-actions button{color:#c6d0da}
     body[data-theme="midnight"] .chip-action{background:#17283d;border-color:#6e5729;color:#ffe39a}
-
-    body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"],
-    body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"],
-    body[data-theme="midnight"] #screen-settings,
-    body[data-theme="midnight"] #screen-settings .work-screen,
-    body[data-theme="playful"] #screen-settings,
-    body[data-theme="playful"] #screen-settings .work-screen{background:#f8faf9;color:#172124}
-    body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"] .panel-title h1,
-    body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"] .panel-title h1,
-    body[data-theme="midnight"] #screen-settings .panel-title h1,
-    body[data-theme="playful"] #screen-settings .panel-title h1{color:#172124;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;letter-spacing:0}
-    body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"] .panel-title .sub,
-    body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"] .panel-title .sub,
-    body[data-theme="midnight"] #screen-settings .panel-title .sub,
-    body[data-theme="playful"] #screen-settings .panel-title .sub{color:#607077}
-    body[data-theme="midnight"] #screen-settings .icon-button,
-    body[data-theme="playful"] #screen-settings .icon-button{background:#fff;border-color:#dce6e1;color:#172124}
 
     body[data-theme="playful"]{background:#f7f4eb}
     body[data-theme="playful"]{
@@ -2026,6 +2004,7 @@
     body[data-theme="playful"] .desktop-right,
     body[data-theme="playful"] .desktop-topbar,
     body[data-theme="playful"] .desktop-main,
+    body[data-theme="playful"] .desktop-utility-panel,
     body[data-theme="playful"] .topbar,
     body[data-theme="playful"] .work-screen{background:linear-gradient(180deg,#fafdff,#f4f9ff)}
     body[data-theme="playful"] .check-module,
