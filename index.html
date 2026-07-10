@@ -2606,11 +2606,11 @@
       </section>
 
       <section class="screen" id="screen-reaction" aria-label="ニュースへの感想">
-        <header class="work-topbar">
-          <button class="icon-button" id="reaction-back" aria-label="戻る"><i data-lucide="arrow-left"></i></button>
-          <div><b>感想を選ぶ</b><span>複数選択できます</span></div>
-        </header>
-        <div class="work-screen">
+        <div class="work-screen reaction-screen-layout">
+          <div class="panel-title reaction-panel-title">
+            <div><h1>感想を選ぶ</h1><div class="sub">複数選択できます</div></div>
+            <button class="icon-button" id="reaction-back" aria-label="回答方法の選択へ戻る"><i data-lucide="arrow-left"></i></button>
+          </div>
           <article class="quiz-card">
             <span class="tag">今日は何の日</span>
             <div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div>
@@ -3164,6 +3164,7 @@
       desktopFeed.classList.add("hidden");
       desktopUtilityPanel.classList.add("active");
       desktopUtilityPanel.innerHTML = `<div class="panel-title"><div><h1>${title}</h1><div class="sub">${sub}</div></div></div>${body}`;
+      refreshBadgeFrames(desktopUtilityPanel);
       if (window.lucide) window.lucide.createIcons();
     }
 
@@ -3901,7 +3902,7 @@
           state.selectedReactions = [];
           document.querySelectorAll(".reaction-option").forEach((item) => item.classList.remove("selected"));
           document.querySelector("#submit-reaction").disabled = true;
-          showScreen("screen-reaction");
+          showMobileScreen("screen-reaction", "check");
         }
       });
     });

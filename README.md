@@ -7,3 +7,4 @@
 - Each theme must keep readable foreground/background contrast across home, check, reaction, profile, and settings screens.
 - Reaction choices use the shared line-icon system instead of emoji standing in for interface icons.
 - Badge artwork is theme-specific: provided glossy rank images belong to Basic; Media Quest uses its own game emblems. The badge image is the avatar frame/background itself, with the person icon or account mark layered above it throughout the feed.
+- The same screen must keep the same component hierarchy and visual language on desktop and mobile. Responsive rules may change available width, padding, and navigation placement, but must not substitute different headers, cards, badges, typography, or controls for the same content.
