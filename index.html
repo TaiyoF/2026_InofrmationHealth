@@ -1804,13 +1804,13 @@
     .season-card-head h3{margin:0 0 4px;font-size:15px}
     .season-card-head p{margin:0;color:var(--muted);font-size:12px}
     .season-badge-current{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800}
-    .badge-medal{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:3px solid currentColor;background:var(--surface);font-size:11px}
+    .badge-medal{width:34px;height:34px;aspect-ratio:1/1;flex:0 0 34px;box-sizing:border-box;border-radius:50%;display:grid;place-items:center;border:3px solid currentColor;background:var(--surface) center/contain no-repeat;font-size:11px}
     .badge-bronze{color:#a96f3d}.badge-silver{color:#8d99a5}.badge-gold{color:#c69224}.badge-platinum{color:#728ca0}.badge-black{color:#222}
     .season-progress{height:10px;border-radius:999px;background:var(--surface-soft);overflow:hidden}
     .season-progress-fill{height:100%;border-radius:999px;background:var(--green)}
     .badge-track{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
     .badge-step{text-align:center;color:var(--muted);font-size:10px}
-    .badge-step .badge-medal{margin:0 auto 5px;width:28px;height:28px;border-width:2px}
+    .badge-step .badge-medal{margin:0 auto 5px;width:28px;height:28px;aspect-ratio:1/1;flex-basis:28px;border-width:2px}
     .badge-step.earned{color:var(--ink);font-weight:700}
     .previous-season{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}
     .previous-season strong{color:var(--ink)}
@@ -1995,7 +1995,7 @@
     .badge-medal{position:relative;isolation:isolate;overflow:visible;background:linear-gradient(145deg,#fff,#e7ecef);box-shadow:inset 0 0 0 2px rgba(255,255,255,.72),0 4px 10px rgba(25,35,38,.16)}
     .badge-medal::before{content:"★";position:absolute;inset:4px;display:grid;place-items:center;border:1px solid currentColor;border-radius:50%;font-size:12px;line-height:1;opacity:.9}
     .badge-medal::after{content:"";position:absolute;z-index:-1;left:18%;right:18%;bottom:-9px;height:14px;background:currentColor;clip-path:polygon(0 0,45% 0,50% 100%,55% 0,100% 0,82% 100%,50% 70%,18% 100%);opacity:.72}
-    .season-badge-current .badge-medal{width:54px;height:54px;font-size:0;border-width:4px}
+    .season-badge-current .badge-medal{width:54px;height:54px;aspect-ratio:1/1;flex-basis:54px;font-size:0;border-width:4px}
     .season-badge-current .badge-medal::before{font-size:22px}
     .badge-step .badge-medal{font-size:0}
     .badge-step:not(.earned) .badge-medal{filter:grayscale(1);opacity:.42}
@@ -2158,6 +2158,7 @@
     body[data-theme="midnight"] .badge-medal.badge-gold{background-image:url("assets/quest-badge-gold.png")}
     body[data-theme="midnight"] .badge-medal.badge-platinum{background-image:url("assets/quest-badge-platinum.png")}
     body[data-theme="midnight"] .badge-medal.badge-black{background-image:url("assets/quest-badge-black.png")}
+    body[data-theme="playful"] .badge-medal::after{display:none}
 
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
