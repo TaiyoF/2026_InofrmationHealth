@@ -12,3 +12,4 @@
 - Post action bars must stay on one line at every supported width. Show only the action icon and count visually; keep names such as Like, Comment, Repost, Save, and Share in accessible labels and tooltips.
 - Responsive desktop layouts must prioritize the central feed. As width decreases, hide the right profile panel first, then collapse the left navigation to an icon rail with an accessible open/close control, and only switch to the mobile shell at the smallest breakpoint.
 - Media Quest must never place yellow or gold text on white or pale surfaces. Use dark navy text on light settings surfaces, and reserve gold text and accents for dark navy surfaces with sufficient contrast.
+- Incomplete navigation states use a small theme-colored notification dot, not a text badge such as "未". Keep the full state in the control's accessible label.

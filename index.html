@@ -149,20 +149,18 @@
 
     .nav-badge {
       margin-left: auto;
-      min-width: 22px;
-      height: 22px;
-      border-radius: 8px;
+      width: 8px;
+      min-width: 8px;
+      height: 8px;
+      border-radius: 50%;
       display: none;
-      place-items: center;
-      background: #fff3e0;
-      color: #8a5c14;
-      border: 1px solid rgba(201, 142, 46, 0.32);
-      font-size: 11px;
-      font-weight: 900;
+      background: #c98e2e;
+      border: 0;
+      box-shadow: 0 0 0 3px rgba(201, 142, 46, .14);
     }
 
     .desktop-nav-item.pending .nav-badge {
-      display: grid;
+      display: block;
     }
 
     .desktop-nav-item svg,
@@ -1555,7 +1553,7 @@
     .brand-mark{display:none}
     .desktop-nav-item{border-radius:8px;font-weight:600;font-size:14px;min-height:42px;color:var(--muted)}
     .desktop-nav-item.active{background:#edf4f1;color:var(--ink)}
-    .nav-badge{background:#eef6f3;color:var(--green-dark);border-color:#cfe0da}
+    .nav-badge{background:#c98e2e;border:0;box-shadow:0 0 0 3px rgba(201,142,46,.14)}
     .desktop-right{border-left:0;padding-top:72px}
     .desktop-profile-card{border-radius:12px;box-shadow:none;background:var(--surface)}
     .desktop-feed,.feed{padding:0;background:var(--surface)}
@@ -2158,9 +2156,10 @@
 
     /* Media Quest uses gold only against dark navy surfaces. */
     body[data-theme="midnight"] .streak-panel{background:#0f1f32;border-color:#36506a}
-    body[data-theme="midnight"] .nav-badge,
     body[data-theme="midnight"] .streak-icon,
     body[data-theme="midnight"] .point-earned{background:#183049;border-color:#52708f;color:#f2f5f7}
+    body[data-theme="midnight"] .nav-badge{background:#f3c86e;border:0;box-shadow:0 0 0 3px rgba(243,200,110,.16)}
+    body[data-theme="playful"] .nav-badge{background:#ef9c24;border:0;box-shadow:0 0 0 3px rgba(239,156,36,.16)}
     body[data-theme="midnight"] .day{color:#aebdca}
     body[data-theme="midnight"] .day-dot{background:#14263a;border-color:#36506a;color:#c6d0da}
     body[data-theme="midnight"] .day.done .day-dot{background:#1b334d;border-color:#52708f;color:#f2f5f7}
@@ -2214,7 +2213,7 @@
         <nav class="desktop-nav" id="desktop-primary-nav" aria-label="PCナビゲーション">
           <div class="desktop-brand"><span class="brand-mark">S</span><span class="desktop-brand-label">Connect</span><button class="desktop-nav-toggle" id="desktop-nav-toggle" type="button" aria-controls="desktop-primary-nav" aria-expanded="false" aria-label="ナビゲーションを開く"><i data-lucide="panel-left"></i></button></div>
           <button class="desktop-nav-item active" data-desktop-nav="home"><i data-lucide="home"></i><span>ホーム</span></button>
-          <button class="desktop-nav-item" data-desktop-nav="check"><i data-lucide="shield-check"></i><span>チェック</span><span class="nav-badge">未</span></button>
+          <button class="desktop-nav-item" data-desktop-nav="check"><i data-lucide="shield-check"></i><span>チェック</span><span class="nav-badge" aria-hidden="true"></span></button>
           <button class="desktop-nav-item" data-desktop-nav="search"><i data-lucide="search"></i><span>検索</span></button>
           <button class="desktop-nav-item" data-desktop-nav="notifications"><i data-lucide="bell"></i><span>通知</span></button>
           <button class="desktop-nav-item" data-desktop-nav="messages"><i data-lucide="mail"></i><span>メッセージ</span></button>
@@ -3134,6 +3133,7 @@
       const pending = !state.completed;
       document.querySelectorAll('[data-nav="check"], [data-desktop-nav="check"]').forEach((item) => {
         item.classList.toggle("pending", pending);
+        item.setAttribute("aria-label", pending ? "チェック（未完了）" : "チェック（完了）");
       });
     }
 
