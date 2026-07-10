@@ -1874,6 +1874,17 @@
     body[data-theme="midnight"] .checked-source-note,
     body[data-theme="midnight"] .checked-source .post-actions{background:#101f31;color:#c6d0da;border-color:#36506a}
     body[data-theme="midnight"] .reaction-result-track{background:#22364b}
+    body[data-theme="midnight"] .post-link,
+    body[data-theme="midnight"] .post-poll{background:#101f31;border-color:#36506a}
+    body[data-theme="midnight"] .link-thumb{background:#162c44;color:#f3c86e}
+    body[data-theme="midnight"] .link-copy b,
+    body[data-theme="midnight"] .poll-option{color:#f7f0df}
+    body[data-theme="midnight"] .link-copy small,
+    body[data-theme="midnight"] .link-copy span{color:#c6d0da}
+    body[data-theme="midnight"] .poll-option{background:#14263a;border-color:#36506a}
+    body[data-theme="midnight"] .post-photo{background:linear-gradient(145deg,#172c43,#263c50 58%,#101c2b);color:#f7f0df}
+    body[data-theme="midnight"] .post-actions button{color:#c6d0da}
+    body[data-theme="midnight"] .chip-action{background:#17283d;border-color:#6e5729;color:#ffe39a}
 
     body[data-theme="midnight"] .desktop-utility-panel[data-panel="settings"],
     body[data-theme="playful"] .desktop-utility-panel[data-panel="settings"],
@@ -2104,7 +2115,18 @@
     body[data-theme="midnight"] .badge-frame-visible{overflow:visible;isolation:isolate;border:0;box-shadow:none;background-position:center;background-repeat:no-repeat;color:var(--badge-icon-color);font-weight:900;text-shadow:0 1px 2px rgba(255,255,255,.38)}
     body:not([data-theme]) .badge-frame-visible,
     body[data-theme="default"] .badge-frame-visible{background-image:var(--default-badge-image);background-size:cover}
-    body[data-theme="midnight"] .badge-frame-visible{background-image:var(--quest-badge-image);background-size:145%;text-shadow:0 1px 3px rgba(0,0,0,.85);filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+    body[data-theme="midnight"] .badge-frame-visible{background-image:var(--quest-badge-image);background-size:145%;color:#fff1c7;text-shadow:0 1px 3px rgba(0,0,0,.9);filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+    body:not([data-theme]) .badge-frame-visible::before,
+    body[data-theme="default"] .badge-frame-visible::before,
+    body[data-theme="midnight"] .badge-frame-visible::before{content:"";position:absolute;inset:26%;border-radius:50%;z-index:0;pointer-events:none}
+    body:not([data-theme]) .badge-frame-visible::before,
+    body[data-theme="default"] .badge-frame-visible::before{background:rgba(255,255,255,.62);box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+    body:not([data-theme]) .badge-frame-black::before,
+    body[data-theme="default"] .badge-frame-black::before{background:rgba(0,0,0,.46);box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+    body[data-theme="midnight"] .badge-frame-visible::before{background:rgba(5,12,20,.66);box-shadow:0 0 0 1px rgba(255,226,157,.3)}
+    body:not([data-theme]) .badge-frame-visible > *,
+    body[data-theme="default"] .badge-frame-visible > *,
+    body[data-theme="midnight"] .badge-frame-visible > *{position:relative;z-index:1}
     body:not([data-theme]) .badge-frame-visible::after,
     body[data-theme="default"] .badge-frame-visible::after,
     body[data-theme="midnight"] .badge-frame-visible::after{display:none}
@@ -3560,18 +3582,18 @@
           const button = document.createElement("button");
           const label = document.createElement("span");
           const count = document.createElement("span");
-          const glyphMap = {
-            "いいね": "♡",
-            "コメント": "○",
-            "リポスト": "↻",
-            "保存": "▱",
-            "共有": "↗",
-            "返信": "○"
+          const iconMap = {
+            "いいね": "heart",
+            "コメント": "message-circle",
+            "リポスト": "repeat-2",
+            "保存": "bookmark",
+            "共有": "share-2",
+            "返信": "message-circle"
           };
-          const icon = document.createElement("span");
+          const icon = document.createElement("i");
           icon.className = "action-glyph";
           icon.setAttribute("aria-hidden", "true");
-          icon.textContent = glyphMap[match[1]] || "•";
+          icon.setAttribute("data-lucide", iconMap[match[1]] || "circle");
           label.textContent = match[1];
           count.textContent = match[2];
           button.dataset.socialAction = match[1];
