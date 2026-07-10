@@ -147,14 +147,17 @@
 
     .desktop-main {
       min-width: 0;
+      min-height: 0;
       border-right: 1px solid var(--line);
       display: flex;
       flex-direction: column;
       background: #f8faf9;
+      overflow: hidden;
     }
 
     .desktop-topbar {
       height: 62px;
+      flex: 0 0 62px;
       border-bottom: 1px solid var(--line);
       display: flex;
       align-items: center;
@@ -164,8 +167,12 @@
     }
 
     .desktop-feed {
-      overflow: auto;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
       padding: 16px;
+      overscroll-behavior: contain;
     }
 
     .desktop-feed.hidden {
@@ -174,9 +181,13 @@
 
     .desktop-utility-panel {
       display: none;
-      overflow: auto;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
       padding: 24px;
       background: #f8faf9;
+      overscroll-behavior: contain;
     }
 
     .desktop-utility-panel.active {
@@ -1607,8 +1618,32 @@
     .small-avatar{width:56px;height:56px}
     .profile-name h2{font-size:18px}
     .simple-stats{grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+    .profile-metrics{grid-template-columns:repeat(2,1fr)}
     .simple-stats .stat{padding:12px 8px}
     .simple-stats .stat b{font-size:18px}
+    .history-card{margin-bottom:14px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:15px}
+    .history-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+    .history-card-head h3{margin:0 0 4px;font-size:15px;color:var(--ink)}
+    .history-card-head p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+    .score-value{text-align:right;white-space:nowrap}
+    .score-value strong{display:block;font-size:24px;line-height:1;color:var(--ink)}
+    .score-value span{display:block;margin-top:4px;font-size:11px;color:var(--muted)}
+    .points-chart{position:relative;margin-top:2px;padding:8px 0 0}
+    .points-chart svg{display:block;width:100%;height:auto;overflow:visible}
+    .points-grid{stroke:#e5ece8;stroke-width:1}
+    .points-line{fill:none;stroke:var(--green);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .points-area{fill:rgba(47,111,102,.08)}
+    .points-dot{fill:#fff;stroke:var(--green);stroke-width:2.5}
+    .points-dot.today{fill:var(--green)}
+    .points-axis-labels{display:grid;grid-template-columns:repeat(7,1fr);margin-top:5px;color:var(--muted);font-size:10px;text-align:center}
+    .points-chart-summary{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+    .points-chart-summary strong{font-size:26px;line-height:1;color:var(--ink)}
+    .points-chart-summary span{font-size:12px;color:var(--muted)}
+    .points-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}
+    .points-legend span{display:inline-flex;align-items:center;gap:5px}
+    .points-legend i{width:7px;height:7px;border-radius:50%;background:var(--green)}
+    .history-summary{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+    .history-summary b{color:var(--ink);font-weight:700}
     .summary-list{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
     .summary-list.compact{background:#fdfefe}
     .summary-row{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;font-size:13px;align-items:flex-start}
@@ -1639,6 +1674,41 @@
     .progress{display:none}
     .desktop-bonus-overlay,.bottom-sheet{display:none!important}
     .demo-note{margin-top:10px;color:var(--muted);font-size:12px;text-align:left}
+
+    .point-balance {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:12px;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#f7faf8;
+    }
+    .point-balance span { color:var(--muted); font-size:12px; }
+    .point-balance strong { color:var(--ink); font-size:22px; line-height:1; }
+    .point-earned {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#eaf3ef;
+      color:var(--green-dark);
+      font-size:13px;
+      font-weight:800;
+    }
+    .point-rule {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .point-rule b { color:var(--ink); }
+
     @media(max-width:820px){
       .phone{background:var(--phone);border:0}
       .topbar{height:56px;background:rgba(255,255,255,.96)}
@@ -1675,11 +1745,11 @@
                   <h2>今日のチェック</h2>
                   <p>1日1回、表示された投稿を1件だけチェックします。</p>
                 </div>
-                <span class="module-status" id="desktop-module-status">7日継続</span>
+                <span class="module-status" id="desktop-module-status">2日継続</span>
               </div>
               <div class="check-module-meta">
                 <div class="meta-box"><b>今日のテーマ</b><span data-today-category>健康</span></div>
-                <div class="meta-box"><b>今日のテーマ</b><span>1件チェックすると今日の記録がつきます</span></div>
+                <div class="meta-box"><b>獲得ポイント</b><span>正解 +3 pt／不正解 +1 pt</span></div>
               </div>
               <div class="button-row">
                 <button class="button primary" id="desktop-start-inline"><i data-lucide="play"></i>チェックする</button>
@@ -1752,13 +1822,14 @@
           <div class="desktop-profile-card">
             <div class="profile-name">
               <h2>はる</h2>
-              <span class="badge" id="desktop-streak-badge">7日継続</span>
+              <span class="badge" id="desktop-streak-badge">2日継続</span>
             </div>
-            <div class="sub">公開される情報</div>
+            <div class="sub">チェック記録</div>
             <div class="summary-list compact" style="margin-top:10px">
-              <div class="summary-row"><span>続けた日数</span><strong id="desktop-streak-text">7日継続</strong></div>
+              <div class="summary-row"><span>現在の連続日数</span><strong id="desktop-streak-text">2日継続</strong></div>
               <div class="summary-row"><span>最近のテーマ</span><strong id="desktop-theme-text">健康、災害、科学</strong></div>
             </div>
+            <div class="point-balance"><span>累計ポイント</span><strong id="desktop-total-points">38 pt</strong></div>
             <div class="today-status"><i data-lucide="circle-dashed"></i>今日のチェックはまだです</div>
           </div>
         </aside>
@@ -1775,8 +1846,8 @@
             </div>
             <div class="streak-panel">
               <div class="streak-top">
-                <div class="streak-copy"><span class="streak-icon"><i data-lucide="flame"></i></span><div><b>7日連続</b><span>今日も1件チェックしましょう</span></div></div>
-                <span class="streak-reward">7日継続</span>
+                <div class="streak-copy"><span class="streak-icon"><i data-lucide="flame"></i></span><div><b>2日連続</b><span>今日も1件チェックしましょう</span></div></div>
+                <span class="streak-reward">2日継続</span>
               </div>
               <div class="week-row" aria-label="今週の継続状況">
                 <span class="day done"><span class="day-dot">✓</span><span>金</span></span>
@@ -1790,7 +1861,7 @@
             </div>
             <div class="sheet-facts">
               <div class="fact"><b>今日のテーマ</b><span data-today-category>健康</span></div>
-              <div class="fact"><b>公開される情報</b><span>続けた日数と最近のテーマ</span></div>
+              <div class="fact"><b>公開される情報</b><span>現在の連続日数と最近のテーマ</span></div>
             </div>
             <div class="button-row">
               <button class="button primary" id="desktop-start-checkin"><i data-lucide="play"></i>チェックする</button>
@@ -1819,11 +1890,11 @@
                 <h2>今日のチェック</h2>
                 <p>1日1回、表示された投稿を1件だけチェックします。</p>
               </div>
-              <span class="module-status" id="mobile-module-status">7日継続</span>
+              <span class="module-status" id="mobile-module-status">2日継続</span>
             </div>
             <div class="check-module-meta">
               <div class="meta-box"><b>今日のテーマ</b><span data-today-category>健康</span></div>
-              <div class="meta-box"><b>今日のテーマ</b><span>1件チェックすると今日の記録がつきます</span></div>
+              <div class="meta-box"><b>獲得ポイント</b><span>正解 +3 pt／不正解 +1 pt</span></div>
             </div>
             <div class="button-row">
               <button class="button primary" id="mobile-start-inline"><i data-lucide="play"></i>チェックする</button>
@@ -1910,8 +1981,8 @@
             </div>
             <div class="streak-panel">
               <div class="streak-top">
-                <div class="streak-copy"><span class="streak-icon"><i data-lucide="flame"></i></span><div><b>7日連続</b><span>今日も1件チェックしましょう</span></div></div>
-                <span class="streak-reward">7日継続</span>
+                <div class="streak-copy"><span class="streak-icon"><i data-lucide="flame"></i></span><div><b>2日連続</b><span>今日も1件チェックしましょう</span></div></div>
+                <span class="streak-reward">2日継続</span>
               </div>
               <div class="week-row" aria-label="今週の継続状況">
                 <span class="day done"><span class="day-dot">✓</span><span>金</span></span>
@@ -1925,7 +1996,7 @@
             </div>
             <div class="sheet-facts">
               <div class="fact"><b>今日のテーマ</b><span data-today-category>健康</span></div>
-              <div class="fact"><b>公開される情報</b><span>続けた日数と最近のテーマ</span></div>
+              <div class="fact"><b>公開される情報</b><span>現在の連続日数と最近のテーマ</span></div>
             </div>
             <div class="button-row">
               <button class="button primary" id="start-checkin"><i data-lucide="play"></i>チェックする</button>
@@ -1962,8 +2033,8 @@
             <section class="check-card">
               <i data-lucide="calendar-check"></i>
               <div>
-                <h2>7日継続</h2>
-                <p>プロフィールには、1件チェックすると今日の記録がつきますが表示されます。</p>
+                <h2>2日継続</h2>
+                <p>チェックを続けると、ここに記録がたまります。</p>
               </div>
             </section>
             <section class="check-card">
@@ -2103,13 +2174,13 @@
               <h1>チェック完了</h1>
               <div class="sub" id="feedback-sub">今日のチェックが完了しました</div>
             </div>
-            <span class="reward-pill" id="feedback-total">完了</span>
+            <span class="point-earned" id="feedback-total">＋0 pt</span>
           </div>
           <div class="progress" aria-hidden="true">
             <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
           </div>
 
-          <div class="completion-streak"><span class="streak-icon"><i data-lucide="flame"></i></span><div><strong>8日継続になりました</strong><span>続けた日数がプロフィールに反映されました</span></div></div>
+          <div class="completion-streak"><span class="streak-icon"><i data-lucide="flame"></i></span><div><strong id="completion-streak-label">3日継続になりました</strong><span>現在の連続日数がプロフィールに反映されました</span></div></div>
           <div class="feedback-hero">
             <h2 id="feedback-head">今回は，まだ信用しない方がよい内容です</h2>
             <p id="feedback-copy">出典が見えない断定は、すぐに広げず、出典や日付を見てから判断します。</p>
@@ -2118,6 +2189,8 @@
           <div class="reward-box">
             <div class="reward-line"><span>選んだ答え</span><b id="selected-answer-label">まだ信用しない</b></div>
             <div class="reward-line"><span>テーマ</span><b id="category-points">健康</b></div>
+            <div class="reward-line"><span>今回のポイント</span><b id="earned-points">＋0 pt</b></div>
+            <div class="reward-line"><span>累計ポイント</span><b id="total-points">15 pt</b></div>
             
           </div>
 
@@ -2168,15 +2241,40 @@
               <div class="profile-name">
                 <h2>はる</h2>
               </div>
-              <div class="sub" id="profile-summary">ほかの人には、1件チェックすると今日の記録がつきますが表示されます</div>
+              <div class="sub" id="profile-summary">これまでのチェック結果</div>
             </div>
           </section>
 
-          <div class="stats simple-stats">
-            <div class="stat"><b id="streak-count">8日</b><span>続けた日数</span></div>
-            <div class="stat"><b id="week-count">5回</b><span>今週チェックした回数</span></div>
-            <div class="stat"><b id="theme-count">3</b><span>最近のテーマ</span></div>
+          <div class="stats simple-stats profile-metrics">
+            <div class="stat"><b id="streak-count">2日</b><span>現在の連続日数</span></div>
+            <div class="stat"><b id="best-streak-count">8日</b><span>最長の連続日数</span></div>
+            <div class="stat"><b id="check-count">17件</b><span>累積回数</span></div>
+            <div class="stat"><b id="profile-total-points">38 pt</b><span>累積ポイント</span></div>
           </div>
+
+          <section class="history-card">
+            <div class="history-card-head">
+              <div>
+                <h3>ポイントの推移</h3>
+                <p>直近7日間の累積ポイント</p>
+              </div>
+              <div class="score-value"><strong id="chart-total-points">38 pt</strong><span>現在の合計</span></div>
+            </div>
+            <div class="points-chart" aria-label="直近7日間の累積ポイント">
+              <svg viewBox="0 0 320 126" role="img" aria-labelledby="points-chart-title">
+                <title id="points-chart-title">直近7日間の累積ポイント</title>
+                <line class="points-grid" x1="20" y1="22" x2="304" y2="22"></line>
+                <line class="points-grid" x1="20" y1="62" x2="304" y2="62"></line>
+                <line class="points-grid" x1="20" y1="102" x2="304" y2="102"></line>
+                <path class="points-area" id="points-area" d=""></path>
+                <polyline class="points-line" id="points-line" points=""></polyline>
+                <g id="points-dots"></g>
+              </svg>
+              <div class="points-axis-labels"><span>金</span><span>土</span><span>日</span><span>月</span><span>火</span><span>水</span><span>今日</span></div>
+            </div>
+            <div class="points-legend"><span><i></i>正解 +3 pt</span><span><i></i>不正解 +1 pt</span><span><i></i>スキップ +0 pt</span></div>
+            <div class="history-summary"><span>正答率 <b>82%</b></span><span>通算 <b id="history-ratio">14／17件</b></span></div>
+          </section>
 
           <div class="button-row">
             <button class="button primary" data-home><i data-lucide="home"></i>ホームへ戻る</button>
@@ -2191,8 +2289,13 @@
     const state = {
       category: "健康",
       answer: "",
-      total: 15,
-      streak: 7,
+      total: 38,
+      lastPoints: 0,
+      pointsAwarded: false,
+      streak: 2,
+      bestStreak: 8,
+      totalChecks: 17,
+      correctCount: 14,
       level: 2,
       completed: false,
       deferred: false
@@ -2345,7 +2448,7 @@
       card.classList.toggle("complete", state.completed);
       title.textContent = state.completed ? "今日のチェックは完了しています" : "今日のチェックはまだです";
       copy.textContent = state.completed
-        ? "プロフィールには、1件チェックすると今日の記録がつきますが反映されます。"
+        ? "今日のチェックが記録されました。"
         : "表示された投稿を1件だけチェックします。";
       action.innerHTML = state.completed
         ? '<i data-lucide="user-round"></i>プロフィールを見る'
@@ -2363,7 +2466,7 @@
       const done = state.completed;
       const title = done ? "今日のチェックは完了しています" : "今日のチェックはまだです";
       const copy = done
-        ? "プロフィールには、1件チェックすると今日の記録がつきますが反映されます。"
+        ? "今日のチェックが記録されました。"
         : "表示された投稿を1件だけチェックします。";
       const primary = done ? "プロフィールを見る" : "チェックする";
       return `
@@ -2375,7 +2478,7 @@
           <button class="button primary" id="desktop-check-primary"><i data-lucide="${done ? "user-round" : "play"}"></i>${primary}</button>
         </div>
         <div class="check-grid">
-          <section class="check-card"><i data-lucide="calendar-check"></i><div><h2>7日継続</h2><p>プロフィールには、1件チェックすると今日の記録がつきますが表示されます。</p></div></section>
+          <section class="check-card"><i data-lucide="calendar-check"></i><div><h2>${state.streak}日継続</h2><p>チェックを続けると、ここに記録がたまります。</p></div></section>
           <section class="check-card"><i data-lucide="layers-3"></i><div><h2>テーマ</h2><p>最近チェックしたテーマが表示されます。</p></div></section>
           <section class="check-card"><i data-lucide="lock-keyhole"></i><div><h2>自分にだけ見える情報</h2><p>回答やメモは、ほかの人には表示されません。</p></div></section>
         </div>`;
@@ -2435,6 +2538,54 @@
       }[answer] || "";
     }
 
+    function cumulativePointSeries() {
+      const previousIncrements = [3, 3, 0, 3, 1, 0];
+      const todayIncrement = state.pointsAwarded ? state.lastPoints : 0;
+      const base = Math.max(0, state.total - previousIncrements.reduce((sum, value) => sum + value, 0) - todayIncrement);
+      const increments = [...previousIncrements, todayIncrement];
+      let running = base;
+      return increments.map((value) => (running += value));
+    }
+
+    function chartGeometry(values) {
+      const width = 284;
+      const left = 20;
+      const top = 18;
+      const bottom = 102;
+      const maxValue = Math.max(...values, 1);
+      const minValue = Math.min(...values, 0);
+      const range = Math.max(1, maxValue - minValue);
+      const points = values.map((value, index) => {
+        const x = left + (width / (values.length - 1)) * index;
+        const y = bottom - ((value - minValue) / range) * (bottom - top);
+        return { x, y, value };
+      });
+      return {
+        points,
+        line: points.map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" "),
+        area: `M ${points[0].x.toFixed(1)} ${bottom} L ${points.map(({ x, y }) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(" L ")} L ${points.at(-1).x.toFixed(1)} ${bottom} Z`
+      };
+    }
+
+    function updatePointsChart(root = document) {
+      const values = cumulativePointSeries();
+      const geometry = chartGeometry(values);
+      const line = root.querySelector?.("#points-line");
+      const area = root.querySelector?.("#points-area");
+      const dots = root.querySelector?.("#points-dots");
+      const total = root.querySelector?.("#chart-total-points");
+      if (line) line.setAttribute("points", geometry.line);
+      if (area) area.setAttribute("d", geometry.area);
+      if (dots) {
+        dots.innerHTML = geometry.points.map(({ x, y, value }, index) => `<g><circle class="points-dot${index === geometry.points.length - 1 ? " today" : ""}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4"></circle><title>${value} pt</title></g>`).join("");
+      }
+      if (total) total.textContent = `${state.total} pt`;
+    }
+
+    function historyChartMarkup() {
+      return `<section class="history-card"><div class="history-card-head"><div><h3>ポイントの推移</h3><p>直近7日間の累積ポイント</p></div><div class="score-value"><strong id="chart-total-points">${state.total} pt</strong><span>現在の合計</span></div></div><div class="points-chart" aria-label="直近7日間の累積ポイント"><svg viewBox="0 0 320 126" role="img"><line class="points-grid" x1="20" y1="22" x2="304" y2="22"></line><line class="points-grid" x1="20" y1="62" x2="304" y2="62"></line><line class="points-grid" x1="20" y1="102" x2="304" y2="102"></line><path class="points-area" id="points-area" d=""></path><polyline class="points-line" id="points-line" points=""></polyline><g id="points-dots"></g></svg><div class="points-axis-labels"><span>金</span><span>土</span><span>日</span><span>月</span><span>火</span><span>水</span><span>今日</span></div></div><div class="points-legend"><span><i></i>正解 +3 pt</span><span><i></i>不正解 +1 pt</span><span><i></i>スキップ +0 pt</span></div><div class="history-summary"><span>正答率 <b>82%</b></span><span>通算 <b id="history-ratio">14／17件</b></span></div></section>`;
+    }
+
     function recentThemeText() {
       const defaults = ["健康", "災害", "科学"];
       const list = [state.category, ...defaults].filter(Boolean).filter((item, idx, arr) => arr.indexOf(item) === idx).slice(0, 3);
@@ -2445,21 +2596,45 @@
       const streak = `${state.streak}日継続`;
       const themes = recentThemeText();
       const streakCount = document.querySelector("#streak-count");
-      const publicStreak = document.querySelector("#public-streak");
+      const bestStreakCount = document.querySelector("#best-streak-count");
+      const checkCount = document.querySelector("#check-count");
       const desktopStreakText = document.querySelector("#desktop-streak-text");
       const desktopStreakBadge = document.querySelector("#desktop-streak-badge");
       const desktopThemeText = document.querySelector("#desktop-theme-text");
       const profileSummary = document.querySelector("#profile-summary");
-      const publicThemeText = document.querySelector("#public-theme-text");
-      const themeCount = document.querySelector("#theme-count");
       if (streakCount) streakCount.textContent = `${state.streak}日`;
-      if (publicStreak) publicStreak.textContent = streak;
+      if (bestStreakCount) bestStreakCount.textContent = `${state.bestStreak}日`;
+      if (checkCount) checkCount.textContent = `${state.totalChecks}件`;
       if (desktopStreakText) desktopStreakText.textContent = streak;
       if (desktopStreakBadge) desktopStreakBadge.textContent = streak;
       if (desktopThemeText) desktopThemeText.textContent = themes;
-      if (profileSummary) profileSummary.textContent = `ほかの人に見える情報には，${streak}と最近のテーマが表示されます`;
-      if (publicThemeText) publicThemeText.textContent = themes;
-      if (themeCount) themeCount.textContent = String(themes.split("、").length);
+      if (profileSummary) profileSummary.textContent = "これまでのチェック結果";
+    }
+
+    function pointsForAnswer(answer) {
+      return answer === "false" ? 3 : 1;
+    }
+
+    function awardPoints(answer) {
+      if (state.pointsAwarded) return state.lastPoints;
+      state.lastPoints = pointsForAnswer(answer);
+      state.total += state.lastPoints;
+      state.pointsAwarded = true;
+      syncPointDisplays();
+      return state.lastPoints;
+    }
+
+    function syncPointDisplays() {
+      const totalLabel = `${state.total} pt`;
+      const earnedLabel = `＋${state.lastPoints} pt`;
+      ["#desktop-total-points", "#profile-total-points", "#history-total-points", "#total-points"].forEach((selector) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = totalLabel;
+      });
+      ["#earned-points", "#feedback-total"].forEach((selector) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = earnedLabel;
+      });
     }
 
     function renderDesktopFeedback(answer) {
@@ -2468,11 +2643,12 @@
         false: "根拠や出典が確認できない投稿は、いったん立ち止まって確かめるのが安心です。",
         hold: "情報が足りないときは、結論を急がず、元の情報を確認してから判断しましょう。"
       }[answer];
+      const earned = awardPoints(answer);
       setCompletedHome("今日のチェック完了");
       showDesktopContent(
         "チェック完了",
-        "今日のチェックが完了しました",
-        `<div class="completion-streak"><span class="streak-icon"><i data-lucide="flame"></i></span><div><strong>8日継続になりました</strong><span>続けた日数がプロフィールに反映されました</span></div></div>
+        `今日のチェックが完了しました（＋${earned} pt）`,
+        `<div class="completion-streak"><span class="streak-icon"><i data-lucide="flame"></i></span><div><strong>${state.streak}日継続になりました</strong><span>現在の連続日数がプロフィールに反映されました</span></div></div>
         <div class="feedback-hero">
           <h2>${({true:"この投稿だけでは、まだ判断できません",false:"そのまま信じない判断で正解です",hold:"判断を保留するのも適切です"})[answer]}</h2>
           <p>${copy}</p>
@@ -2480,7 +2656,8 @@
         <div class="reward-box">
           <div class="reward-line"><span>選んだ答え</span><b>${answerLabel(answer)}</b></div>
           <div class="reward-line"><span>テーマ</span><b>${state.category}</b></div>
-          
+          <div class="reward-line"><span>今回のポイント</span><b>＋${earned} pt</b></div>
+          <div class="reward-line"><span>累計ポイント</span><b>${state.total} pt</b></div>
         </div>
         <section class="checked-source">
           <div class="checked-source-head">
@@ -2669,8 +2846,8 @@
         },
         profile: {
           title: "プロフィール",
-          sub: "これまでのチェック記録",
-          body: '<section class="profile-head compact-profile"><div class="avatar small-avatar"><div class="avatar-icon"><i data-lucide="user-round"></i></div></div><div><div class="profile-name"><h2>はる</h2></div><div class="sub">チェックの記録</div></div></section><div class="stats simple-stats"><div class="stat"><b>'+state.streak+'日</b><span>続けた日数</span></div><div class="stat"><b>5回</b><span>今週チェックした回数</span></div><div class="stat"><b>3</b><span>最近のテーマ</span></div></div>'
+          sub: "これまでのチェック結果",
+          body: '<section class="profile-head compact-profile"><div class="avatar small-avatar"><div class="avatar-icon"><i data-lucide="user-round"></i></div></div><div><div class="profile-name"><h2>はる</h2></div><div class="sub">これまでのチェック結果</div></div></section><div class="stats simple-stats profile-metrics"><div class="stat"><b>'+state.streak+'日</b><span>現在の連続日数</span></div><div class="stat"><b>'+state.bestStreak+'日</b><span>最長の連続日数</span></div><div class="stat"><b>'+state.totalChecks+'件</b><span>累積回数</span></div><div class="stat"><b>'+state.total+' pt</b><span>累積ポイント</span></div></div>'+historyChartMarkup()
         }
       }[key];
 
@@ -2681,6 +2858,7 @@
         renderSearchResults(desktopSearchResults);
         desktopSearchInput.addEventListener("input", () => renderSearchResults(desktopSearchResults, desktopSearchInput.value));
       }
+      if (key === "profile") updatePointsChart(desktopUtilityPanel);
       if (key === "check") {
         document.querySelector("#desktop-check-primary").addEventListener("click", () => {
           if (state.completed) {
@@ -2743,6 +2921,7 @@
     function deferCheck(target = "mobile") {
       state.completed = false;
       state.deferred = true;
+      state.lastPoints = 0;
       setFeedVisible(true);
       phone.classList.remove("completed");
       phone.classList.add("deferred");
@@ -2914,6 +3093,7 @@
     });
 
     function setFeedback(answer) {
+      const earned = awardPoints(answer);
       const result = {
         true: {
           head: "その場で信用してよい根拠が十分かを考えられました",
@@ -2929,12 +3109,14 @@
         }
       }[answer];
 
-      document.querySelector("#feedback-total").textContent = "完了";
+      document.querySelector("#feedback-total").textContent = `＋${earned} pt`;
       document.querySelector("#feedback-head").textContent = result.head;
       document.querySelector("#feedback-copy").textContent = result.copy;
       document.querySelector("#feedback-sub").textContent = "今日のチェックが記録されました";
       document.querySelector("#selected-answer-label").textContent = answerLabel(answer);
       document.querySelector("#category-points").textContent = state.category || "健康";
+      document.querySelector("#earned-points").textContent = `＋${earned} pt`;
+      document.querySelector("#total-points").textContent = `${state.total} pt`;
 
       const content = quizContent[state.category] || quizContent["健康"];
       document.querySelector("#checked-source-category").textContent = state.category;
@@ -2944,6 +3126,12 @@
       document.querySelector("#checked-source-text").textContent = content.text;
       enhancePostActions(document.querySelector("#checked-source-card"));
       setCompletedHome("今日のチェック完了");
+      const completionLabel = document.querySelector("#completion-streak-label");
+      if (completionLabel) completionLabel.textContent = `${state.streak}日継続になりました`;
+      const ratio = document.querySelector("#history-ratio");
+      if (ratio) ratio.textContent = `${state.correctCount}／${state.totalChecks}件`;
+      const acc = document.querySelector("#accuracy-rate");
+      if (acc) acc.textContent = `${Math.round((state.correctCount / state.totalChecks) * 100)}%`;
       if (window.lucide) window.lucide.createIcons();
     }
 
