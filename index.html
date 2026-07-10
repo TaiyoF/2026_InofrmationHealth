@@ -2126,11 +2126,11 @@
     body[data-theme="default"] .badge-frame-visible > .avatar-icon svg,
     body[data-theme="midnight"] .badge-frame-visible > .avatar-icon svg{opacity:1;stroke:currentColor}
 
-    body[data-theme="midnight"] .badge-medal{--quest-medal-icon-size:12px;clip-path:none;border:0;background:transparent;box-shadow:none;border-radius:50%;overflow:visible;isolation:isolate;color:#fff1c7}
-    body[data-theme="midnight"] .season-badge-current .badge-medal{--quest-medal-icon-size:18px}
-    body[data-theme="midnight"] .badge-step .badge-medal{--quest-medal-icon-size:9px}
-    body[data-theme="midnight"] .badge-medal::before{content:"★";display:grid;place-items:center;position:absolute;inset:21%;z-index:1;border:1px solid #52708f;border-radius:50%;background:#183049;color:#fff1c7;font-size:var(--quest-medal-icon-size);line-height:1;opacity:1}
-    body[data-theme="midnight"] .badge-medal::after{content:"";display:block;position:absolute;inset:0;z-index:0;height:auto;background:url("assets/quest-badge-frame.png") center/120% 120% no-repeat;clip-path:none;opacity:1;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52));pointer-events:none}
+    body[data-theme="midnight"] .badge-medal{--quest-medal-icon-size:12px;--quest-medal-frame-outset:6px;clip-path:none;border:0;background:#183049;box-shadow:none;border-radius:50%;overflow:visible;isolation:isolate;color:#fff1c7}
+    body[data-theme="midnight"] .season-badge-current .badge-medal{--quest-medal-icon-size:18px;--quest-medal-frame-outset:10px}
+    body[data-theme="midnight"] .badge-step .badge-medal{--quest-medal-icon-size:9px;--quest-medal-frame-outset:5px}
+    body[data-theme="midnight"] .badge-medal::before{content:"★";display:grid;place-items:center;position:absolute;inset:0;z-index:1;border:0;border-radius:50%;background:#183049;color:#fff1c7;font-size:var(--quest-medal-icon-size);line-height:1;opacity:1}
+    body[data-theme="midnight"] .badge-medal::after{content:"";display:block;position:absolute;inset:calc(var(--quest-medal-frame-outset) * -1);z-index:0;height:auto;background:url("assets/quest-badge-frame.png") center/100% 100% no-repeat;clip-path:none;opacity:1;filter:var(--quest-badge-filter) drop-shadow(0 3px 5px rgba(0,0,0,.52));pointer-events:none}
     /* Media Quest uses gold only against dark navy surfaces. */
     body[data-theme="midnight"] .streak-panel{background:#0f1f32;border-color:#36506a}
     body[data-theme="midnight"] .streak-icon,
