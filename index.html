@@ -1751,18 +1751,31 @@
     .theme-swatch.playful-1{background:#fff8ea}.theme-swatch.playful-2{background:#f3f8ff}.theme-swatch.playful-3{background:#6ea5ff}.theme-swatch.playful-4{background:#8dd07d}
     .theme-note{font-size:12px;color:var(--muted)}
 
-    /* The theme picker is a neutral comparison surface and never inherits a skin. */
+    /* The picker surface stays neutral; each option is a persistent sample of its own skin. */
     .settings-panel{
       --surface:#fff;--surface-soft:#eef7f3;--ink:#172124;--muted:#607077;
       --line:#dce6e1;--green:#2f8b70;--green-dark:#216751;
       color:#172124;color-scheme:light;
     }
-    .settings-panel .theme-option{background:#fff;border-color:#dce6e1;color:#172124}
-    .settings-panel .theme-option:hover{border-color:#2f8b70;background:#fbfdfc}
-    .settings-panel .theme-option.is-selected{border-color:#2f8b70;background:#f4f9f7;box-shadow:0 0 0 1px rgba(47,139,112,.12)}
-    .settings-panel .theme-option-head strong{color:#172124}
-    .settings-panel .theme-option-head span,.settings-panel .settings-copy,.settings-panel .theme-note{color:#607077}
-    .settings-panel .theme-badge{background:#eaf3ef;color:#216751}
+    .settings-panel .settings-copy,.settings-panel .theme-note{color:#607077}
+    .settings-panel .theme-option--default{background:#fff;border-color:#dce6e1;color:#172124}
+    .settings-panel .theme-option--default:hover{border-color:#2f8b70;background:#fbfdfc}
+    .settings-panel .theme-option--default.is-selected{border-color:#2f8b70;background:#f4f9f7;box-shadow:0 0 0 1px rgba(47,139,112,.18)}
+    .settings-panel .theme-option--default .theme-option-head strong{color:#172124}
+    .settings-panel .theme-option--default .theme-option-head span{color:#607077}
+    .settings-panel .theme-option--default .theme-badge{background:#eaf3ef;color:#216751}
+    .settings-panel .theme-option--midnight{background:radial-gradient(circle at 90% 0,rgba(217,161,60,.12),transparent 34%),linear-gradient(145deg,#13243a,#08111d);border-color:#755823;color:#f7f0df;box-shadow:inset 0 0 0 1px #2b4260}
+    .settings-panel .theme-option--midnight:hover{background:radial-gradient(circle at 90% 0,rgba(217,161,60,.18),transparent 36%),linear-gradient(145deg,#172b45,#0a1625);border-color:#d9a13c}
+    .settings-panel .theme-option--midnight.is-selected{border-color:#e4b652;box-shadow:inset 0 0 0 1px #3b5878,0 0 0 2px rgba(217,161,60,.16),0 8px 24px rgba(5,10,18,.24)}
+    .settings-panel .theme-option--midnight .theme-option-head strong{color:#ffe39a;font-family:Georgia,"Noto Serif JP",serif;letter-spacing:.02em}
+    .settings-panel .theme-option--midnight .theme-option-head span{color:#c6d0da}
+    .settings-panel .theme-option--midnight .theme-badge{background:rgba(217,161,60,.16);color:#ffd991;border:1px solid rgba(217,161,60,.28)}
+    .settings-panel .theme-option--playful{background:linear-gradient(145deg,#fffdf8,#f0f8ff);border:2px solid #b7d8f2;color:#39485a;box-shadow:0 5px 0 #dceaf5}
+    .settings-panel .theme-option--playful:hover{background:linear-gradient(145deg,#fff9e8,#eaf6ff);border-color:#79afe0}
+    .settings-panel .theme-option--playful.is-selected{border-color:#5b92f5;box-shadow:0 5px 0 #dceaf5,0 0 0 2px rgba(91,146,245,.12)}
+    .settings-panel .theme-option--playful .theme-option-head strong{color:#357bb8;font-family:"Hiragino Maru Gothic ProN","Yu Gothic UI","Noto Sans JP",sans-serif;font-weight:900}
+    .settings-panel .theme-option--playful .theme-option-head span{color:#63758b}
+    .settings-panel .theme-option--playful .theme-badge{background:#e8f2ff;color:#4a7bd5;border:1px solid #c9def8}
 
     .mode-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
     .mode-choice-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:16px;text-align:left;cursor:pointer;display:grid;gap:10px}
@@ -2978,7 +2991,7 @@
           preview: `<div class="theme-preview-scene preview-dog"><img src="assets/mascot-shiba.png" alt=""><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         }
       ];
-      return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div>${item.preview}</button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
+      return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option theme-option--${item.key} ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div>${item.preview}</button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
     }
 
     function renderMobileThemeSettings() {
