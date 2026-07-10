@@ -637,19 +637,6 @@
       line-height: 1.5;
     }
 
-    .checked-source-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0 10px;
-      min-height: 28px;
-      border-radius: 999px;
-      background: #eef4f1;
-      color: var(--green-dark);
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
     .checked-source .quiz-card {
       margin-bottom: 0;
       padding: 0;
@@ -659,20 +646,6 @@
 
     .checked-source-inner {
       padding: 14px 14px 10px;
-    }
-
-    .checked-source-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .checked-source-meta {
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
     }
 
     .checked-source .post-head {
@@ -1141,14 +1114,6 @@
       margin-bottom: 14px;
     }
 
-    .tag-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
     .tag {
       border-radius: 8px;
       padding: 6px 9px;
@@ -1156,11 +1121,6 @@
       color: var(--green-dark);
       font-size: 12px;
       font-weight: 800;
-    }
-
-    .time {
-      color: var(--muted);
-      font-size: 12px;
     }
 
     .question {
@@ -2616,7 +2576,6 @@
             <button class="icon-button" id="reaction-back" aria-label="回答方法の選択へ戻る"><i data-lucide="arrow-left"></i></button>
           </div>
           <article class="quiz-card">
-            <span class="tag">今日は何の日</span>
             <div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div>
             <p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p>
           </article>
@@ -2667,10 +2626,6 @@
           </div>
 
           <article class="quiz-card">
-            <div class="tag-row">
-              <span class="tag" id="quiz-category">本の日</span>
-              <span class="time">今日の1件</span>
-            </div>
             <div class="post-head">
               <div class="mini-avatar" id="quiz-avatar-mark" data-badge-tone="gold">本</div>
               <div class="account">
@@ -2729,11 +2684,9 @@
                 <h2>チェックした投稿</h2>
                 <p>この画面から、そのままリアクションできます。</p>
               </div>
-              <span class="checked-source-badge">今日の1件</span>
             </div>
             <article class="quiz-card" id="checked-source-card">
               <div class="checked-source-inner">
-                <div class="checked-source-top"><span class="tag" id="checked-source-category">本の日</span><span class="checked-source-meta">チェックに使った投稿</span></div>
                 <div class="post-head">
                   <div class="mini-avatar" id="checked-source-mark" data-badge-tone="gold">H</div>
                   <div class="account"><strong id="checked-source-name">からだのメモ</strong><span id="checked-source-handle">@karada_memo</span></div>
@@ -3207,7 +3160,7 @@
       showDesktopContent(
         "感想を選ぶ",
         "複数選択できます",
-        `<article class="quiz-card"><span class="tag">今日は何の日</span><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
+        `<article class="quiz-card"><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">日</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
       );
       const submit = document.querySelector("#desktop-submit-reaction");
       document.querySelectorAll("[data-desktop-reaction]").forEach((button) => {
@@ -3251,7 +3204,6 @@
         "今日の○×クイズ",
         "投稿の内容が正しいか，○か×で答えてください",
         `<article class="quiz-card">
-          <div class="tag-row"><span class="tag">${state.category}</span><span class="time">今日の1件</span></div>
           <div class="post-head">
             <div class="mini-avatar" data-badge-tone="gold">${content.mark}</div>
             <div class="account"><strong>${content.name}</strong><span>${content.handle}</span></div>
@@ -3523,11 +3475,9 @@
               <h2>チェックした投稿</h2>
               <p>この画面から、そのままリアクションできます。</p>
             </div>
-            <span class="checked-source-badge">今日の1件</span>
           </div>
           <article class="quiz-card" id="desktop-checked-source-card">
             <div class="checked-source-inner">
-              <div class="checked-source-top"><span class="tag">${state.category}</span><span class="checked-source-meta">チェックに使った投稿</span></div>
               <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["本の日"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["本の日"]).name}</strong><span>${(quizContent[state.category] || quizContent["本の日"]).handle}</span></div></div>
               <p>${(quizContent[state.category] || quizContent["本の日"]).text}</p>
               <div class="checked-source-note">気になったときは、いいね・保存・共有などのリアクションもできます。</div>
@@ -3755,7 +3705,6 @@
 
     function updateQuizContent(category) {
       const content = quizContent[category] || quizContent["本の日"];
-      document.querySelector("#quiz-category").textContent = category;
       document.querySelector("#quiz-avatar-mark").textContent = content.mark;
       document.querySelector("#quiz-account-name").textContent = content.name;
       document.querySelector("#quiz-account-handle").textContent = content.handle;
@@ -4063,7 +4012,6 @@
       document.querySelector("#earned-points").textContent = `＋${earned} pt`;
       document.querySelector("#total-points").textContent = `${state.total} pt`;
 
-      document.querySelector("#checked-source-category").textContent = state.category;
       document.querySelector("#checked-source-mark").textContent = content.mark;
       document.querySelector("#checked-source-name").textContent = content.name;
       document.querySelector("#checked-source-handle").textContent = content.handle;
