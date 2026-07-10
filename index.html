@@ -2133,10 +2133,10 @@
     body[data-theme="default"] .badge-frame-visible::before,
     body[data-theme="midnight"] .badge-frame-visible::before{content:"";position:absolute;inset:26%;border-radius:50%;z-index:0;pointer-events:none}
     body:not([data-theme]) .badge-frame-visible::before,
-    body[data-theme="default"] .badge-frame-visible::before{background:rgba(255,255,255,.62);box-shadow:0 0 0 1px rgba(255,255,255,.4)}
+    body[data-theme="default"] .badge-frame-visible::before{background:#fff;box-shadow:0 0 0 1px #fff}
     body:not([data-theme]) .badge-frame-black::before,
-    body[data-theme="default"] .badge-frame-black::before{background:rgba(0,0,0,.46);box-shadow:0 0 0 1px rgba(255,255,255,.2)}
-    body[data-theme="midnight"] .badge-frame-visible::before{background:rgba(5,12,20,.66);box-shadow:0 0 0 1px rgba(255,226,157,.3)}
+    body[data-theme="default"] .badge-frame-black::before{background:#101419;box-shadow:0 0 0 1px #303842}
+    body[data-theme="midnight"] .badge-frame-visible::before{background:#08111d;box-shadow:0 0 0 1px #8d6824}
     body:not([data-theme]) .badge-frame-visible > *,
     body[data-theme="default"] .badge-frame-visible > *,
     body[data-theme="midnight"] .badge-frame-visible > *{position:relative;z-index:1}
@@ -2145,7 +2145,10 @@
     body[data-theme="midnight"] .badge-frame-visible::after{display:none}
     body:not([data-theme]) .badge-frame-visible > .avatar-icon,
     body[data-theme="default"] .badge-frame-visible > .avatar-icon,
-    body[data-theme="midnight"] .badge-frame-visible > .avatar-icon{background:transparent;color:inherit}
+    body[data-theme="midnight"] .badge-frame-visible > .avatar-icon{background:transparent;color:inherit;opacity:1}
+    body:not([data-theme]) .badge-frame-visible > .avatar-icon svg,
+    body[data-theme="default"] .badge-frame-visible > .avatar-icon svg,
+    body[data-theme="midnight"] .badge-frame-visible > .avatar-icon svg{opacity:1;stroke:currentColor}
 
     body[data-theme="midnight"] .badge-medal{clip-path:none;border:0;background:transparent center/145% no-repeat;box-shadow:none;border-radius:50%}
     body[data-theme="midnight"] .badge-medal::before,
