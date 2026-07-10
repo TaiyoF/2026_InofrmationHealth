@@ -2156,6 +2156,19 @@
     body[data-theme="midnight"] .badge-medal.badge-black{background-image:url("assets/quest-badge-black.png")}
     body[data-theme="playful"] .badge-medal::after{display:none}
 
+    /* Media Quest uses gold only against dark navy surfaces. */
+    body[data-theme="midnight"] .streak-panel{background:#0f1f32;border-color:#36506a}
+    body[data-theme="midnight"] .nav-badge,
+    body[data-theme="midnight"] .streak-icon,
+    body[data-theme="midnight"] .point-earned{background:#183049;border-color:#52708f;color:#f2f5f7}
+    body[data-theme="midnight"] .day{color:#aebdca}
+    body[data-theme="midnight"] .day-dot{background:#14263a;border-color:#36506a;color:#c6d0da}
+    body[data-theme="midnight"] .day.done .day-dot{background:#1b334d;border-color:#52708f;color:#f2f5f7}
+    body[data-theme="midnight"] .day.today .day-dot{background:#d9a13c;border-color:#ffe39a;color:#08111d}
+    body[data-theme="midnight"] .fact b,
+    body[data-theme="midnight"] .check-module-meta b{color:#aebdca}
+    body[data-theme="midnight"] .today-status{background:#16283d;color:#f2f5f7;border:1px solid #52708f}
+
     /* Keep the main feed dominant as space becomes limited. */
     @media (max-width:1100px) and (min-width:681px){
       .desktop-frame{grid-template-columns:224px minmax(0,1fr)}
