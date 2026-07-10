@@ -540,14 +540,20 @@
     }
 
     .post-actions {
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 4px 12px;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr);
+      align-items: center;
+      gap: 4px;
     }
 
     .post-actions button {
       min-height: 32px;
-      padding: 5px 7px;
+      width: 100%;
+      min-width: 0;
+      padding: 5px 4px;
+      justify-content: center;
+      white-space: nowrap;
     }
 
     .post-actions button svg {
@@ -674,11 +680,10 @@
 
     .checked-source .post-actions {
       margin-left: 0;
-      gap: 14px;
+      gap: 4px;
       padding: 12px 14px 14px;
       border-top: 1px solid var(--line);
       background: #fbfcfc;
-      flex-wrap: wrap;
     }
 
     .checked-source .post-actions button {
@@ -1532,7 +1537,8 @@
     .post:hover{background:#fafcfb}
     .mini-avatar{border-radius:50%;background:#e8efec;color:var(--green-dark)}
     .post p{font-size:15px;line-height:1.55}
-    .post-actions{justify-content:flex-start;gap:28px;margin-left:48px}
+    .post-actions{gap:4px;margin-left:48px;width:calc(100% - 48px)}
+    .checked-source .post-actions{margin-left:0;width:100%;gap:4px}
     .post-actions button:hover,.post-actions button.active{background:#eef4f1;color:var(--green-dark)}
     .bonus-feed-chip{margin:12px 16px;border-radius:12px;background:#f3f7f5;border-color:#dbe7e2;color:var(--ink)}
     .chip-action{border-color:#cfe0da;color:var(--green-dark);background:#fff}
@@ -2696,7 +2702,7 @@
                   <div class="account"><strong id="checked-source-name">からだのメモ</strong><span id="checked-source-handle">@karada_memo</span></div>
                 </div>
                 <p id="checked-source-text"></p>
-                <div class="checked-source-note">気になったときは、いいね・保存・共有などのリアクションもできます。</div>
+                <div class="checked-source-note">気になったときは、そのままリアクションできます。</div>
               </div>
               <div class="post-actions"><span>いいね 24</span><span>コメント 6</span><span>リポスト 2</span><span>保存 8</span><span>共有 1</span></div>
             </article>
@@ -3484,7 +3490,7 @@
             <div class="checked-source-inner">
               <div class="post-head"><div class="mini-avatar" data-badge-tone="gold">${(quizContent[state.category] || quizContent["本の日"]).mark}</div><div class="account"><strong>${(quizContent[state.category] || quizContent["本の日"]).name}</strong><span>${(quizContent[state.category] || quizContent["本の日"]).handle}</span></div></div>
               <p>${(quizContent[state.category] || quizContent["本の日"]).text}</p>
-              <div class="checked-source-note">気になったときは、いいね・保存・共有などのリアクションもできます。</div>
+              <div class="checked-source-note">気になったときは、そのままリアクションできます。</div>
             </div>
             <div class="post-actions"><span>いいね 24</span><span>コメント 6</span><span>リポスト 2</span><span>保存 8</span><span>共有 1</span></div>
           </article>
@@ -3562,7 +3568,6 @@
           const match = span.textContent.trim().match(/^(.+?)\s+(\d+)$/);
           if (!match) return;
           const button = document.createElement("button");
-          const label = document.createElement("span");
           const count = document.createElement("span");
           const iconMap = {
             "いいね": "heart",
@@ -3576,13 +3581,12 @@
           icon.className = "action-glyph";
           icon.setAttribute("aria-hidden", "true");
           icon.setAttribute("data-lucide", iconMap[match[1]] || "circle");
-          label.textContent = match[1];
           count.textContent = match[2];
           button.dataset.socialAction = match[1];
           button.dataset.count = match[2];
           button.setAttribute("aria-label", `${match[1]} ${match[2]}件`);
           button.setAttribute("title", match[1]);
-          button.append(icon, label, count);
+          button.append(icon, count);
           button.addEventListener("click", () => handlePostAction(button, count));
           span.replaceWith(button);
         });
@@ -3612,6 +3616,7 @@
         const nextCount = Math.max(0, Number(button.dataset.count) + delta);
         button.dataset.count = String(nextCount);
         countNode.textContent = String(nextCount);
+        button.setAttribute("aria-label", `${action} ${nextCount}件`);
         const messages = {
           "いいね": active ? "いいねしました" : "いいねを取り消しました",
           "保存": active ? "保存しました" : "保存を解除しました",
@@ -3625,6 +3630,7 @@
         const nextCount = Number(button.dataset.count) + 1;
         button.dataset.count = String(nextCount);
         countNode.textContent = String(nextCount);
+        button.setAttribute("aria-label", `${action} ${nextCount}件`);
         showToast("共有メニューを開きました");
       }
     }
