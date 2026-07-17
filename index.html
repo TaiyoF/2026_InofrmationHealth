@@ -1755,7 +1755,18 @@
     .reaction-results{display:grid;gap:10px;margin-top:16px}
     .reaction-result-row{display:grid;grid-template-columns:110px 1fr 42px;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
     .reaction-result-track{height:10px;border-radius:999px;background:var(--surface-soft);overflow:hidden}
-    .reaction-result-fill{height:100%;border-radius:999px;background:var(--green)}
+    .reaction-result-fill{height:100%;border-radius:999px;background:var(--green);transform-origin:left center;will-change:transform}
+    .reaction-results.bars-preparing .reaction-result-fill{transform:scaleX(0)}
+    .reaction-results.animate-bars .reaction-result-fill{animation:reaction-bar-grow .76s cubic-bezier(.2,.78,.22,1) both}
+    .reaction-results.animate-bars .reaction-result-row:nth-child(2) .reaction-result-fill{animation-delay:.09s}
+    .reaction-results.animate-bars .reaction-result-row:nth-child(3) .reaction-result-fill{animation-delay:.18s}
+    .reaction-results.animate-bars .reaction-result-row:nth-child(4) .reaction-result-fill{animation-delay:.27s}
+    .reaction-results.animate-bars .reaction-result-row:nth-child(5) .reaction-result-fill{animation-delay:.36s}
+    @keyframes reaction-bar-grow{
+      0%{transform:scaleX(0)}
+      72%{transform:scaleX(1.025)}
+      100%{transform:scaleX(1)}
+    }
     .reaction-result-row strong{color:var(--ink);text-align:right}
 
     .season-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:15px;margin-bottom:14px}
@@ -2633,7 +2644,7 @@
         </header>
         <div class="work-screen">
           <section class="quiz-card">
-            <div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/wanko-guide-sitting.png" alt="前足を上げて案内する犬のマスコット"></div>
+            <div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/mascot-shiba.png" alt="星のメダルを持つ犬のマスコット"></div>
             <span class="tag">1日1回</span>
             <h2>今日はどちらに回答しますか？</h2>
             <p>スキップした場合，ポイントは増えません。</p>
@@ -3042,7 +3053,7 @@
           name: "わんこチャレンジ",
           note: "犬のマスコットと一緒に進める，親しみやすいデザインです。",
           badge: theme === "playful" ? "現在" : "",
-          preview: `<div class="theme-preview-scene preview-dog"><img src="assets/wanko-peek-smile.png" alt=""><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
+          preview: `<div class="theme-preview-scene preview-dog"><img src="assets/mascot-shiba.png" alt=""><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         }
       ];
       return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option theme-option--${item.key} ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div>${item.preview}</button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
@@ -3219,7 +3230,7 @@
       showDesktopContent(
         "今日のチャレンジ",
         "回答方法を選んでください",
-        `<section class="quiz-card"><div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/wanko-guide-sitting.png" alt="前足を上げて案内する犬のマスコット"></div><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
+        `<section class="quiz-card"><div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/mascot-shiba.png" alt="星のメダルを持つ犬のマスコット"></div><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
       );
       document.querySelectorAll("[data-desktop-mode]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -3257,6 +3268,19 @@
       return `<section class="feedback-hero"><h2>回答ありがとうございました</h2><p>今回の回答で +2 pt を獲得しました。</p></section><section class="quiz-card"><h2>このニュースへの感想</h2><div class="reaction-results"><div class="reaction-result-row"><span>おもしろい！</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:68%"></div></div><strong>34%</strong></div><div class="reaction-result-row"><span>ふむふむ</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:50%"></div></div><strong>25%</strong></div><div class="reaction-result-row"><span>ほんとかなあ？</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:34%"></div></div><strong>17%</strong></div><div class="reaction-result-row"><span>拡散しないと！</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:28%"></div></div><strong>14%</strong></div><div class="reaction-result-row"><span>興味ない</span><div class="reaction-result-track"><div class="reaction-result-fill" style="width:20%"></div></div><strong>10%</strong></div></div></section><button class="button primary" id="desktop-reaction-home"><i data-lucide="home"></i>通常フィードへ戻る</button>`;
     }
 
+    function animateReactionBars(root) {
+      const results = root.querySelector(".reaction-results");
+      if (!results) return;
+      results.classList.remove("animate-bars");
+      results.classList.add("bars-preparing");
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          results.classList.remove("bars-preparing");
+          results.classList.add("animate-bars");
+        });
+      });
+    }
+
     function completeReaction(target) {
       if (!state.pointsAwarded) {
         state.lastPoints = 2;
@@ -3269,9 +3293,11 @@
       syncPointDisplays();
       if (target === "desktop") {
         showDesktopContent("みんなの感想", "回答の集計結果", reactionResultsMarkup());
+        animateReactionBars(desktopUtilityPanel);
         document.querySelector("#desktop-reaction-home").addEventListener("click", () => showDesktopPanel("home"));
       } else {
         showScreen("screen-reaction-results");
+        animateReactionBars(document.querySelector("#screen-reaction-results"));
       }
       if (window.lucide) window.lucide.createIcons();
     }
