@@ -2763,6 +2763,7 @@
               <h1>今日の投稿</h1>
               <div class="sub">投稿に書かれている情報を見て判断してください</div>
             </div>
+            <button class="icon-button" data-simple-home aria-label="ホームへ戻る"><i data-lucide="arrow-left"></i></button>
           </div>
           <div class="progress" aria-hidden="true">
             <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
@@ -2950,6 +2951,11 @@
       completed: false,
       deferred: false,
       skipped: false
+    };
+
+    // Keep the former quiz/reaction selector intact so the demo can restore it with one flag.
+    const challengeFlowConfig = {
+      modeChoiceEnabled: false
     };
 
     const phone = document.querySelector("#phone");
@@ -3914,10 +3920,19 @@
       updateHomeCheckModules();
       setActiveNav("check");
       setActiveDesktopNav("check");
+      if (challengeFlowConfig.modeChoiceEnabled) {
+        if (target === "desktop") {
+          renderDesktopModeChoice();
+        } else {
+          showScreen("screen-mode-choice");
+        }
+        return;
+      }
+      state.challengeMode = "quiz";
       if (target === "desktop") {
-        renderDesktopModeChoice();
+        renderDesktopQuiz();
       } else {
-        showScreen("screen-mode-choice");
+        showMobileScreen("screen-quiz", "check");
       }
     }
 
