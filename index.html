@@ -2128,12 +2128,11 @@
     body[data-theme="playful"] .desktop-feed .check-module .button-row{position:relative;z-index:1;margin-right:102px}
     body[data-theme="playful"] .desktop-right{position:relative;overflow:hidden}
     body[data-theme="playful"] .desktop-right::after{content:"";position:absolute;right:-16px;bottom:-18px;width:150px;height:126px;background:url("assets/wanko-peek-smile.png") center bottom/contain no-repeat;pointer-events:none}
-    body[data-theme="playful"] #screen-home .post:nth-of-type(2),
-    body[data-theme="playful"] #screen-home .post:nth-of-type(5){position:relative;overflow:hidden}
-    body[data-theme="playful"] #screen-home .post:nth-of-type(2)::after,
-    body[data-theme="playful"] #screen-home .post:nth-of-type(5)::after{content:"";position:absolute;z-index:0;right:4px;bottom:4px;width:88px;height:82px;background:url("assets/wanko-paw-trail.png") center/contain no-repeat;opacity:.32;pointer-events:none}
-    body[data-theme="playful"] #screen-home .post:nth-of-type(2) > *,
-    body[data-theme="playful"] #screen-home .post:nth-of-type(5) > *{position:relative;z-index:1}
+    .wanko-paw-marker{display:none}
+    body[data-theme="playful"] .wanko-paw-marker{display:block;width:60px;height:55px;object-fit:contain;flex:0 0 auto;margin-left:auto;opacity:.82;pointer-events:none}
+    body[data-theme="playful"] .wanko-paw-post{position:relative;overflow:hidden}
+    body[data-theme="playful"] .wanko-paw-post .post-head{padding-right:72px}
+    body[data-theme="playful"] .wanko-paw-post::after{content:"";position:absolute;z-index:2;right:12px;top:10px;width:64px;height:59px;background:url("assets/wanko-paw-trail.png") center/contain no-repeat;opacity:.76;pointer-events:none}
     .wanko-reaction-guide{display:none}
     body[data-theme="playful"] .desktop-utility-panel{position:relative}
     body[data-theme="playful"] .wanko-reaction-guide{display:block;position:absolute;z-index:2;right:24px;top:14px;width:86px;height:86px;object-fit:contain;pointer-events:none}
@@ -2156,8 +2155,9 @@
       body[data-theme="playful"] .work-screen,
       body[data-theme="playful"] .feed{overflow-x:hidden}
       body[data-theme="playful"] #screen-home .feed::after{content:"";position:absolute;z-index:0;right:14px;top:338px;width:104px;height:104px;background:url("assets/wanko-peek-smile.png") center bottom/contain no-repeat;pointer-events:none}
-      body[data-theme="playful"] #screen-home .check-module::after{content:"";position:absolute;z-index:0;right:6px;bottom:6px;width:78px;height:72px;background:url("assets/wanko-paw-trail.png") center/contain no-repeat;opacity:.38;pointer-events:none}
-      body[data-theme="playful"] #screen-home .check-module > *{position:relative;z-index:1}
+      body[data-theme="playful"] .wanko-paw-marker{width:54px;height:50px}
+      body[data-theme="playful"] .wanko-paw-post .post-head{padding-right:64px}
+      body[data-theme="playful"] .wanko-paw-post::after{right:10px;top:9px;width:58px;height:54px}
       body[data-theme="playful"] #screen-check .check-status{padding-right:98px;min-height:106px}
       body[data-theme="playful"] #screen-check .check-status::after{right:6px;width:86px;height:98px}
       body[data-theme="playful"] #screen-profile .profile-head{padding-right:88px}
@@ -2321,6 +2321,7 @@
                   <h2>今日のチェック</h2>
                   <p>1日1回、表示された投稿を1件だけチェックします。</p>
                 </div>
+                <img class="wanko-paw-marker" src="assets/wanko-paw-trail.png" alt="" aria-hidden="true">
                 <span class="module-status" id="desktop-module-status">2日継続</span>
               </div>
               <div class="check-module-meta">
@@ -2348,7 +2349,7 @@
               <div class="post-actions"><span>いいね 84</span><span>コメント 12</span><span>リポスト 7</span><span>保存 39</span><span>共有 5</span></div>
             </article>
 
-            <article class="post">
+            <article class="post wanko-paw-post">
               <div class="post-head">
                 <div class="mini-avatar" data-badge-owner="self"><span class="avatar-icon" data-badge-owner="self"><i data-lucide="user-round"></i></span></div>
                 <div class="account"><strong>はる</strong><span>@haru_days · 8分</span></div>
@@ -2378,7 +2379,7 @@
               <div class="post-actions"><span>いいね 19</span><span>コメント 16</span><span>リポスト 0</span><span>保存 1</span><span>共有 0</span></div>
             </article>
 
-            <article class="post">
+            <article class="post wanko-paw-post">
               <div class="post-head">
                 <div class="mini-avatar" data-badge-tone="platinum"><span class="avatar-icon"><i data-lucide="clapperboard" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>映画の話</strong><span>@movie_room · 35分</span></div>
@@ -2463,6 +2464,7 @@
                 <h2>今日のチェック</h2>
                 <p>1日1回、表示された投稿を1件だけチェックします。</p>
               </div>
+              <img class="wanko-paw-marker" src="assets/wanko-paw-trail.png" alt="" aria-hidden="true">
               <span class="module-status" id="mobile-module-status">2日継続</span>
             </div>
             <div class="check-module-meta">
@@ -2490,7 +2492,7 @@
               <div class="post-actions"><span>いいね 84</span><span>コメント 12</span><span>リポスト 7</span><span>保存 39</span><span>共有 5</span></div>
           </article>
 
-          <article class="post">
+          <article class="post wanko-paw-post">
               <div class="post-head">
                 <div class="mini-avatar" data-badge-owner="self"><span class="avatar-icon" data-badge-owner="self"><i data-lucide="user-round"></i></span></div>
                 <div class="account"><strong>はる</strong><span>@haru_days · 8分</span></div>
@@ -2520,7 +2522,7 @@
               <div class="post-actions"><span>いいね 19</span><span>コメント 16</span><span>リポスト 0</span><span>保存 1</span><span>共有 0</span></div>
           </article>
 
-          <article class="post">
+          <article class="post wanko-paw-post">
               <div class="post-head">
                 <div class="mini-avatar" data-badge-tone="platinum"><span class="avatar-icon"><i data-lucide="clapperboard" aria-hidden="true"></i></span></div>
                 <div class="account"><strong>映画の話</strong><span>@movie_room · 35分</span></div>
