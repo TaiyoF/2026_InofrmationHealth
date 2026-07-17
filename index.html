@@ -1779,14 +1779,9 @@
     .reaction-result-track{height:10px;border-radius:999px;background:var(--surface-soft);overflow:hidden}
     .reaction-result-fill{height:100%;border-radius:999px;background:var(--green);transform-origin:left center;will-change:transform}
     .reaction-results.bars-preparing .reaction-result-fill{transform:scaleX(0)}
-    .reaction-results.animate-bars .reaction-result-fill{animation:reaction-bar-grow .76s cubic-bezier(.2,.78,.22,1) both}
-    .reaction-results.animate-bars .reaction-result-row:nth-child(2) .reaction-result-fill{animation-delay:.09s}
-    .reaction-results.animate-bars .reaction-result-row:nth-child(3) .reaction-result-fill{animation-delay:.18s}
-    .reaction-results.animate-bars .reaction-result-row:nth-child(4) .reaction-result-fill{animation-delay:.27s}
-    .reaction-results.animate-bars .reaction-result-row:nth-child(5) .reaction-result-fill{animation-delay:.36s}
+    .reaction-results.animate-bars .reaction-result-fill{animation:reaction-bar-grow 1.8s cubic-bezier(.22,.7,.24,1) both}
     @keyframes reaction-bar-grow{
       0%{transform:scaleX(0)}
-      72%{transform:scaleX(1.025)}
       100%{transform:scaleX(1)}
     }
     .reaction-result-row strong{color:var(--ink);text-align:right}
