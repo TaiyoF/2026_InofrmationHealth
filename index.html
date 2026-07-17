@@ -2020,9 +2020,9 @@
     body[data-theme="playful"] .button.primary:active{transform:translateY(3px);box-shadow:0 2px 0 #2f70bc}
     body[data-theme="playful"] .theme-mascot,
     body[data-theme="playful"] .theme-mascot-wrap{display:flex}
-    body[data-theme="playful"] .theme-mascot-wrap .theme-mascot{display:block;width:150px;height:150px}
-    body[data-theme="playful"] .feedback-hero{position:relative;padding-right:138px;min-height:134px;background:linear-gradient(145deg,#fff9e7,#eff9ff)}
-    body[data-theme="playful"] .feedback-hero::after{content:"";position:absolute;right:10px;bottom:0;width:120px;height:120px;background:url("assets/mascot-shiba.png") center/cover;border-radius:28px}
+    body[data-theme="playful"] .theme-mascot-wrap .theme-mascot{display:block;width:150px;height:150px;object-fit:contain;border-radius:0}
+    body[data-theme="playful"] .feedback-hero{position:relative;padding-right:138px;min-height:134px;background:linear-gradient(145deg,#fff9e7,#eff9ff);overflow:hidden}
+    body[data-theme="playful"] .feedback-hero::after{content:"";position:absolute;right:8px;bottom:-8px;width:124px;height:112px;background:url("assets/wanko-peek-smile.png") center bottom/contain no-repeat;pointer-events:none}
     body[data-theme="playful"] .mode-choice-icon,
     body[data-theme="playful"] .answer-mark{background:#e9f6ff;color:#367fc0;border:3px solid #91c7ef;box-shadow:0 4px 0 #c4e0f4}
     body[data-theme="playful"] .answer-card[data-answer="false"] .answer-mark{background:#fff0ef;color:#df6860;border-color:#f3aaa5;box-shadow:0 4px 0 #f7d1ce}
@@ -2061,6 +2061,59 @@
     body[data-theme="playful"] .season-progress{height:14px;border:2px solid #9dcde8;background:#eaf6ff}
     body[data-theme="playful"] .season-progress-fill{background:linear-gradient(90deg,#70bd76,#a8dc77)}
     body[data-theme="playful"] .streak-icon{background:#fff0cf;color:#ef9c24;border:2px solid #ffd17c}
+
+    /* Wanko Challenge keeps the shared layout and adds character through real illustration assets. */
+    body[data-theme="playful"] .desktop-main,
+    body[data-theme="playful"] .work-screen,
+    body[data-theme="playful"] .feed{position:relative;isolation:isolate}
+    body[data-theme="playful"] .desktop-main::before,
+    body[data-theme="playful"] .work-screen::before,
+    body[data-theme="playful"] .feed::before{content:"";position:absolute;z-index:0;right:-28px;top:78px;width:150px;height:150px;background:url("assets/wanko-paw-trail.png") center/contain no-repeat;opacity:.10;pointer-events:none}
+    body[data-theme="playful"] .desktop-main > *,
+    body[data-theme="playful"] .work-screen > *,
+    body[data-theme="playful"] .feed > *{position:relative;z-index:1}
+    body[data-theme="playful"] .check-module{position:relative;overflow:hidden}
+    body[data-theme="playful"] .desktop-feed .check-module::after{content:"";position:absolute;z-index:0;right:12px;bottom:-18px;width:102px;height:126px;background:url("assets/wanko-guide-sitting.png") center bottom/contain no-repeat;pointer-events:none}
+    body[data-theme="playful"] .desktop-feed .check-module-head,
+    body[data-theme="playful"] .desktop-feed .check-module-meta,
+    body[data-theme="playful"] .desktop-feed .check-module .button-row{position:relative;z-index:1;margin-right:102px}
+    body[data-theme="playful"] .desktop-right{position:relative;overflow:hidden}
+    body[data-theme="playful"] .desktop-right::after{content:"";position:absolute;right:-16px;bottom:-18px;width:150px;height:126px;background:url("assets/wanko-peek-smile.png") center bottom/contain no-repeat;pointer-events:none}
+    body[data-theme="playful"] #screen-home .post:nth-of-type(2),
+    body[data-theme="playful"] #screen-home .post:nth-of-type(5){position:relative;overflow:hidden}
+    body[data-theme="playful"] #screen-home .post:nth-of-type(2)::after,
+    body[data-theme="playful"] #screen-home .post:nth-of-type(5)::after{content:"";position:absolute;right:-24px;bottom:-26px;width:112px;height:112px;background:url("assets/wanko-paw-trail.png") center/contain no-repeat;opacity:.12;pointer-events:none}
+    .wanko-reaction-guide{display:none}
+    body[data-theme="playful"] .desktop-utility-panel{position:relative}
+    body[data-theme="playful"] .wanko-reaction-guide{display:block;position:absolute;z-index:2;right:24px;top:14px;width:86px;height:86px;object-fit:contain;pointer-events:none}
+    body[data-theme="playful"] #screen-check .check-status,
+    body[data-theme="playful"] .desktop-utility-panel .check-status{position:relative;overflow:hidden;padding-right:118px;min-height:116px}
+    body[data-theme="playful"] #screen-check .check-status::after,
+    body[data-theme="playful"] .desktop-utility-panel .check-status::after{content:"";position:absolute;right:10px;bottom:-12px;width:100px;height:112px;background:url("assets/wanko-guide-sitting.png") center bottom/contain no-repeat;pointer-events:none}
+    body[data-theme="playful"] #screen-reaction .reaction-panel-title{position:relative;padding-right:86px;min-height:76px}
+    body[data-theme="playful"] #screen-reaction .reaction-panel-title::after{content:"";position:absolute;right:0;bottom:-10px;width:74px;height:78px;background:url("assets/wanko-thinking.png") center bottom/contain no-repeat;pointer-events:none}
+    body[data-theme="playful"] #screen-quiz .question,
+    body[data-theme="playful"] .desktop-utility-panel .question{position:relative;overflow:hidden;padding-right:92px;min-height:88px;display:flex;align-items:center}
+    body[data-theme="playful"] #screen-quiz .question::after,
+    body[data-theme="playful"] .desktop-utility-panel .question::after{content:"";position:absolute;right:8px;bottom:-8px;width:82px;height:86px;background:url("assets/wanko-thinking.png") center bottom/contain no-repeat;pointer-events:none}
+    body[data-theme="playful"] #screen-profile .profile-head,
+    body[data-theme="playful"] .desktop-utility-panel .profile-head{position:relative;overflow:hidden;padding-right:104px;min-height:108px}
+    body[data-theme="playful"] #screen-profile .profile-head::after,
+    body[data-theme="playful"] .desktop-utility-panel .profile-head::after{content:"";position:absolute;right:8px;bottom:-14px;width:96px;height:94px;background:url("assets/wanko-peek-smile.png") center bottom/contain no-repeat;pointer-events:none}
+
+    @media(max-width:680px){
+      body[data-theme="playful"] .work-screen,
+      body[data-theme="playful"] .feed{overflow-x:hidden}
+      body[data-theme="playful"] .desktop-main::before,
+      body[data-theme="playful"] .work-screen::before,
+      body[data-theme="playful"] .feed::before{right:-34px;top:70px;width:126px;height:126px;opacity:.08}
+      body[data-theme="playful"] #screen-home .feed::after{content:"";position:absolute;z-index:0;right:14px;top:338px;width:104px;height:104px;background:url("assets/wanko-peek-smile.png") center bottom/contain no-repeat;pointer-events:none}
+      body[data-theme="playful"] #screen-home .check-module::after{content:"";position:absolute;right:-18px;bottom:-22px;width:88px;height:88px;background:url("assets/wanko-paw-trail.png") center/contain no-repeat;opacity:.18;pointer-events:none}
+      body[data-theme="playful"] #screen-check .check-status{padding-right:98px;min-height:106px}
+      body[data-theme="playful"] #screen-check .check-status::after{right:6px;width:86px;height:98px}
+      body[data-theme="playful"] #screen-profile .profile-head{padding-right:88px}
+      body[data-theme="playful"] #screen-profile .profile-head::after{right:4px;width:82px;height:82px}
+    }
 
     /* User-provided rank artwork belongs to the Basic theme only. */
     body:not([data-theme]) .badge-medal,
@@ -2580,7 +2633,7 @@
         </header>
         <div class="work-screen">
           <section class="quiz-card">
-            <div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/mascot-shiba.png" alt="星のメダルを持つ犬のマスコット"></div>
+            <div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/wanko-guide-sitting.png" alt="前足を上げて案内する犬のマスコット"></div>
             <span class="tag">1日1回</span>
             <h2>今日はどちらに回答しますか？</h2>
             <p>スキップした場合，ポイントは増えません。</p>
@@ -2989,7 +3042,7 @@
           name: "わんこチャレンジ",
           note: "犬のマスコットと一緒に進める，親しみやすいデザインです。",
           badge: theme === "playful" ? "現在" : "",
-          preview: `<div class="theme-preview-scene preview-dog"><img src="assets/mascot-shiba.png" alt=""><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
+          preview: `<div class="theme-preview-scene preview-dog"><img src="assets/wanko-peek-smile.png" alt=""><span class="theme-preview-lines"><span></span><span></span><span></span></span></div>`
         }
       ];
       return `<section class="settings-panel"><p class="settings-copy">基本のUIや機能はそのままで，見た目だけを切り替えられます。</p><div class="theme-options">${items.map((item) => `<button class="theme-option theme-option--${item.key} ${item.key === theme ? "is-selected" : ""}" data-theme-choice="${item.key}"><div class="theme-option-head"><div><strong>${item.name}</strong><span>${item.note}</span></div>${item.badge ? `<span class="theme-badge">${item.badge}</span>` : ``}</div>${item.preview}</button>`).join("")}</div><div class="theme-note">※ デザインを切り替えても，投稿やチェック結果などの内容は変わりません。</div></section>`;
@@ -3166,7 +3219,7 @@
       showDesktopContent(
         "今日のチャレンジ",
         "回答方法を選んでください",
-        `<section class="quiz-card"><div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/mascot-shiba.png" alt="星のメダルを持つ犬のマスコット"></div><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
+        `<section class="quiz-card"><div class="theme-mascot-wrap"><img class="theme-mascot" src="assets/wanko-guide-sitting.png" alt="前足を上げて案内する犬のマスコット"></div><span class="tag">1日1回</span><h2>今日はどちらに回答しますか？</h2><p>スキップした場合，ポイントは増えません。</p></section><div class="mode-choice-grid"><button class="mode-choice-card" data-desktop-mode="quiz"><span class="mode-choice-icon">○×</span><b>○×クイズ</b><p>「今日は○○の日」に関するニュースの正しさを判断します。</p><span class="mode-choice-points">正解 +3 pt／不正解 +1 pt</span></button><button class="mode-choice-card" data-desktop-mode="reaction"><span class="mode-choice-icon"><i data-lucide="message-circle-heart"></i></span><b>感想を選ぶ</b><p>ニュースを読んで，感じたことを1つ以上選びます。</p><span class="mode-choice-points">回答 +2 pt</span></button></div><button class="button ghost" id="desktop-skip-challenge">今日はスキップする（+0 pt）</button>`
       );
       document.querySelectorAll("[data-desktop-mode]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -3186,7 +3239,7 @@
       showDesktopContent(
         "感想を選ぶ",
         "複数選択できます",
-        `<article class="quiz-card"><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">${avatarIconMarkup("calendar-days")}</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
+        `<img class="wanko-reaction-guide" src="assets/wanko-thinking.png" alt="" aria-hidden="true"><article class="quiz-card"><div class="post-head"><div class="mini-avatar" data-badge-tone="bronze">${avatarIconMarkup("calendar-days")}</div><div class="account"><strong>今日は何の日</strong><span>@today_note</span></div></div><p>今日は「世界図書・著作権デー」です。読書や出版，著作権について考える日としてユネスコが定めています。</p></article><div class="reaction-options">${["おもしろい！","ふむふむ","ほんとかなあ？","拡散しないと！","興味ない"].map((item, i) => `<button class="reaction-option" data-desktop-reaction="${item}"><span class="reaction-icon"><i data-lucide="${["sparkles","brain","search","megaphone","circle-minus"][i]}" aria-hidden="true"></i></span><span>${item}</span><i class="reaction-check" data-lucide="check"></i></button>`).join("")}</div><button class="button primary" id="desktop-submit-reaction" disabled>回答する（+2 pt）</button>`
       );
       const submit = document.querySelector("#desktop-submit-reaction");
       document.querySelectorAll("[data-desktop-reaction]").forEach((button) => {
