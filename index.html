@@ -585,6 +585,10 @@
       font-family: Arial, sans-serif;
     }
 
+    .post-actions .action-glyph-paw {
+      display: none;
+    }
+
     .post-actions button {
       color: var(--muted);
     }
@@ -596,6 +600,24 @@
     .post-actions button.active[data-social-action="いいね"] {
       color: #b84b58;
       background: #fff2f3;
+    }
+
+    body[data-theme="playful"] .post-actions button[data-social-action="いいね"] {
+      color: #4e91cf;
+    }
+
+    body[data-theme="playful"] .post-actions button[data-social-action="いいね"] .action-glyph-heart {
+      display: none;
+    }
+
+    body[data-theme="playful"] .post-actions button[data-social-action="いいね"] .action-glyph-paw {
+      display: inline-block;
+      stroke-width: 2.35;
+    }
+
+    body[data-theme="playful"] .post-actions button.active[data-social-action="いいね"] {
+      color: #dc9418;
+      background: #fff7d8;
     }
 
     .post-actions button.active[data-social-action="リポスト"] {
@@ -3670,16 +3692,30 @@
             "共有": "share-2",
             "返信": "message-circle"
           };
-          const icon = document.createElement("i");
-          icon.className = "action-glyph";
-          icon.setAttribute("aria-hidden", "true");
-          icon.setAttribute("data-lucide", iconMap[match[1]] || "circle");
+          const icons = [];
+          if (match[1] === "いいね") {
+            const heartIcon = document.createElement("i");
+            heartIcon.className = "action-glyph action-glyph-heart";
+            heartIcon.setAttribute("aria-hidden", "true");
+            heartIcon.setAttribute("data-lucide", "heart");
+            const pawIcon = document.createElement("i");
+            pawIcon.className = "action-glyph action-glyph-paw";
+            pawIcon.setAttribute("aria-hidden", "true");
+            pawIcon.setAttribute("data-lucide", "paw-print");
+            icons.push(heartIcon, pawIcon);
+          } else {
+            const icon = document.createElement("i");
+            icon.className = "action-glyph";
+            icon.setAttribute("aria-hidden", "true");
+            icon.setAttribute("data-lucide", iconMap[match[1]] || "circle");
+            icons.push(icon);
+          }
           count.textContent = match[2];
           button.dataset.socialAction = match[1];
           button.dataset.count = match[2];
           button.setAttribute("aria-label", `${match[1]} ${match[2]}件`);
           button.setAttribute("title", match[1]);
-          button.append(icon, count);
+          button.append(...icons, count);
           button.addEventListener("click", () => handlePostAction(button, count));
           span.replaceWith(button);
         });
